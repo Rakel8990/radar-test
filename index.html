@@ -20,7 +20,7 @@
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
     .card:hover {
-        transform: translateY(-8px) scale(1.03);
+        transform: translateY(-6px);
         box-shadow: 0 0 30px -5px rgb(245 213 95 / 0.5);
     }
 
@@ -43,46 +43,30 @@
     }
 
     .glow-yellow {
-        text-shadow: 0 0 20px rgb(245 213 95);
-    }
-
-    #get-listed-popup {
-        transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-        opacity: 0;
-        transform: translateY(20px) scale(0.95);
-    }
-    #get-listed-popup.show {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
-
-    .tweet-container {
-        background: #111;
-        border-radius: 16px;
-        padding: 20px;
-        box-shadow: 0 10px 30px -15px rgb(245 213 95);
+        text-shadow: 0 0 25px rgb(245 213 95);
     }
 </style>
 </head>
 <body class="bg-zinc-950 text-white min-h-screen pb-24">
 
-<div class="max-w-6xl mx-auto px-6 py-12">
+<div class="max-w-6xl mx-auto px-6 py-12 relative">
 
-    <!-- CENTERED HEADER -->
+    <!-- HEADER -->
+    <div class="absolute top-12 right-6 text-right z-10">
+        <p class="text-zinc-400 text-sm">built by <a href="https://x.com/rakel8990" target="_blank" class="text-yellow-400 hover:underline">@rakel8990</a></p>
+        <p class="text-amber-300/70 text-xs mt-1">who’s actually building in the vault</p>
+    </div>
+
     <div class="text-center mb-12">
         <h1 class="title-font text-8xl font-semibold tracking-tighter text-yellow-400 glow-yellow">CONCRETE</h1>
         <h1 class="title-font text-8xl font-semibold tracking-tighter -mt-4">RADAR</h1>
-        <div class="mt-4">
-            <p class="text-zinc-400 text-sm">built by <a href="https://x.com/rakel8990" target="_blank" class="text-yellow-400 hover:underline">@rakel8990</a></p>
-            <p class="text-amber-300/70 text-xs mt-1">who’s actually building in the vault</p>
-        </div>
     </div>
 
     <p class="text-2xl text-zinc-400 max-w-2xl mx-auto text-center mb-16">
         tracking the real ones posting, building, and moving capital through vaults
     </p>
 
-    <!-- WHAT IS CONCRETE ACCORDION -->
+    <!-- WHAT IS CONCRETE -->
     <div onclick="toggleAccordion(this)" class="accordion bg-zinc-900 border border-yellow-400/10 rounded-3xl mb-12 overflow-hidden cursor-pointer">
         <div class="accordion-header flex items-center justify-between px-8 py-6 text-lg font-medium">
             <div class="flex items-center gap-3">
@@ -129,7 +113,7 @@
         </div>
     </div>
 
-    <!-- CORE TEAM - HORIZONTAL & CENTERED -->
+    <!-- CORE TEAM -->
     <div class="text-center mb-12">
         <h2 class="text-yellow-400 text-xl font-semibold mb-6 flex items-center gap-2 justify-center">
             <span class="w-3 h-px bg-yellow-400"></span>
@@ -160,66 +144,218 @@
         </div>
     </div>
 
-    <!-- ROLE HOLDERS - HORIZONTAL & CENTERED -->
+    <!-- MOAI HOLDERS -->
     <div class="text-center mb-12">
         <h2 class="text-yellow-400 text-xl font-semibold mb-6 flex items-center gap-2 justify-center">
             <span class="w-3 h-px bg-yellow-400"></span>
-            ROLE HOLDERS
+            MOAI HOLDERS
         </h2>
         <div class="flex flex-wrap justify-center gap-8">
-            <a href="#" target="_blank" class="card group bg-zinc-900 border border-zinc-800 hover:border-yellow-400 rounded-2xl p-6 w-64">
-                <div class="w-11 h-11 bg-gradient-to-br from-yellow-400 to-amber-500 rounded-2xl flex items-center justify-center text-black font-bold mx-auto">RH1</div>
-                <div class="text-center mt-3">
-                    <p class="font-medium group-hover:text-yellow-400 transition-colors">@roleholder1</p>
-                    <p class="text-xs text-zinc-500">Role description</p>
+            <a href="https://x.com/mongralinweb3" target="_blank" class="card group bg-zinc-900 border border-zinc-800 hover:border-yellow-400 rounded-2xl p-6 w-64">
+                <div class="text-center">
+                    <p class="font-medium text-lg text-white">Mongral</p>
+                    <p class="font-medium group-hover:text-yellow-400 transition-colors">@mongralinweb3</p>
+                    <p class="text-xs text-zinc-500">MOAI Holder</p>
                 </div>
             </a>
-            <a href="#" target="_blank" class="card group bg-zinc-900 border border-zinc-800 hover:border-yellow-400 rounded-2xl p-6 w-64">
-                <div class="w-11 h-11 bg-gradient-to-br from-yellow-400 to-amber-500 rounded-2xl flex items-center justify-center text-black font-bold mx-auto">RH2</div>
-                <div class="text-center mt-3">
-                    <p class="font-medium group-hover:text-yellow-400 transition-colors">@roleholder2</p>
-                    <p class="text-xs text-zinc-500">Role description</p>
+            <a href="https://x.com/Nomiie143" target="_blank" class="card group bg-zinc-900 border border-zinc-800 hover:border-yellow-400 rounded-2xl p-6 w-64">
+                <div class="text-center">
+                    <p class="font-medium text-lg text-white">Nomi</p>
+                    <p class="font-medium group-hover:text-yellow-400 transition-colors">@Nomiie143</p>
+                    <p class="text-xs text-zinc-500">MOAI Holder</p>
                 </div>
             </a>
-            <!-- Add more if you want -->
+            <a href="https://x.com/Lidy_web3" target="_blank" class="card group bg-zinc-900 border border-zinc-800 hover:border-yellow-400 rounded-2xl p-6 w-64">
+                <div class="text-center">
+                    <p class="font-medium text-lg text-white">Lidy</p>
+                    <p class="font-medium group-hover:text-yellow-400 transition-colors">@Lidy_web3</p>
+                    <p class="text-xs text-zinc-500">MOAI Holder</p>
+                </div>
+            </a>
         </div>
     </div>
 
-    <!-- CONTENT CREATORS -->
+    <!-- CONTENT CREATORS - EXACTLY LIKE YOUR SCREENSHOT -->
     <div class="text-center mb-12">
         <h2 class="text-yellow-400 text-xl font-semibold mb-6 flex items-center gap-2 justify-center">
             <span class="w-3 h-px bg-yellow-400"></span>
             CONCRETE CONTENT CREATORS
         </h2>
-        <div class="grid grid-cols-3 md:grid-cols-6 gap-3 text-sm">
-            <a href="https://x.com/rakel8990" target="_blank" class="card bg-zinc-900 border border-zinc-800 hover:border-yellow-400 rounded-2xl px-5 py-4 text-center transition-colors">@rakel8990</a>
-            <a href="https://x.com/Osita__1" target="_blank" class="card bg-zinc-900 border border-zinc-800 hover:border-yellow-400 rounded-2xl px-5 py-4 text-center transition-colors">@Osita__1</a>
-            <a href="https://x.com/urochimaru90" target="_blank" class="card bg-zinc-900 border border-zinc-800 hover:border-yellow-400 rounded-2xl px-5 py-4 text-center transition-colors">@urochimaru90</a>
-            <a href="https://x.com/goodhabit300" target="_blank" class="card bg-zinc-900 border border-zinc-800 hover:border-yellow-400 rounded-2xl px-5 py-4 text-center transition-colors">@goodhabit300</a>
-            <a href="https://x.com/PhucvinhN1965" target="_blank" class="card bg-zinc-900 border border-zinc-800 hover:border-yellow-400 rounded-2xl px-5 py-4 text-center transition-colors">@PhucvinhN1965</a>
-            <a href="https://x.com/cybergrek" target="_blank" class="card bg-zinc-900 border border-zinc-800 hover:border-yellow-400 rounded-2xl px-5 py-4 text-center transition-colors">@cybergrek</a>
-            <a href="https://x.com/Mugi_wara_95" target="_blank" class="card bg-zinc-900 border border-zinc-800 hover:border-yellow-400 rounded-2xl px-5 py-4 text-center transition-colors">@Mugi_wara_95</a>
-            <a href="https://x.com/alex___nba" target="_blank" class="card bg-zinc-900 border border-zinc-800 hover:border-yellow-400 rounded-2xl px-5 py-4 text-center transition-colors">@alex___nba</a>
-            <a href="https://x.com/mr_gee_ster" target="_blank" class="card bg-zinc-900 border border-zinc-800 hover:border-yellow-400 rounded-2xl px-5 py-4 text-center transition-colors">@mr_gee_ster</a>
-            <a href="https://x.com/imAbdulazeez0p" target="_blank" class="card bg-zinc-900 border border-zinc-800 hover:border-yellow-400 rounded-2xl px-5 py-4 text-center transition-colors">@imAbdulazeez0p</a>
-            <a href="https://x.com/Resilient_22" target="_blank" class="card bg-zinc-900 border border-zinc-800 hover:border-yellow-400 rounded-2xl px-5 py-4 text-center transition-colors">@Resilient_22</a>
-            <a href="https://x.com/Sir_I_U" target="_blank" class="card bg-zinc-900 border border-zinc-800 hover:border-yellow-400 rounded-2xl px-5 py-4 text-center transition-colors">@Sir_I_U</a>
-            <a href="https://x.com/Afolabixyz" target="_blank" class="card bg-zinc-900 border border-zinc-800 hover:border-yellow-400 rounded-2xl px-5 py-4 text-center transition-colors">@Afolabixyz</a>
-            <a href="https://x.com/imshubhamsingh7" target="_blank" class="card bg-zinc-900 border border-zinc-800 hover:border-yellow-400 rounded-2xl px-5 py-4 text-center transition-colors">@imshubhamsingh7</a>
-            <a href="https://x.com/Darkknightz456" target="_blank" class="card bg-zinc-900 border border-zinc-800 hover:border-yellow-400 rounded-2xl px-5 py-4 text-center transition-colors">@Darkknightz456</a>
-            <a href="https://x.com/mizzy_web3" target="_blank" class="card bg-zinc-900 border border-zinc-800 hover:border-yellow-400 rounded-2xl px-5 py-4 text-center transition-colors">@mizzy_web3</a>
-            <a href="https://x.com/JKTech933" target="_blank" class="card bg-zinc-900 border border-zinc-800 hover:border-yellow-400 rounded-2xl px-5 py-4 text-center transition-colors">@JKTech933</a>
-            <a href="https://x.com/1ozzid" target="_blank" class="card bg-zinc-900 border border-zinc-800 hover:border-yellow-400 rounded-2xl px-5 py-4 text-center transition-colors">@1ozzid</a>
-            <a href="https://x.com/hana51024" target="_blank" class="card bg-zinc-900 border border-zinc-800 hover:border-yellow-400 rounded-2xl px-5 py-4 text-center transition-colors">@hana51024</a>
-            <a href="https://x.com/HustleMontego" target="_blank" class="card bg-zinc-900 border border-zinc-800 hover:border-yellow-400 rounded-2xl px-5 py-4 text-center transition-colors">@HustleMontego</a>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <a href="https://x.com/rakel8990" target="_blank" class="card bg-zinc-900 border border-zinc-800 hover:border-yellow-400 rounded-2xl p-6 text-center">
+                <p class="text-white font-medium">kian</p>
+                <p class="text-yellow-400">@rakel8990</p>
+            </a>
+            <a href="https://x.com/Osita__1" target="_blank" class="card bg-zinc-900 border border-zinc-800 hover:border-yellow-400 rounded-2xl p-6 text-center">
+                <p class="text-white font-medium">Osita</p>
+                <p class="text-yellow-400">@Osita__1</p>
+            </a>
+            <a href="https://x.com/urochimaru90" target="_blank" class="card bg-zinc-900 border border-zinc-800 hover:border-yellow-400 rounded-2xl p-6 text-center">
+                <p class="text-white font-medium">PA-MI</p>
+                <p class="text-yellow-400">@urochimaru90</p>
+            </a>
+            <a href="https://x.com/goodhabit300" target="_blank" class="card bg-zinc-900 border border-zinc-800 hover:border-yellow-400 rounded-2xl p-6 text-center">
+                <p class="text-white font-medium">Hailemariam.base.eth</p>
+                <p class="text-yellow-400">@goodhabit300</p>
+            </a>
+
+            <a href="https://x.com/PhucvinhN1965" target="_blank" class="card bg-zinc-900 border border-zinc-800 hover:border-yellow-400 rounded-2xl p-6 text-center">
+                <p class="text-white font-medium">vinh nguyễn</p>
+                <p class="text-yellow-400">@PhucvinhN1965</p>
+            </a>
+            <a href="https://x.com/cybergrek" target="_blank" class="card bg-zinc-900 border border-zinc-800 hover:border-yellow-400 rounded-2xl p-6 text-center">
+                <p class="text-white font-medium">Grek</p>
+                <p class="text-yellow-400">@cybergrek</p>
+            </a>
+            <a href="https://x.com/Mugi_wara_95" target="_blank" class="card bg-zinc-900 border border-zinc-800 hover:border-yellow-400 rounded-2xl p-6 text-center">
+                <p class="text-white font-medium">Mugiwara</p>
+                <p class="text-yellow-400">@Mugi_wara_95</p>
+            </a>
+            <a href="https://x.com/alex___nba" target="_blank" class="card bg-zinc-900 border border-zinc-800 hover:border-yellow-400 rounded-2xl p-6 text-center">
+                <p class="text-white font-medium">Alex</p>
+                <p class="text-yellow-400">@alex___nba</p>
+            </a>
+
+            <a href="https://x.com/mr_gee_ster" target="_blank" class="card bg-zinc-900 border border-zinc-800 hover:border-yellow-400 rounded-2xl p-6 text-center">
+                <p class="text-white font-medium">mr_gee_tech</p>
+                <p class="text-yellow-400">@mr_gee_ster</p>
+            </a>
+            <a href="https://x.com/imAbdulazeez0p" target="_blank" class="card bg-zinc-900 border border-zinc-800 hover:border-yellow-400 rounded-2xl p-6 text-center">
+                <p class="text-white font-medium">Abdulazeez</p>
+                <p class="text-yellow-400">@imAbdulazeez0p</p>
+            </a>
+            <a href="https://x.com/Resilient_22" target="_blank" class="card bg-zinc-900 border border-zinc-800 hover:border-yellow-400 rounded-2xl p-6 text-center">
+                <p class="text-white font-medium">MR. B</p>
+                <p class="text-yellow-400">@Resilient_22</p>
+            </a>
+            <a href="https://x.com/Sir_I_U" target="_blank" class="card bg-zinc-900 border border-zinc-800 hover:border-yellow-400 rounded-2xl p-6 text-center">
+                <p class="text-white font-medium">MR MUI</p>
+                <p class="text-yellow-400">@Sir_I_U</p>
+            </a>
+
+            <a href="https://x.com/Afolabixyz" target="_blank" class="card bg-zinc-900 border border-zinc-800 hover:border-yellow-400 rounded-2xl p-6 text-center">
+                <p class="text-white font-medium">AFOLABI</p>
+                <p class="text-yellow-400">@Afolabixyz</p>
+            </a>
+            <a href="https://x.com/imshubhamsingh7" target="_blank" class="card bg-zinc-900 border border-zinc-800 hover:border-yellow-400 rounded-2xl p-6 text-center">
+                <p class="text-white font-medium">Shubham Singh</p>
+                <p class="text-yellow-400">@imshubhamsingh7</p>
+            </a>
+            <a href="https://x.com/Darkknightz456" target="_blank" class="card bg-zinc-900 border border-zinc-800 hover:border-yellow-400 rounded-2xl p-6 text-center">
+                <p class="text-white font-medium">DarkKnight</p>
+                <p class="text-yellow-400">@Darkknightz456</p>
+            </a>
+            <a href="https://x.com/mizzy_web3" target="_blank" class="card bg-zinc-900 border border-zinc-800 hover:border-yellow-400 rounded-2xl p-6 text-center">
+                <p class="text-white font-medium">Mizzy</p>
+                <p class="text-yellow-400">@mizzy_web3</p>
+            </a>
+
+            <a href="https://x.com/JKTech933" target="_blank" class="card bg-zinc-900 border border-zinc-800 hover:border-yellow-400 rounded-2xl p-6 text-center">
+                <p class="text-white font-medium">JK Tech</p>
+                <p class="text-yellow-400">@JKTech933</p>
+            </a>
+            <a href="https://x.com/1ozzid" target="_blank" class="card bg-zinc-900 border border-zinc-800 hover:border-yellow-400 rounded-2xl p-6 text-center">
+                <p class="text-white font-medium">dev.ozzid</p>
+                <p class="text-yellow-400">@1ozzid</p>
+            </a>
+            <a href="https://x.com/hana51024" target="_blank" class="card bg-zinc-900 border border-zinc-800 hover:border-yellow-400 rounded-2xl p-6 text-center">
+                <p class="text-white font-medium">Hana</p>
+                <p class="text-yellow-400">@hana51024</p>
+            </a>
+            <a href="https://x.com/HustleMontego" target="_blank" class="card bg-zinc-900 border border-zinc-800 hover:border-yellow-400 rounded-2xl p-6 text-center">
+                <p class="text-white font-medium">Montego</p>
+                <p class="text-yellow-400">@HustleMontego</p>
+            </a>
         </div>
     </div>
 
-    <!-- WEEKLY ARTICLES ACCORDION -->
+    <!-- WEEKLY ARTICLES -->
     <div onclick="toggleAccordion(this)" class="accordion bg-zinc-900 border border-yellow-400/10 rounded-3xl mb-8 overflow-hidden cursor-pointer">
         <div class="accordion-header flex items-center justify-between px-8 py-6 text-lg font-medium">
             <div class="flex items-center gap-3">
                 <i class="fa-solid fa-newspaper text-yellow-400"></i>
                 <span>Weekly Articles • New topic every Monday</span>
             </div>
-            <svg xmlns="http://www.w3.org/2000/svg" class="chevron w-5 h-
+            <svg xmlns="http://www.w3.org/2000/svg" class="chevron w-5 h-5 text-yellow-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+        </div>
+        <div class="accordion-content px-8 pb-8 text-zinc-300 leading-relaxed">
+            <div class="bg-zinc-950 border border-yellow-400/30 rounded-3xl p-8">
+                <p class="italic text-lg">"How vaults are quietly eating TradFi’s lunch"</p>
+                <a href="#" class="text-xs text-yellow-400 hover:underline mt-6 inline-block">Read full article →</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- WEEKLY SPOTLIGHT -->
+    <div onclick="toggleAccordion(this)" class="accordion bg-zinc-900 border border-yellow-400/10 rounded-3xl mb-12 overflow-hidden cursor-pointer">
+        <div class="accordion-header flex items-center justify-between px-8 py-6 text-lg font-medium">
+            <div class="flex items-center gap-3">
+                <i class="fa-solid fa-star text-yellow-400"></i>
+                <span>Weekly Spotlight • Top builders this week</span>
+            </div>
+            <svg xmlns="http://www.w3.org/2000/svg" class="chevron w-5 h-5 text-yellow-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+        </div>
+        <div class="accordion-content px-8 pb-8 text-zinc-300 leading-relaxed">
+            <blockquote class="twitter-tweet" data-theme="dark"><p lang="en" dir="ltr">1/ You deposited into a <a href="https://twitter.com/ConcreteXYZ?ref_src=twsrc%5Etfw">@ConcreteXYZ</a> vault.<br><br>Now you see terms like eRate and NAV… and wonder what they actually mean.<br><br>Here’s the only guide you need. <a href="https://t.co/nFxLfrUX38">pic.twitter.com/nFxLfrUX38</a></p>&mdash; Concrete (@ConcreteXYZ) <a href="https://twitter.com/ConcreteXYZ/status/2036112284867576217?ref_src=twsrc%5Etfw">March 23, 2026</a></blockquote>
+        </div>
+    </div>
+
+    <!-- GET LISTED BUTTON - EXACTLY LIKE YOUR SCREENSHOT -->
+    <div class="flex justify-end">
+        <button onclick="showGetListed()" 
+                class="bg-yellow-400 hover:bg-yellow-300 transition-colors text-black font-semibold px-8 py-3.5 rounded-3xl text-sm flex items-center gap-2 shadow-lg">
+            <i class="fa-solid fa-plus"></i>
+            Get Listed
+        </button>
+    </div>
+
+</div>
+
+<!-- GET LISTED POPUP -->
+<div id="get-listed-popup" onclick="if(event.target.id==='get-listed-popup') hideGetListed()" 
+     class="fixed inset-0 bg-black/80 hidden flex items-center justify-center z-50">
+    <div onclick="event.stopImmediatePropagation()" 
+         class="bg-zinc-900 border border-yellow-400/30 rounded-3xl max-w-xs w-full mx-4 p-8 text-center">
+        <h3 class="text-3xl font-semibold mb-2 text-yellow-400 tracking-tighter">GET LISTED</h3>
+        <p class="text-zinc-400 mb-8 text-sm">DM me directly and I’ll add you</p>
+        
+        <div class="space-y-4">
+            <a href="https://x.com/rakel8990" target="_blank" class="flex items-center justify-center gap-3 bg-zinc-800 hover:bg-zinc-700 transition-colors rounded-2xl py-5 text-yellow-400 font-medium">
+                <i class="fa-brands fa-x-twitter text-2xl"></i>
+                <span>@rakel8990 on X</span>
+            </a>
+            <a href="https://t.me/rakel8990" target="_blank" class="flex items-center justify-center gap-3 bg-zinc-800 hover:bg-zinc-700 transition-colors rounded-2xl py-5 text-yellow-400 font-medium">
+                <i class="fa-brands fa-telegram text-2xl"></i>
+                <span>Message me on Telegram</span>
+            </a>
+        </div>
+        
+        <button onclick="hideGetListed()" class="mt-8 w-full text-zinc-400 hover:text-white transition-colors py-3 text-sm">Close</button>
+    </div>
+</div>
+
+<script src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<script>
+function toggleAccordion(el) {
+    el.classList.toggle('active');
+}
+
+function showGetListed() {
+    const popup = document.getElementById('get-listed-popup');
+    popup.classList.remove('hidden');
+    setTimeout(() => popup.classList.add('show'), 10);
+}
+
+function hideGetListed() {
+    const popup = document.getElementById('get-listed-popup');
+    popup.classList.remove('show');
+    setTimeout(() => popup.classList.add('hidden'), 400);
+}
+</script>
+
+</body>
+</html>
