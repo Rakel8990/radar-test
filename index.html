@@ -33,7 +33,7 @@
         transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
     .accordion.active .accordion-content {
-        max-height: 500px;
+        max-height: 800px; /* Increased to accommodate more text */
     }
     .chevron {
         transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -46,7 +46,7 @@
         text-shadow: 0 0 25px rgb(245 213 95);
     }
 
-    /* FLOATING BUTTON - EXACT STYLE */
+    /* FLOATING BUTTON */
     .floating-btn {
         position: fixed;
         bottom: 25px;
@@ -70,7 +70,7 @@
         box-shadow: 0 15px 25px -5px rgb(245 213 95 / 0.5);
     }
 
-    /* POPUP OVERLAY - PRESERVED FROM FIRST CODE */
+    /* POPUP OVERLAY */
     #popup {
         display: none;
         position: fixed;
@@ -110,11 +110,43 @@
         tracking the real ones posting, building, and moving capital through vaults
     </p>
 
-    <div onclick="toggleAccordion(this)" class="accordion bg-zinc-900 border border-yellow-400/10 rounded-3xl mb-12 overflow-hidden cursor-pointer">
+    <div onclick="toggleAccordion(this)" class="accordion bg-zinc-900 border border-yellow-400/10 rounded-3xl mb-4 overflow-hidden cursor-pointer">
         <div class="accordion-header flex items-center justify-between px-8 py-6 text-lg font-medium">
             <div class="flex items-center gap-3">
                 <i class="fa-solid fa-vault text-yellow-400"></i>
-                <span>What is Concrete • Links • Earn</span>
+                <span>What is Concrete • Links</span>
+            </div>
+            <svg xmlns="http://www.w3.org/2000/svg" class="chevron w-5 h-5 text-yellow-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+        </div>
+        <div class="accordion-content px-8 pb-8 text-zinc-300 leading-relaxed">
+            <p class="mb-8">
+                Concrete is building DeFi infra where capital moves through vaults instead of manual plays. 
+                It mixes protection, yield, and social activity — meaning posting actually matters.
+            </p>
+            <div class="flex gap-6 text-yellow-400">
+                <a href="https://points.concrete.xyz/home" target="_blank" class="flex items-center gap-2 hover:text-yellow-300 transition-colors">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    Points Dashboard
+                </a>
+                <a href="https://discord.gg/concretexyz" target="_blank" class="flex items-center gap-2 hover:text-yellow-300 transition-colors">
+                    <i class="fa-brands fa-discord"></i>
+                    Discord
+                </a>
+                <a href="https://x.com/ConcreteXYZ" target="_blank" class="flex items-center gap-2 hover:text-yellow-300 transition-colors">
+                    <i class="fa-brands fa-x-twitter"></i>
+                    Twitter
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div onclick="toggleAccordion(this)" class="accordion bg-zinc-900 border border-yellow-400/10 rounded-3xl mb-12 overflow-hidden cursor-pointer">
+        <div class="accordion-header flex items-center justify-between px-8 py-6 text-lg font-medium">
+            <div class="flex items-center gap-3">
+                <i class="fa-solid fa-sack-dollar text-yellow-400"></i>
+                <span>How to Collect Bags</span>
             </div>
             <svg xmlns="http://www.w3.org/2000/svg" class="chevron w-5 h-5 text-yellow-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
@@ -122,8 +154,7 @@
         </div>
         <div class="accordion-content px-8 pb-8 text-zinc-300 leading-relaxed">
             <p class="mb-6">
-                Concrete is building DeFi infra where capital moves through vaults instead of manual plays. 
-                It mixes protection, yield, and social activity — meaning posting actually matters.
+                You can earn points by completing social tasks like following on X, joining Discord, writing insightful tweets, and sharing your experiences with Concrete’s vaults and protection features. Each action helps amplify awareness and strengthens the network.
             </p>
             <div class="flex flex-wrap gap-8 text-sm">
                 <div>
@@ -138,20 +169,6 @@
                     <span class="block text-yellow-400 font-medium mb-2">My referral code:</span>
                     <div class="bg-zinc-950 border border-yellow-400/30 rounded-2xl px-6 py-3 font-mono text-xl tracking-widest text-yellow-300">1ad605d7</div>
                 </div>
-            </div>
-            <div class="mt-8 flex gap-6 text-yellow-400">
-                <a href="https://points.concrete.xyz/home" target="_blank" class="flex items-center gap-2 hover:text-yellow-300 transition-colors">
-                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                    Points Dashboard
-                </a>
-                <a href="https://discord.gg/concretexyz" target="_blank" class="flex items-center gap-2 hover:text-yellow-300 transition-colors">
-                    <i class="fa-brands fa-discord"></i>
-                    Discord
-                </a>
-                <a href="https://x.com/ConcreteXYZ" target="_blank" class="flex items-center gap-2 hover:text-yellow-300 transition-colors">
-                    <i class="fa-brands fa-x-twitter"></i>
-                    Twitter
-                </a>
             </div>
         </div>
     </div>
@@ -371,23 +388,18 @@
             WEEKLY SPOTLIGHT POSTS
         </h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-
             <div class="bg-zinc-900 border border-yellow-400/10 rounded-3xl p-6">
                 <blockquote class="twitter-tweet" data-theme="dark"><p lang="en" dir="ltr">GMCRETE👋👋<br><br>looking for more MOAI holders <br> if you&#39;re one of &#39;em comment here<br><br>WE building..... <a href="https://t.co/58E42iQJQS">https://t.co/58E42iQJQS</a> <a href="https://t.co/au787TjkGI">pic.twitter.com/au787TjkGI</a></p>&mdash; kian 🗿 (@rakel8990) <a href="https://twitter.com/rakel8990/status/2035751345727090739?ref_src=twsrc%5Etfw">March 22, 2026</a></blockquote>
             </div>
-
             <div class="bg-zinc-900 border border-yellow-400/10 rounded-3xl p-6">
                 <blockquote class="twitter-tweet" data-theme="dark"><p lang="en" dir="ltr">GMCRETE👋👋<br><br>looking for more MOAI holders <br> if you&#39;re one of &#39;em comment here<br><br>WE building..... <a href="https://t.co/58E42iQJQS">https://t.co/58E42iQJQS</a> <a href="https://t.co/au787TjkGI">pic.twitter.com/au787TjkGI</a></p>&mdash; kian 🗿 (@rakel8990) <a href="https://twitter.com/rakel8990/status/2035751345727090739?ref_src=twsrc%5Etfw">March 22, 2026</a></blockquote>
             </div>
-
             <div class="bg-zinc-900 border border-yellow-400/10 rounded-3xl p-6">
                 <blockquote class="twitter-tweet" data-theme="dark"><p lang="en" dir="ltr">GMCRETE👋👋<br><br>looking for more MOAI holders <br> if you&#39;re one of &#39;em comment here<br><br>WE building..... <a href="https://t.co/58E42iQJQS">https://t.co/58E42iQJQS</a> <a href="https://t.co/au787TjkGI">pic.twitter.com/au787TjkGI</a></p>&mdash; kian 🗿 (@rakel8990) <a href="https://twitter.com/rakel8990/status/2035751345727090739?ref_src=twsrc%5Etfw">March 22, 2026</a></blockquote>
             </div>
-
             <div class="bg-zinc-900 border border-yellow-400/10 rounded-3xl p-6">
                 <blockquote class="twitter-tweet" data-theme="dark"><p lang="en" dir="ltr">GMCRETE👋👋<br><br>looking for more MOAI holders <br> if you&#39;re one of &#39;em comment here<br><br>WE building..... <a href="https://t.co/58E42iQJQS">https://t.co/58E42iQJQS</a> <a href="https://t.co/au787TjkGI">pic.twitter.com/au787TjkGI</a></p>&mdash; kian 🗿 (@rakel8990) <a href="https://twitter.com/rakel8990/status/2035751345727090739?ref_src=twsrc%5Etfw">March 22, 2026</a></blockquote>
             </div>
-
         </div>
     </div>
 
