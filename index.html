@@ -46,6 +46,13 @@
         text-shadow: 0 0 25px rgb(245 213 95);
     }
 
+    /* TICKER ANIMATION */
+    @keyframes marquee {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+    }
+    .animate-marquee { display: flex; animation: marquee 30s linear infinite; }
+
     /* FLOATING BUTTON */
     .floating-btn {
         position: fixed;
@@ -104,6 +111,17 @@
 </head>
 <body class="bg-zinc-950 text-white min-h-screen pb-24">
 
+<div class="bg-yellow-400/10 border-b border-yellow-400/20 py-2 overflow-hidden w-full">
+    <div class="animate-marquee whitespace-nowrap">
+        <span class="mx-10 text-[10px] font-bold text-yellow-400 uppercase tracking-widest">● Article of the week > <span class="text-white">How Do Concrete Vaults Actually Work?</span></span>
+        <span class="mx-10 text-[10px] font-bold text-yellow-400 uppercase tracking-widest">● Concrete has reached <span class="text-white">$1,000,000,000 in TVL!</span></span>
+        <span class="mx-10 text-[10px] font-bold text-yellow-400 uppercase tracking-widest">● Concrete Vaults Are Now <span class="text-white">Live in Binance Wallet</span></span>
+        <span class="mx-10 text-[10px] font-bold text-yellow-400 uppercase tracking-widest">● Article of the week > <span class="text-white">How Do Concrete Vaults Actually Work?</span></span>
+        <span class="mx-10 text-[10px] font-bold text-yellow-400 uppercase tracking-widest">● Concrete has reached <span class="text-white">$1,000,000,000 in TVL!</span></span>
+        <span class="mx-10 text-[10px] font-bold text-yellow-400 uppercase tracking-widest">● Concrete Vaults Are Now <span class="text-white">Live in Binance Wallet</span></span>
+    </div>
+</div>
+
 <div class="max-w-6xl mx-auto px-6 py-12 relative">
 
     <div class="absolute top-12 right-6 text-right z-10">
@@ -159,8 +177,8 @@
         </h2>
         <div class="flex flex-wrap justify-center gap-8">
             <a href="https://x.com/dill_sl" target="_blank" class="card group bg-zinc-900 border border-zinc-800 hover:border-yellow-400 rounded-2xl p-6 w-64">
-                <div class="w-24 h-24 mx-auto rounded-2xl overflow-hidden border-2 border-yellow-400">
-                    <img src="dill.jpg" alt="@dill_sl" class="w-full h-full object-cover">
+                <div class="w-24 h-24 mx-auto rounded-2xl overflow-hidden border-2 border-yellow-400 text-center flex items-center justify-center bg-zinc-800">
+                    <span class="text-zinc-600 text-xs italic">Photo</span>
                 </div>
                 <div class="text-center mt-4">
                     <p class="font-medium group-hover:text-yellow-400 transition-colors">@dill_sl</p>
@@ -168,8 +186,8 @@
                 </div>
             </a>
             <a href="https://x.com/GustavoRSSilva" target="_blank" class="card group bg-zinc-900 border border-zinc-800 hover:border-yellow-400 rounded-2xl p-6 w-64">
-                <div class="w-24 h-24 mx-auto rounded-2xl overflow-hidden border-2 border-yellow-400">
-                    <img src="gustavo.jpg" alt="@GustavoRSSilva" class="w-full h-full object-cover">
+                <div class="w-24 h-24 mx-auto rounded-2xl overflow-hidden border-2 border-yellow-400 text-center flex items-center justify-center bg-zinc-800">
+                    <span class="text-zinc-600 text-xs italic">Photo</span>
                 </div>
                 <div class="text-center mt-4">
                     <p class="font-medium group-hover:text-yellow-400 transition-colors">@GustavoRSSilva</p>
@@ -177,8 +195,8 @@
                 </div>
             </a>
             <a href="https://x.com/blueprintluke" target="_blank" class="card group bg-zinc-900 border border-zinc-800 hover:border-yellow-400 rounded-2xl p-6 w-64">
-                <div class="w-24 h-24 mx-auto rounded-2xl overflow-hidden border-2 border-yellow-400">
-                    <img src="luke.jpg" alt="@blueprintluke" class="w-full h-full object-cover">
+                <div class="w-24 h-24 mx-auto rounded-2xl overflow-hidden border-2 border-yellow-400 text-center flex items-center justify-center bg-zinc-800">
+                    <span class="text-zinc-600 text-xs italic">Photo</span>
                 </div>
                 <div class="text-center mt-4">
                     <p class="font-medium group-hover:text-yellow-400 transition-colors">@blueprintluke</p>
@@ -186,8 +204,8 @@
                 </div>
             </a>
             <a href="https://x.com/andonpv" target="_blank" class="card group bg-zinc-900 border border-zinc-800 hover:border-yellow-400 rounded-2xl p-6 w-64">
-                <div class="w-24 h-24 mx-auto rounded-2xl overflow-hidden border-2 border-yellow-400">
-                    <img src="depoche.jpg" alt="@andonpv" class="w-full h-full object-cover">
+                <div class="w-24 h-24 mx-auto rounded-2xl overflow-hidden border-2 border-yellow-400 text-center flex items-center justify-center bg-zinc-800">
+                    <span class="text-zinc-600 text-xs italic">Photo</span>
                 </div>
                 <div class="text-center mt-4">
                     <p class="font-medium group-hover:text-yellow-400 transition-colors">@andonpv</p>
@@ -195,8 +213,8 @@
                 </div>
             </a>
             <a href="https://x.com/crypttoji" target="_blank" class="card group bg-zinc-900 border border-zinc-800 hover:border-yellow-400 rounded-2xl p-6 w-64">
-                <div class="w-24 h-24 mx-auto rounded-2xl overflow-hidden border-2 border-yellow-400">
-                    <img src="toji.jpg" alt="@crypttoji" class="w-full h-full object-cover">
+                <div class="w-24 h-24 mx-auto rounded-2xl overflow-hidden border-2 border-yellow-400 text-center flex items-center justify-center bg-zinc-800">
+                    <span class="text-zinc-600 text-xs italic">Photo</span>
                 </div>
                 <div class="text-center mt-4">
                     <p class="font-medium group-hover:text-yellow-400 transition-colors">@crypttoji</p>
@@ -204,8 +222,8 @@
                 </div>
             </a>
             <a href="https://x.com/nic_builds" target="_blank" class="card group bg-zinc-900 border border-zinc-800 hover:border-yellow-400 rounded-2xl p-6 w-64">
-                <div class="w-24 h-24 mx-auto rounded-2xl overflow-hidden border-2 border-yellow-400">
-                    <img src="nic.jpg" alt="@nic_builds" class="w-full h-full object-cover">
+                <div class="w-24 h-24 mx-auto rounded-2xl overflow-hidden border-2 border-yellow-400 text-center flex items-center justify-center bg-zinc-800">
+                    <span class="text-zinc-600 text-xs italic">Photo</span>
                 </div>
                 <div class="text-center mt-4">
                     <p class="font-medium group-hover:text-yellow-400 transition-colors">@nic_builds</p>
@@ -213,8 +231,8 @@
                 </div>
             </a>
             <a href="https://x.com/concrete_intern" target="_blank" class="card group bg-zinc-900 border border-zinc-800 hover:border-yellow-400 rounded-2xl p-6 w-64">
-                <div class="w-24 h-24 mx-auto rounded-2xl overflow-hidden border-2 border-yellow-400">
-                    <img src="the INTERN.jpg" alt="@concrete_intern" class="w-full h-full object-cover">
+                <div class="w-24 h-24 mx-auto rounded-2xl overflow-hidden border-2 border-yellow-400 text-center flex items-center justify-center bg-zinc-800">
+                    <span class="text-zinc-600 text-xs italic">Photo</span>
                 </div>
                 <div class="text-center mt-4">
                     <p class="font-medium group-hover:text-yellow-400 transition-colors">@concrete_intern</p>
@@ -367,17 +385,17 @@
             WEEKLY SPOTLIGHT POSTS
         </h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div class="bg-zinc-900 border border-yellow-400/10 rounded-3xl p-6">
-                <blockquote class="twitter-tweet" data-theme="dark"><p lang="en" dir="ltr">GMCRETE👋👋<br><br>looking for more MOAI holders <br> if you&#39;re one of &#39;em comment here<br><br>WE building..... <a href="https://t.co/58E42iQJQS">https://t.co/58E42iQJQS</a> <a href="https://t.co/au787TjkGI">pic.twitter.com/au787TjkGI</a></p>&mdash; kian 🗿 (@rakel8990) <a href="https://twitter.com/rakel8990/status/2035751345727090739?ref_src=twsrc%5Etfw">March 22, 2026</a></blockquote>
+            <div class="bg-zinc-900 border border-yellow-400/10 rounded-3xl p-6 text-center flex items-center justify-center">
+                <span class="text-zinc-700 italic">Spotlight 1</span>
             </div>
-            <div class="bg-zinc-900 border border-yellow-400/10 rounded-3xl p-6">
-                <blockquote class="twitter-tweet" data-theme="dark"><p lang="en" dir="ltr">GMCRETE👋👋<br><br>looking for more MOAI holders <br> if you&#39;re one of &#39;em comment here<br><br>WE building..... <a href="https://t.co/58E42iQJQS">https://t.co/58E42iQJQS</a> <a href="https://t.co/au787TjkGI">pic.twitter.com/au787TjkGI</a></p>&mdash; kian 🗿 (@rakel8990) <a href="https://twitter.com/rakel8990/status/2035751345727090739?ref_src=twsrc%5Etfw">March 22, 2026</a></blockquote>
+            <div class="bg-zinc-900 border border-yellow-400/10 rounded-3xl p-6 text-center flex items-center justify-center">
+                <span class="text-zinc-700 italic">Spotlight 2</span>
             </div>
-            <div class="bg-zinc-900 border border-yellow-400/10 rounded-3xl p-6">
-                <blockquote class="twitter-tweet" data-theme="dark"><p lang="en" dir="ltr">GMCRETE👋👋<br><br>looking for more MOAI holders <br> if you&#39;re one of &#39;em comment here<br><br>WE building..... <a href="https://t.co/58E42iQJQS">https://t.co/58E42iQJQS</a> <a href="https://t.co/au787TjkGI">pic.twitter.com/au787TjkGI</a></p>&mdash; kian 🗿 (@rakel8990) <a href="https://twitter.com/rakel8990/status/2035751345727090739?ref_src=twsrc%5Etfw">March 22, 2026</a></blockquote>
+            <div class="bg-zinc-900 border border-yellow-400/10 rounded-3xl p-6 text-center flex items-center justify-center">
+                <span class="text-zinc-700 italic">Spotlight 3</span>
             </div>
-            <div class="bg-zinc-900 border border-yellow-400/10 rounded-3xl p-6">
-                <blockquote class="twitter-tweet" data-theme="dark"><p lang="en" dir="ltr">GMCRETE👋👋<br><br>looking for more MOAI holders <br> if you&#39;re one of &#39;em comment here<br><br>WE building..... <a href="https://t.co/58E42iQJQS">https://t.co/58E42iQJQS</a> <a href="https://t.co/au787TjkGI">pic.twitter.com/au787TjkGI</a></p>&mdash; kian 🗿 (@rakel8990) <a href="https://twitter.com/rakel8990/status/2035751345727090739?ref_src=twsrc%5Etfw">March 22, 2026</a></blockquote>
+            <div class="bg-zinc-900 border border-yellow-400/10 rounded-3xl p-6 text-center flex items-center justify-center">
+                <span class="text-zinc-700 italic">Spotlight 4</span>
             </div>
         </div>
     </div>
