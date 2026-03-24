@@ -45,13 +45,67 @@
     .glow-yellow {
         text-shadow: 0 0 25px rgb(245 213 95);
     }
+
+    /* FLOATING BUTTON - EXACT STYLE FROM YOUR ORIGINAL CODE */
+    .floating-btn {
+        position: fixed;
+        bottom: 25px;
+        right: 25px;
+        background: #F5D55F;
+        color: black;
+        padding: 12px 18px;
+        border-radius: 30px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 15px;
+        box-shadow: 0 10px 20px -5px rgb(245 213 95 / 0.4);
+        transition: all 0.2s ease;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        z-index: 50;
+    }
+    .floating-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 15px 25px -5px rgb(245 213 95 / 0.5);
+    }
+
+    /* POPUP OVERLAY - EXACTLY AS REQUESTED */
+    #popup {
+        display: none;
+        position: fixed;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        background: rgba(0,0,0,0.8);
+        justify-content: center;
+        align-items: center;
+        z-index: 100;
+    }
+    .popup-content {
+        background: #1A1A1A;
+        padding: 30px;
+        border-radius: 16px;
+        border: 1px solid #F5D55F;
+        max-width: 380px;
+        width: 90%;
+        text-align: center;
+    }
+    .socials img {
+        width: 32px;
+        margin: 12px;
+        filter: invert(80%);
+        transition: transform 0.2s;
+    }
+    .socials img:hover {
+        transform: scale(1.1);
+    }
 </style>
 </head>
 <body class="bg-zinc-950 text-white min-h-screen pb-24">
 
 <div class="max-w-6xl mx-auto px-6 py-12 relative">
 
-    <!-- HEADER -->
+    <!-- HEADER WITH BUILT BY IN TOP RIGHT -->
     <div class="absolute top-12 right-6 text-right z-10">
         <p class="text-zinc-400 text-sm">built by <a href="https://x.com/rakel8990" target="_blank" class="text-yellow-400 hover:underline">@rakel8990</a></p>
         <p class="text-amber-300/70 text-xs mt-1">who’s actually building in the vault</p>
@@ -175,7 +229,7 @@
         </div>
     </div>
 
-    <!-- CONTENT CREATORS - EXACTLY LIKE YOUR SCREENSHOT -->
+    <!-- CONTENT CREATORS - EXACT MATCH TO YOUR SCREENSHOT -->
     <div class="text-center mb-12">
         <h2 class="text-yellow-400 text-xl font-semibold mb-6 flex items-center gap-2 justify-center">
             <span class="w-3 h-px bg-yellow-400"></span>
@@ -304,37 +358,31 @@
         </div>
     </div>
 
-    <!-- GET LISTED BUTTON - EXACTLY LIKE YOUR SCREENSHOT -->
-    <div class="flex justify-end">
-        <button onclick="showGetListed()" 
-                class="bg-yellow-400 hover:bg-yellow-300 transition-colors text-black font-semibold px-8 py-3.5 rounded-3xl text-sm flex items-center gap-2 shadow-lg">
-            <i class="fa-solid fa-plus"></i>
-            Get Listed
-        </button>
-    </div>
-
 </div>
 
-<!-- GET LISTED POPUP -->
-<div id="get-listed-popup" onclick="if(event.target.id==='get-listed-popup') hideGetListed()" 
-     class="fixed inset-0 bg-black/80 hidden flex items-center justify-center z-50">
-    <div onclick="event.stopImmediatePropagation()" 
-         class="bg-zinc-900 border border-yellow-400/30 rounded-3xl max-w-xs w-full mx-4 p-8 text-center">
-        <h3 class="text-3xl font-semibold mb-2 text-yellow-400 tracking-tighter">GET LISTED</h3>
-        <p class="text-zinc-400 mb-8 text-sm">DM me directly and I’ll add you</p>
+<!-- FLOATING GET LISTED BUTTON (EXACT STYLE YOU WANTED) -->
+<a href="#" onclick="openPopup()" class="floating-btn">
+    <i class="fa-solid fa-plus"></i>
+    Get Listed
+</a>
+
+<!-- POPUP OVERLAY (EXACT TEXT + ICONS YOU ASKED FOR) -->
+<div id="popup" class="popup" onclick="if(event.target.id==='popup') closePopup()">
+    <div class="popup-content" onclick="event.stopImmediatePropagation()">
+        <p class="text-white text-lg leading-relaxed mb-8">
+            no ghosts allowed. if you’re active, posting, and actually doing something in concrete, you might belong here. prove it first.
+        </p>
         
-        <div class="space-y-4">
-            <a href="https://x.com/rakel8990" target="_blank" class="flex items-center justify-center gap-3 bg-zinc-800 hover:bg-zinc-700 transition-colors rounded-2xl py-5 text-yellow-400 font-medium">
-                <i class="fa-brands fa-x-twitter text-2xl"></i>
-                <span>@rakel8990 on X</span>
+        <div class="socials flex justify-center">
+            <!-- X -->
+            <a href="https://x.com/order_denied" target="_blank">
+                <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/x.svg" alt="X">
             </a>
-            <a href="https://t.me/rakel8990" target="_blank" class="flex items-center justify-center gap-3 bg-zinc-800 hover:bg-zinc-700 transition-colors rounded-2xl py-5 text-yellow-400 font-medium">
-                <i class="fa-brands fa-telegram text-2xl"></i>
-                <span>Message me on Telegram</span>
+            <!-- Telegram -->
+            <a href="https://t.me/order_denied" target="_blank">
+                <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/telegram.svg" alt="Telegram">
             </a>
         </div>
-        
-        <button onclick="hideGetListed()" class="mt-8 w-full text-zinc-400 hover:text-white transition-colors py-3 text-sm">Close</button>
     </div>
 </div>
 
@@ -344,16 +392,12 @@ function toggleAccordion(el) {
     el.classList.toggle('active');
 }
 
-function showGetListed() {
-    const popup = document.getElementById('get-listed-popup');
-    popup.classList.remove('hidden');
-    setTimeout(() => popup.classList.add('show'), 10);
+function openPopup() {
+    document.getElementById('popup').style.display = 'flex';
 }
 
-function hideGetListed() {
-    const popup = document.getElementById('get-listed-popup');
-    popup.classList.remove('show');
-    setTimeout(() => popup.classList.add('hidden'), 400);
+function closePopup() {
+    document.getElementById('popup').style.display = 'none';
 }
 </script>
 
