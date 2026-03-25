@@ -1,266 +1,261 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Concrete Radar | Full Terminal</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-<style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&family=JetBrains+Mono&display=swap');
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Concrete Radar | Full System Terminal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&family=JetBrains+Mono&display=swap');
 
-    :root { --gold: #F5D55F; --zinc-950: #09090b; }
-    body { font-family: 'Inter', sans-serif; background-color: #000; color: #fff; scroll-behavior: smooth; overflow-x: hidden; }
-    .title-font { font-family: 'Space Grotesk', sans-serif; }
-    .mono-font { font-family: 'JetBrains Mono', monospace; }
+        :root { --gold: #F5D55F; }
+        body { font-family: 'Inter', sans-serif; background-color: #000; color: #fff; scroll-behavior: smooth; overflow-x: hidden; }
+        .title-font { font-family: 'Space Grotesk', sans-serif; }
+        .mono-font { font-family: 'JetBrains Mono', monospace; }
 
-    /* --- ANIMATIONS --- */
-    @keyframes shimmer { 0% { transform: translateX(-150%); } 100% { transform: translateX(150%); } }
-    .gold-shimmer { position: relative; overflow: hidden; }
-    .gold-shimmer::after {
-        content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(245, 213, 95, 0.08), transparent);
-        transform: translateX(-150%); transition: 0.8s;
-    }
-    .gold-shimmer:hover::after, .found-glow-gold::after { animation: shimmer 1.2s infinite; }
+        /* --- SEARCH & GLOW EFFECTS --- */
+        .found-match {
+            border-color: var(--gold) !important;
+            box-shadow: 0 0 25px rgba(245, 213, 95, 0.4);
+            transform: translateY(-5px) scale(1.02);
+            z-index: 10;
+        }
+        
+        @keyframes pulse-glow {
+            0% { box-shadow: 0 0 5px rgba(245, 213, 95, 0.2); }
+            50% { box-shadow: 0 0 25px rgba(245, 213, 95, 0.5); }
+            100% { box-shadow: 0 0 5px rgba(245, 213, 95, 0.2); }
+        }
+        .found-match-active { animation: pulse-glow 2s infinite; }
 
-    /* --- COMPONENT STYLES --- */
-    .glass-panel { background: rgba(15, 15, 15, 0.6); border: 1px solid rgba(255, 255, 255, 0.03); backdrop-blur: 10px; }
-    .creator-card { transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); border: 1px solid rgba(255, 255, 255, 0.05); }
-    
-    .gold-card:hover, .found-glow-gold { border-color: var(--gold); transform: translateY(-4px); box-shadow: 0 10px 30px -10px rgba(245, 213, 95, 0.3); }
-    .silver-card:hover, .found-glow-silver { border-color: #fff; background: #111; transform: scale(1.02); }
+        /* --- CARD STYLES --- */
+        .creator-card { transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); border: 1px solid rgba(255, 255, 255, 0.05); background: #0a0a0a; }
+        .gold-card:hover { border-color: var(--gold); transform: translateY(-3px); }
+        .silver-card:hover { border-color: #fff; transform: translateY(-2px); }
 
-    /* SEARCH UI */
-    .search-box { transition: all 0.3s ease; border: 1px solid rgba(255, 255, 255, 0.05); }
-    .search-box:focus-within { border-color: var(--gold); box-shadow: 0 0 20px rgba(245, 213, 95, 0.15); }
-    .clear-btn { display: none; cursor: pointer; transition: 0.2s; }
-    .clear-btn:hover { color: var(--gold); }
+        /* --- TICKER --- */
+        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        .animate-marquee { display: flex; animation: marquee 35s linear infinite; }
 
-    /* TICKER */
-    @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-    .animate-marquee { display: flex; animation: marquee 30s linear infinite; }
+        /* --- ACCORDIONS --- */
+        .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+        .accordion.active .accordion-content { max-height: 500px; padding: 1.5rem 0; }
 
-    /* ACCORDIONS */
-    .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
-    .accordion.active .accordion-content { max-height: 400px; padding-bottom: 1.5rem; }
-</style>
+        /* --- SCROLLBAR --- */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #000; }
+        ::-webkit-scrollbar-thumb { background: #222; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--gold); }
+    </style>
 </head>
-<body class="pb-20">
+<body class="pb-32">
 
-<div class="bg-yellow-500/5 border-b border-white/5 py-2 sticky top-0 z-[60] backdrop-blur-xl">
-    <div class="animate-marquee whitespace-nowrap text-[9px] font-bold tracking-[0.3em] uppercase opacity-80">
-        <span class="mx-12">● PROBABILITY ENGINE: <span class="text-yellow-500">ACTIVE</span></span>
-        <span class="mx-12">● TOTAL DEPOSITORS: <span class="text-white">50.96K</span></span>
-        <span class="mx-12">● VAULT STATUS: <span class="text-green-500">SECURE</span></span>
-        <span class="mx-12">● ALPHA GENERATION: <span class="text-white">OPTIMIZED</span></span>
-        <span class="mx-12">● PROBABILITY ENGINE: <span class="text-yellow-500">ACTIVE</span></span>
-    </div>
-</div>
-
-<nav class="max-w-7xl mx-auto flex justify-between items-center px-8 py-8">
-    <div class="flex items-center gap-3">
-        <div class="w-8 h-8 bg-yellow-500 rounded flex items-center justify-center">
-            <i class="fa-solid fa-layer-group text-black text-sm"></i>
+    <div class="bg-yellow-500/5 border-b border-white/5 py-2 sticky top-0 z-[100] backdrop-blur-xl">
+        <div class="animate-marquee whitespace-nowrap text-[9px] font-bold tracking-[0.3em] uppercase">
+            <span class="mx-12 text-yellow-500">● TOTAL DEPOSITORS: <span class="text-white">50.96K</span></span>
+            <span class="mx-12 text-yellow-500">● TVL: <span class="text-white">$1.27B</span></span>
+            <span class="mx-12 text-yellow-500">● ARTICLE OF THE WEEK: <span class="text-white">RISK-ADJUSTED YIELD STRATEGIES</span></span>
+            <span class="mx-12 text-yellow-500">● TOTAL DEPOSITORS: <span class="text-white">50.96K</span></span>
         </div>
-        <span class="title-font font-bold tracking-tighter text-xl">CONCRETE</span>
-    </div>
-    <div class="hidden md:flex gap-12 text-[10px] font-bold uppercase tracking-[0.4em] text-zinc-600">
-        <a href="#" class="text-white">Radar</a>
-        <a href="#" class="hover:text-white transition">Vaults</a>
-        <a href="#" class="hover:text-white transition">Governance</a>
-    </div>
-    <button class="bg-white text-black px-6 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-yellow-500 transition">Connect Wallet</button>
-</nav>
-
-<main class="max-w-6xl mx-auto px-6">
-
-    <div class="text-center mt-12 mb-20">
-        <h1 class="title-font italic text-7xl md:text-9xl font-black tracking-tighter leading-none">THE RADAR</h1>
-        <p class="text-zinc-600 text-[10px] font-bold uppercase tracking-[0.6em] mt-4">Tracking Serious Capital & Alpha Creators</p>
     </div>
 
-    <div class="glass-panel rounded-[2.5rem] p-8 mb-12 border border-white/5">
-        <div class="flex flex-col md:flex-row justify-between items-center gap-8 mb-12">
-            <div class="flex items-center gap-5">
-                <div class="h-px w-10 bg-yellow-500/40"></div>
-                <div>
-                    <h2 class="text-yellow-500 font-bold text-xl uppercase tracking-tighter">The Golden 10</h2>
-                    <p class="text-zinc-600 text-[9px] uppercase tracking-widest">Tier 1: High Conviction Creators</p>
+    <nav class="max-w-7xl mx-auto flex justify-between items-center px-8 py-8">
+        <div class="flex items-center gap-3">
+            <div class="w-8 h-8 bg-yellow-500 rounded flex items-center justify-center">
+                <i class="fa-solid fa-layer-group text-black text-sm"></i>
+            </div>
+            <span class="title-font font-bold tracking-tighter text-xl">CONCRETE</span>
+        </div>
+        <div class="hidden md:flex gap-12 text-[10px] font-bold uppercase tracking-[0.4em] text-zinc-600">
+            <a href="#" class="text-white">Radar</a>
+            <a href="#" class="hover:text-white transition">Vaults</a>
+            <a href="#" class="hover:text-white transition">Governance</a>
+        </div>
+        <button class="bg-white text-black px-6 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-yellow-500 transition">Connect Wallet</button>
+    </nav>
+
+    <main class="max-w-6xl mx-auto px-6">
+
+        <div class="text-center mt-12 mb-20">
+            <h1 class="title-font italic text-7xl md:text-9xl font-black tracking-tighter leading-none uppercase">The Radar</h1>
+            <p class="text-zinc-600 text-[10px] font-bold uppercase tracking-[0.6em] mt-4">Tracking Serious Capital & Alpha Creators</p>
+        </div>
+
+        <div class="bg-zinc-900/40 border border-white/5 rounded-[2.5rem] p-8 mb-16">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-8 mb-12">
+                <div class="flex items-center gap-5">
+                    <div class="h-px w-10 bg-yellow-500/40"></div>
+                    <div>
+                        <h2 class="text-yellow-500 font-bold text-xl uppercase tracking-tighter">The Golden 10</h2>
+                        <p class="text-zinc-600 text-[9px] uppercase tracking-widest">Tier 1: High Conviction Creators</p>
+                    </div>
+                </div>
+                <div class="relative w-full md:w-96 group">
+                    <i class="fa-solid fa-magnifying-glass absolute left-5 top-1/2 -translate-y-1/2 text-zinc-700 text-xs"></i>
+                    <input type="text" id="radarSearch" onkeyup="filterRadar()" placeholder="SEARCH USERNAME OR NAME..." 
+                    class="w-full bg-black/40 border border-white/5 py-4 px-12 rounded-2xl text-[10px] font-mono uppercase tracking-widest text-white outline-none focus:border-yellow-500 transition">
+                    <i id="clearSearch" onclick="resetSearch()" class="fa-solid fa-circle-xmark absolute right-5 top-1/2 -translate-y-1/2 cursor-pointer text-zinc-600 hover:text-white hidden"></i>
                 </div>
             </div>
-            <div class="relative w-full md:w-96 group">
-                <i class="fa-solid fa-magnifying-glass absolute left-5 top-1/2 -translate-y-1/2 text-zinc-700 text-xs"></i>
-                <input type="text" id="radarSearch" onkeyup="updateRadar()" placeholder="SCANNING FOR TARGETS..." 
-                class="search-box w-full bg-black/40 py-4 px-12 rounded-2xl text-[10px] font-mono uppercase tracking-widest text-white outline-none">
-                <i id="clearX" onclick="clearRadar()" class="fa-solid fa-circle-xmark absolute right-5 top-1/2 -translate-y-1/2 clear-btn text-zinc-500"></i>
+
+            <div id="notFound" class="hidden text-center py-12">
+                <i class="fa-solid fa-user-slash text-3xl text-zinc-800 mb-4"></i>
+                <h3 class="text-zinc-500 font-bold uppercase tracking-widest">Not found, sorry</h3>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-4" id="goldGrid">
+                <a href="#" class="creator-card gold-card p-6 rounded-2xl text-center">kian <span class="block text-yellow-500 text-[9px] mt-1 font-mono">@rakel8990</span></a>
+                <a href="#" class="creator-card gold-card p-6 rounded-2xl text-center">Osita <span class="block text-yellow-500 text-[9px] mt-1 font-mono">@Osita__1</span></a>
+                <a href="#" class="creator-card gold-card p-6 rounded-2xl text-center">PA-MI <span class="block text-yellow-500 text-[9px] mt-1 font-mono">@urochimaru90</span></a>
+                <a href="#" class="creator-card gold-card p-6 rounded-2xl text-center">Hailemariam <span class="block text-yellow-500 text-[9px] mt-1 font-mono">@goodhabit300</span></a>
+                <a href="#" class="creator-card gold-card p-6 rounded-2xl text-center">vinh nguyễn <span class="block text-yellow-500 text-[9px] mt-1 font-mono">@PhucvinhN1965</span></a>
+                <a href="#" class="creator-card gold-card p-6 rounded-2xl text-center">Grek <span class="block text-yellow-500 text-[9px] mt-1 font-mono">@cybergrek</span></a>
+                <a href="#" class="creator-card gold-card p-6 rounded-2xl text-center">Mugiwara <span class="block text-yellow-500 text-[9px] mt-1 font-mono">@Mugi_wara_95</span></a>
+                <a href="#" class="creator-card gold-card p-6 rounded-2xl text-center">Alex <span class="block text-yellow-500 text-[9px] mt-1 font-mono">@alex___nba</span></a>
+                <a href="#" class="creator-card gold-card p-6 rounded-2xl text-center">mr_gee_tech <span class="block text-yellow-500 text-[9px] mt-1 font-mono">@mr_gee_ster</span></a>
+                <a href="#" class="creator-card gold-card p-6 rounded-2xl text-center">Abdulazeez <span class="block text-yellow-500 text-[9px] mt-1 font-mono">@imAbdulazeez0p</span></a>
             </div>
         </div>
 
-        <div class="grid grid-cols-2 md:grid-cols-5 gap-4" id="goldGrid">
-            <a href="#" class="creator-card gold-card gold-shimmer bg-zinc-950/50 p-6 rounded-2xl text-center">kian <span class="block text-yellow-500 text-[9px] mt-1 font-mono">@rakel8990</span></a>
-            <a href="#" class="creator-card gold-card gold-shimmer bg-zinc-950/50 p-6 rounded-2xl text-center">Osita <span class="block text-yellow-500 text-[9px] mt-1 font-mono">@Osita__1</span></a>
-            <a href="#" class="creator-card gold-card gold-shimmer bg-zinc-950/50 p-6 rounded-2xl text-center">PA-MI <span class="block text-yellow-500 text-[9px] mt-1 font-mono">@urochimaru90</span></a>
-            <a href="#" class="creator-card gold-card gold-shimmer bg-zinc-950/50 p-6 rounded-2xl text-center">Hailemariam <span class="block text-yellow-500 text-[9px] mt-1 font-mono">@goodhabit300</span></a>
-            <a href="#" class="creator-card gold-card gold-shimmer bg-zinc-950/50 p-6 rounded-2xl text-center">vinh nguyễn <span class="block text-yellow-500 text-[9px] mt-1 font-mono">@PhucvinhN1965</span></a>
-            <a href="#" class="creator-card gold-card gold-shimmer bg-zinc-950/50 p-6 rounded-2xl text-center">Grek <span class="block text-yellow-500 text-[9px] mt-1 font-mono">@cybergrek</span></a>
-            <a href="#" class="creator-card gold-card gold-shimmer bg-zinc-950/50 p-6 rounded-2xl text-center">Mugiwara <span class="block text-yellow-500 text-[9px] mt-1 font-mono">@Mugi_wara_95</span></a>
-            <a href="#" class="creator-card gold-card gold-shimmer bg-zinc-950/50 p-6 rounded-2xl text-center">Alex <span class="block text-yellow-500 text-[9px] mt-1 font-mono">@alex___nba</span></a>
-            <a href="#" class="creator-card gold-card gold-shimmer bg-zinc-950/50 p-6 rounded-2xl text-center">mr_gee_tech <span class="block text-yellow-500 text-[9px] mt-1 font-mono">@mr_gee_ster</span></a>
-            <a href="#" class="creator-card gold-card gold-shimmer bg-zinc-950/50 p-6 rounded-2xl text-center">Abdulazeez <span class="block text-yellow-500 text-[9px] mt-1 font-mono">@imAbdulazeez0p</span></a>
-        </div>
-    </div>
-
-    <div id="noMatch" class="hidden text-center py-24 bg-zinc-900/20 border border-white/5 rounded-[2.5rem] mb-12">
-        <i class="fa-solid fa-ghost text-4xl text-zinc-800 mb-6"></i>
-        <h3 class="text-zinc-400 font-bold uppercase tracking-[0.3em]">Not found, sorry</h3>
-        <p class="text-zinc-600 text-[10px] mt-2 uppercase">Subject is currently outside radar range.</p>
-    </div>
-
-    <div id="silverSection" class="mb-24">
-        <h3 class="text-zinc-600 font-bold text-[10px] tracking-[0.5em] uppercase mb-8 flex items-center gap-4 px-2">
-            <span class="w-10 h-px bg-zinc-900"></span> Silver Tier
-        </h3>
-        <div class="grid grid-cols-2 md:grid-cols-5 gap-4" id="silverGrid">
-            <a href="#" class="creator-card silver-card bg-zinc-950/30 p-4 rounded-xl text-center">MR. B <span class="block text-zinc-600 text-[9px] font-mono mt-1">@Resilient_22</span></a>
-            <a href="#" class="creator-card silver-card bg-zinc-950/30 p-4 rounded-xl text-center">MR MUI <span class="block text-zinc-600 text-[9px] font-mono mt-1">@Sir_I_U</span></a>
-            <a href="#" class="creator-card silver-card bg-zinc-950/30 p-4 rounded-xl text-center">AFOLABI <span class="block text-zinc-600 text-[9px] font-mono mt-1">@Afolabixyz</span></a>
-            <a href="#" class="creator-card silver-card bg-zinc-950/30 p-4 rounded-xl text-center">Shubham Singh <span class="block text-zinc-600 text-[9px] font-mono mt-1">@imshubhamsingh7</span></a>
-            <a href="#" class="creator-card silver-card bg-zinc-950/30 p-4 rounded-xl text-center">DarkKnight <span class="block text-zinc-600 text-[9px] font-mono mt-1">@Darkknightz456</span></a>
-            <a href="#" class="creator-card silver-card bg-zinc-950/30 p-4 rounded-xl text-center">Mizzy <span class="block text-zinc-600 text-[9px] font-mono mt-1">@mizzy_web3</span></a>
-            <a href="#" class="creator-card silver-card bg-zinc-950/30 p-4 rounded-xl text-center">JK Tech <span class="block text-zinc-600 text-[9px] font-mono mt-1">@JKTech933</span></a>
-            <a href="#" class="creator-card silver-card bg-zinc-950/30 p-4 rounded-xl text-center">dev.ozzid <span class="block text-zinc-600 text-[9px] font-mono mt-1">@1ozzid</span></a>
-            <a href="#" class="creator-card silver-card bg-zinc-950/30 p-4 rounded-xl text-center">Hana <span class="block text-zinc-600 text-[9px] font-mono mt-1">@hana51024</span></a>
-            <a href="#" class="creator-card silver-card bg-zinc-950/30 p-4 rounded-xl text-center">Montego <span class="block text-zinc-600 text-[9px] font-mono mt-1">@HustleMontego</span></a>
-        </div>
-    </div>
-
-    <div class="grid md:grid-cols-2 gap-16 mb-24">
-        <div>
-            <h3 class="italic text-zinc-700 font-bold text-[10px] tracking-widest uppercase mb-8 ml-2">// CORE ENGINEERING</h3>
-            <div class="grid grid-cols-2 gap-4">
-                <div class="bg-zinc-950 border border-zinc-900 p-5 rounded-2xl text-center font-bold text-xs tracking-tight">@dill_sl</div>
-                <div class="bg-zinc-950 border border-zinc-900 p-5 rounded-2xl text-center font-bold text-xs tracking-tight">@blueprintluke</div>
-                <div class="bg-zinc-950 border border-zinc-900 p-5 rounded-2xl text-center font-bold text-xs tracking-tight">@andonpv</div>
-                <div class="bg-zinc-950 border border-zinc-900 p-5 rounded-2xl text-center font-bold text-xs tracking-tight">@nic_builds</div>
+        <div id="silverSection" class="mb-24">
+            <h3 class="text-zinc-600 font-bold text-[10px] tracking-[0.5em] uppercase mb-8 flex items-center gap-4 px-2">
+                <span class="w-10 h-px bg-zinc-900"></span> Silver Tier
+            </h3>
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-4" id="silverGrid">
+                <a href="#" class="creator-card silver-card p-4 rounded-xl text-center">MR. B <span class="block text-zinc-600 text-[9px] font-mono mt-1">@Resilient_22</span></a>
+                <a href="#" class="creator-card silver-card p-4 rounded-xl text-center">MR MUI <span class="block text-zinc-600 text-[9px] font-mono mt-1">@Sir_I_U</span></a>
+                <a href="#" class="creator-card silver-card p-4 rounded-xl text-center">AFOLABI <span class="block text-zinc-600 text-[9px] font-mono mt-1">@Afolabixyz</span></a>
+                <a href="#" class="creator-card silver-card p-4 rounded-xl text-center">Shubham Singh <span class="block text-zinc-600 text-[9px] font-mono mt-1">@imshubhamsingh7</span></a>
+                <a href="#" class="creator-card silver-card p-4 rounded-xl text-center">DarkKnight <span class="block text-zinc-600 text-[9px] font-mono mt-1">@Darkknightz456</span></a>
+                <a href="#" class="creator-card silver-card p-4 rounded-xl text-center">Mizzy <span class="block text-zinc-600 text-[9px] font-mono mt-1">@mizzy_web3</span></a>
+                <a href="#" class="creator-card silver-card p-4 rounded-xl text-center">JK Tech <span class="block text-zinc-600 text-[9px] font-mono mt-1">@JKTech933</span></a>
+                <a href="#" class="creator-card silver-card p-4 rounded-xl text-center">dev.ozzid <span class="block text-zinc-600 text-[9px] font-mono mt-1">@1ozzid</span></a>
+                <a href="#" class="creator-card silver-card p-4 rounded-xl text-center">Hana <span class="block text-zinc-600 text-[9px] font-mono mt-1">@hana51024</span></a>
+                <a href="#" class="creator-card silver-card p-4 rounded-xl text-center">Montego <span class="block text-zinc-600 text-[9px] font-mono mt-1">@HustleMontego</span></a>
             </div>
         </div>
-        <div>
-            <h3 class="italic text-zinc-700 font-bold text-[10px] tracking-widest uppercase mb-8 ml-2">// MOAI HOLDERS</h3>
-            <div class="grid grid-cols-2 gap-4">
-                <div class="bg-zinc-950 border border-zinc-900 p-5 rounded-2xl text-center text-[10px] text-zinc-500 font-mono">@mongralinweb3</div>
-                <div class="bg-zinc-950 border border-zinc-900 p-5 rounded-2xl text-center text-[10px] text-zinc-500 font-mono">@Nomiie143</div>
+
+        <div class="grid md:grid-cols-2 gap-16 mb-24">
+            <div>
+                <h3 class="italic text-zinc-700 font-bold text-[10px] tracking-widest uppercase mb-8 ml-2">// CORE ENGINEERING</h3>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="creator-card bg-zinc-950 p-5 rounded-2xl text-center font-bold text-xs">@dill_sl</div>
+                    <div class="creator-card bg-zinc-950 p-5 rounded-2xl text-center font-bold text-xs">@blueprintluke</div>
+                    <div class="creator-card bg-zinc-950 p-5 rounded-2xl text-center font-bold text-xs">@andonpv</div>
+                    <div class="creator-card bg-zinc-950 p-5 rounded-2xl text-center font-bold text-xs">@nic_builds</div>
+                </div>
+            </div>
+            <div>
+                <h3 class="italic text-zinc-700 font-bold text-[10px] tracking-widest uppercase mb-8 ml-2">// MOAI HOLDERS</h3>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="creator-card bg-zinc-950 p-5 rounded-2xl text-center text-[10px] text-zinc-500 font-mono">@mongralinweb3</div>
+                    <div class="creator-card bg-zinc-950 p-5 rounded-2xl text-center text-[10px] text-zinc-500 font-mono">@Nomiie143</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-32">
+            <h3 class="text-zinc-800 font-bold text-5xl mb-10 tracking-tighter uppercase opacity-50">The Trenches</h3>
+            <div class="flex flex-wrap gap-3 opacity-30 hover:opacity-100 transition duration-1000">
+                <span class="creator-card text-[9px] font-mono border border-zinc-900 px-4 py-1.5 rounded-full uppercase">@degenslayer</span>
+                <span class="creator-card text-[9px] font-mono border border-zinc-900 px-4 py-1.5 rounded-full uppercase">@vault_zero</span>
+                <span class="creator-card text-[9px] font-mono border border-zinc-900 px-4 py-1.5 rounded-full uppercase">@risk_neutral</span>
+                <span class="creator-card text-[9px] font-mono border border-zinc-900 px-4 py-1.5 rounded-full uppercase">@liquid_gold</span>
+                <span class="creator-card text-[9px] font-mono border border-zinc-900 px-4 py-1.5 rounded-full uppercase">@alpha_seek</span>
+                </div>
+        </div>
+
+        <div class="max-w-2xl mx-auto space-y-4 mb-32">
+            <div onclick="this.classList.toggle('active')" class="accordion group bg-zinc-950/50 border border-white/5 rounded-3xl px-8 cursor-pointer hover:border-white/10 transition">
+                <div class="flex justify-between items-center py-6">
+                    <span class="text-[11px] font-bold uppercase tracking-[0.3em] text-zinc-500 group-hover:text-yellow-500 transition">How Concrete Works</span>
+                    <i class="fa-solid fa-plus text-[10px] text-zinc-700"></i>
+                </div>
+                <div class="accordion-content text-zinc-500 text-xs leading-relaxed uppercase tracking-wider">
+                    Concrete optimizes capital through automated probability-based vaults. We focus on risk-adjusted yield rather than high-risk speculation.
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="py-16 border-t border-zinc-900 text-center">
+        <p class="text-[9px] text-zinc-700 uppercase tracking-[0.8em]">Built for the community by <span class="text-white">KIAN</span></p>
+    </footer>
+
+    <div id="listingPopup" class="fixed bottom-8 right-8 z-[200] hidden">
+        <div class="bg-zinc-950 border border-yellow-500/50 w-72 rounded-3xl p-6 shadow-2xl backdrop-blur-3xl">
+            <div class="flex justify-between items-center mb-6">
+                <span class="text-[9px] font-bold text-yellow-500 uppercase tracking-[0.2em]">Listing Request</span>
+                <button onclick="togglePopup(false)" class="text-zinc-500 hover:text-white text-xl leading-none">&times;</button>
+            </div>
+            <p class="text-[11px] text-zinc-400 mb-6 font-medium">Verify your conviction. Send proof of activity to get on the Radar.</p>
+            <div class="flex gap-3">
+                <a href="#" class="flex-1 bg-white/5 py-3 rounded-xl text-center hover:bg-white/10 transition"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="#" class="flex-1 bg-white/5 py-3 rounded-xl text-center hover:bg-white/10 transition"><i class="fa-brands fa-telegram"></i></a>
             </div>
         </div>
     </div>
 
-    <div class="mb-32">
-        <h3 class="text-zinc-800 font-bold text-5xl mb-10 tracking-tighter uppercase opacity-50">The Trenches</h3>
-        <div class="flex flex-wrap gap-3 opacity-20 hover:opacity-100 transition duration-1000">
-            <span class="text-[9px] font-mono border border-zinc-900 px-4 py-1.5 rounded-full">@user_x</span>
-            <span class="text-[9px] font-mono border border-zinc-900 px-4 py-1.5 rounded-full">@alpha_chaser</span>
-            <span class="text-[9px] font-mono border border-zinc-900 px-4 py-1.5 rounded-full">@ghost_node</span>
-            <span class="text-[9px] font-mono border border-zinc-900 px-4 py-1.5 rounded-full">@liquid_gold</span>
-            <span class="text-[9px] font-mono border border-zinc-900 px-4 py-1.5 rounded-full">@vault_zero</span>
-            <span class="text-[9px] font-mono border border-zinc-900 px-4 py-1.5 rounded-full">@risk_neutral</span>
-        </div>
-    </div>
+    <button onclick="togglePopup(true)" class="fixed bottom-8 right-8 bg-yellow-500 text-black px-6 py-3 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-xl z-[150] hover:scale-105 transition">
+        <i class="fa-solid fa-plus mr-2"></i> Get Listed
+    </button>
 
-    <div class="max-w-2xl mx-auto space-y-4 mb-32">
-        <div onclick="this.classList.toggle('active')" class="accordion group bg-zinc-950/50 border border-white/5 rounded-3xl px-8 cursor-pointer hover:border-white/10 transition">
-            <div class="flex justify-between items-center py-6">
-                <span class="text-[11px] font-bold uppercase tracking-[0.3em] text-zinc-500 group-hover:text-yellow-500 transition">What is Concrete?</span>
-                <i class="fa-solid fa-plus text-[10px] text-zinc-700"></i>
-            </div>
-            <div class="accordion-content text-zinc-500 text-xs leading-relaxed uppercase tracking-wider">
-                Concrete is a high-conviction risk mitigation layer for decentralized finance, designed to capture yield while protecting against downside volatility.
-            </div>
-        </div>
-    </div>
-
-</main>
-
-<footer class="py-16 border-t border-zinc-900 text-center">
-    <p class="text-[9px] text-zinc-700 uppercase tracking-[0.8em]">Built for the community by <span class="text-white">KIAN</span></p>
-</footer>
-
-<div id="listingPopup" class="fixed bottom-8 right-8 z-[100] hidden">
-    <div class="bg-zinc-950 border border-yellow-500/50 w-72 rounded-3xl p-6 shadow-2xl backdrop-blur-3xl">
-        <div class="flex justify-between items-center mb-6">
-            <span class="text-[9px] font-bold text-yellow-500 uppercase tracking-[0.2em]">Listing Request</span>
-            <button onclick="togglePopup(false)" class="text-zinc-500 hover:text-white text-xl leading-none">&times;</button>
-        </div>
-        <p class="text-[11px] text-zinc-400 mb-6 font-medium">Verify your conviction. Send proof of activity to get on the Radar.</p>
-        <div class="flex gap-3">
-            <a href="#" class="flex-1 bg-white/5 py-3 rounded-xl text-center hover:bg-white/10 transition"><i class="fa-brands fa-x-twitter"></i></a>
-            <a href="#" class="flex-1 bg-white/5 py-3 rounded-xl text-center hover:bg-white/10 transition"><i class="fa-brands fa-telegram"></i></a>
-        </div>
-    </div>
-</div>
-
-<button onclick="togglePopup(true)" class="fixed bottom-8 right-8 bg-yellow-500 text-black px-6 py-3 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-xl z-50 hover:scale-105 transition">
-    <i class="fa-solid fa-plus mr-2"></i> Get Listed
-</button>
-
-<script>
-    function updateRadar() {
-        const query = document.getElementById('radarSearch').value.toLowerCase();
-        const cards = document.querySelectorAll('.creator-card');
-        const clearBtn = document.getElementById('clearX');
-        const errorMsg = document.getElementById('noMatch');
-        const goldGrid = document.getElementById('goldGrid');
-        const silverSection = document.getElementById('silverSection');
-
-        let matchesFound = false;
-        let firstMatch = null;
-
-        clearBtn.style.display = query.length > 0 ? 'block' : 'none';
-
-        cards.forEach(card => {
-            card.classList.remove('found-glow-gold', 'found-glow-silver');
-            const text = card.innerText.toLowerCase();
+    <script>
+        function filterRadar() {
+            const query = document.getElementById('radarSearch').value.toLowerCase();
+            const cards = document.querySelectorAll('.creator-card');
+            const clearBtn = document.getElementById('clearSearch');
+            const notFound = document.getElementById('notFound');
             
-            if (text.includes(query)) {
-                card.style.display = 'block';
-                matchesFound = true;
-                if(!firstMatch) firstMatch = card;
+            let matchCount = 0;
+            let firstMatch = null;
 
-                if(query.length > 1) {
-                    const highlight = card.classList.contains('gold-card') ? 'found-glow-gold' : 'found-glow-silver';
-                    card.classList.add(highlight);
+            // Toggle clear button
+            clearBtn.style.display = query.length > 0 ? 'block' : 'none';
+
+            cards.forEach(card => {
+                const text = card.innerText.toLowerCase();
+                // Reset states
+                card.classList.remove('found-match', 'found-match-active');
+                
+                if (text.includes(query)) {
+                    card.style.display = 'block';
+                    matchCount++;
+                    if(!firstMatch) firstMatch = card;
+
+                    // Apply glow if search has content
+                    if(query.length > 1) {
+                        card.classList.add('found-match');
+                    }
+                } else {
+                    card.style.display = 'none';
                 }
-            } else {
-                card.style.display = 'none';
+            });
+
+            // Toggle error message
+            notFound.style.display = (matchCount === 0 && query !== "") ? 'block' : 'none';
+
+            // SCROLL & PULSE logic
+            if (query.length > 2 && firstMatch) {
+                firstMatch.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                firstMatch.classList.add('found-match-active');
             }
-        });
-
-        // Toggle UI states
-        errorMsg.style.display = (!matchesFound && query !== "") ? 'block' : 'none';
-        
-        const hasGold = goldGrid.querySelector('.creator-card[style="display: block;"]');
-        goldGrid.parentElement.style.display = (!hasGold && query !== "" && !matchesFound) ? 'none' : 'block';
-        
-        const hasSilver = silverSection.querySelector('.creator-card[style="display: block;"]');
-        silverSection.style.display = (hasSilver || query === "") ? 'block' : 'none';
-
-        // Scroll to focus
-        if (query.length > 2 && firstMatch) {
-            firstMatch.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
-    }
 
-    function clearRadar() {
-        const input = document.getElementById('radarSearch');
-        input.value = '';
-        updateRadar();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-        input.focus();
-    }
+        function resetSearch() {
+            const input = document.getElementById('radarSearch');
+            input.value = '';
+            filterRadar();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            input.focus();
+        }
 
-    function togglePopup(show) {
-        document.getElementById('listingPopup').style.display = show ? 'block' : 'none';
-    }
-</script>
+        function togglePopup(show) {
+            document.getElementById('listingPopup').style.display = show ? 'block' : 'none';
+        }
+    </script>
 
 </body>
 </html>
