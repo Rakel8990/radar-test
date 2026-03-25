@@ -18,43 +18,48 @@
     .title-font { font-family: 'Space Grotesk', sans-serif; }
     .mono { font-family: 'JetBrains Mono', monospace; }
 
-    /* --- GOLDEN TIER EFFECT: OBSIDIAN GLOW --- */
+    /* --- EXPENSIVE TIER EFFECTS --- */
+    
+    /* GOLDEN: Obsidian & Liquid Gold */
     .gold-card {
-        background: linear-gradient(145deg, #1a1a10 0%, #050505 100%);
-        border: 1px solid rgba(245, 213, 95, 0.2);
-        transition: all 0.4s ease;
+        background: linear-gradient(145deg, #0f0f0f 0%, #050505 100%);
+        border: 1px solid rgba(245, 213, 95, 0.15);
+        box-shadow: inset 0 0 15px rgba(0,0,0,0.5);
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
     .gold-card:hover {
         border-color: #F5D55F;
-        box-shadow: 0 0 30px rgba(245, 213, 95, 0.2);
+        box-shadow: 0 0 25px rgba(245, 213, 95, 0.2), inset 0 0 10px rgba(245, 213, 95, 0.1);
         transform: translateY(-5px);
     }
 
-    /* --- SILVER TIER EFFECT: PLATINUM GLASS --- */
+    /* SILVER: Frosted Platinum */
     .silver-card {
         background: rgba(255, 255, 255, 0.03);
-        border: 1px solid rgba(255, 255, 255, 0.05);
-        backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(10px);
         transition: all 0.3s ease;
     }
     .silver-card:hover {
         border-color: rgba(255, 255, 255, 0.4);
-        background: rgba(255, 255, 255, 0.07);
+        background: rgba(255, 255, 255, 0.06);
+        transform: translateY(-3px);
     }
 
-    /* --- TRENCHES EFFECT: DARK TAGS --- */
+    /* TRENCHES: Stealth Carbon */
     .trench-tag {
         background: #0a0a0a;
         border: 1px solid #1a1a1a;
+        color: #555;
         transition: all 0.2s ease;
     }
     .trench-tag:hover {
-        background: #111;
         border-color: #333;
-        color: #eee;
+        color: #aaa;
+        background: #111;
     }
 
-    /* ACCORDION LOGIC */
+    /* ACCORDION */
     .accordion.active .accordion-content { max-height: 1200px; }
     .accordion-content {
         max-height: 0;
@@ -79,9 +84,10 @@
     }
     #popup {
         display: none; position: fixed; bottom: 85px; right: 25px;
-        width: 320px; background: #1A1A1A; border-radius: 20px;
+        width: 320px; background: #111; border-radius: 20px;
         border: 1px solid #F5D55F; padding: 24px; z-index: 100;
     }
+    .yellow-icon { filter: invert(85%) sepia(26%) saturate(1000%) hue-rotate(345deg) brightness(102%) contrast(101%); }
 </style>
 </head>
 <body>
@@ -100,10 +106,10 @@
     <div class="text-center mb-16">
         <h1 class="title-font text-7xl md:text-8xl font-semibold tracking-tighter text-yellow-400 uppercase">Concrete</h1>
         <h1 class="title-font text-7xl md:text-8xl font-semibold tracking-tighter -mt-4 uppercase">Radar</h1>
-        <p class="text-zinc-500 mt-6 mono text-xs tracking-[0.4em] uppercase">Tracking the foundation of De-Fi</p>
+        <p class="text-zinc-500 mt-6 mono text-xs tracking-[0.4em] uppercase italic">Tracking the real ones building the foundation</p>
     </div>
 
-    <div onclick="this.classList.toggle('active')" class="accordion bg-zinc-900/50 border border-white/5 rounded-3xl mb-20 overflow-hidden cursor-pointer">
+    <div onclick="this.classList.toggle('active')" class="accordion bg-zinc-900/40 border border-white/5 rounded-3xl mb-16 overflow-hidden cursor-pointer">
         <div class="flex items-center justify-between px-8 py-6">
             <div class="flex items-center gap-3"><i class="fa-solid fa-vault text-yellow-400"></i><span class="font-medium">What is Concrete + Links</span></div>
             <i class="fa-solid fa-chevron-down chevron text-yellow-400"></i>
@@ -111,20 +117,42 @@
         <div class="accordion-content px-8 pb-8 text-zinc-400 text-sm leading-relaxed">
             Concrete provides automated, risk-managed vaults. Turning complex DeFi into a one-click system for capital deployment.
             <div class="flex gap-6 mt-4 text-yellow-400 font-bold">
-                <a href="#">Dashboard</a> <a href="#">Discord</a> <a href="#">Twitter</a>
+                <a href="https://points.concrete.xyz/home" target="_blank">Dashboard</a> 
+                <a href="https://discord.gg/concretexyz" target="_blank">Discord</a> 
+                <a href="https://x.com/ConcreteXYZ" target="_blank">Twitter</a>
             </div>
         </div>
     </div>
 
+    <div class="text-center mb-24">
+        <h2 class="text-yellow-400 text-sm font-bold mb-8 tracking-[0.3em] uppercase tracking-widest flex items-center justify-center gap-4">
+            <span class="h-px w-8 bg-yellow-400/20"></span> CORE TEAM <span class="h-px w-8 bg-yellow-400/20"></span>
+        </h2>
+        <div class="flex flex-wrap justify-center gap-6">
+            <a href="https://x.com/nic_builds" target="_blank" class="gold-card p-6 rounded-2xl w-40 text-center block">
+                <p class="text-[11px] font-bold text-white mb-1 uppercase">@nic_builds</p>
+                <p class="text-[9px] text-yellow-500/70 mono">CEO</p>
+            </a>
+            <a href="https://x.com/dill_sl" target="_blank" class="gold-card p-6 rounded-2xl w-40 text-center block">
+                <p class="text-[11px] font-bold text-white mb-1 uppercase">@dill_sl</p>
+                <p class="text-[9px] text-yellow-500/70 mono">Co-Founder</p>
+            </a>
+            <a href="https://x.com/concrete_intern" target="_blank" class="gold-card p-6 rounded-2xl w-40 text-center block">
+                <p class="text-[11px] font-bold text-white mb-1 uppercase">@intern</p>
+                <p class="text-[9px] text-yellow-500/70 mono">Bullposter</p>
+            </a>
+        </div>
+    </div>
+
     <section class="mb-24">
-        <h2 class="text-yellow-500 text-xs font-bold tracking-[0.5em] mb-10 flex items-center gap-4">
+        <h2 class="text-yellow-500 text-xs font-bold tracking-[0.5em] mb-10 uppercase flex items-center gap-4">
             <span class="h-[1px] w-12 bg-yellow-500/30"></span> THE GOLDEN 10
         </h2>
         <div class="grid grid-cols-2 md:grid-cols-5 gap-6" id="gold-grid"></div>
     </section>
 
     <section class="mb-24">
-        <h2 class="text-zinc-400 text-xs font-bold tracking-[0.5em] mb-10 flex items-center gap-4">
+        <h2 class="text-zinc-400 text-xs font-bold tracking-[0.5em] mb-10 uppercase flex items-center gap-4">
             <span class="h-[1px] w-12 bg-zinc-800"></span> SILVER COLLECTIVE
         </h2>
         <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4" id="silver-grid"></div>
@@ -132,37 +160,43 @@
 
     <section class="mb-32">
         <h2 class="text-zinc-700 text-[10px] font-bold tracking-[0.5em] mb-8 uppercase italic">// THE TRENCHES</h2>
-        <div class="flex flex-wrap gap-3" id="trench-grid"></div>
+        <div class="flex flex-wrap gap-3 justify-center" id="trench-grid"></div>
     </section>
 
-</div>
+    <div class="text-center py-12 border-t border-white/5">
+        <p class="text-zinc-600 text-[10px] mono uppercase tracking-widest">
+            Handcrafted by <a href="https://x.com/rakel8990" target="_blank" class="text-yellow-500 font-bold hover:underline">KIAN</a> • Concrete Maxi
+        </p>
+    </div>
 
-<footer class="text-center py-10 border-t border-white/5">
-    <p class="text-zinc-600 text-[10px] mono uppercase">Built by <span class="text-yellow-500 font-bold">KIAN</span> • Concrete Maxi</p>
-</footer>
+</div>
 
 <a href="javascript:void(0)" onclick="document.getElementById('popup').style.display='block'" class="floating-btn"><i class="fa-solid fa-plus"></i> Get Listed</a>
 <div id="popup">
     <div class="flex justify-between items-center mb-4">
-        <span class="text-yellow-400 text-[10px] font-bold uppercase mono">Request Access</span>
-        <button onclick="document.getElementById('popup').style.display='none'" class="text-zinc-500">&times;</button>
+        <span class="text-yellow-400 text-[10px] font-bold uppercase mono tracking-tighter">Access Request</span>
+        <button onclick="document.getElementById('popup').style.display='none'" class="text-zinc-600 hover:text-white">&times;</button>
     </div>
-    <p class="text-zinc-400 text-xs mb-4">Prove your activity in Concrete to get listed.</p>
-    <a href="https://x.com/rakel8990" target="_blank" class="text-yellow-400 text-sm hover:underline">DM @rakel8990</a>
+    <p class="text-zinc-400 text-xs mb-6 leading-relaxed">No ghosts. If you are building in Concrete, prove it.</p>
+    <div class="flex justify-center gap-6 mb-2">
+        <a href="https://x.com/rakel8990" target="_blank"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/x.svg" class="w-5 h-5 yellow-icon"></a>
+        <a href="https://t.me/order_denied" target="_blank"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/telegram.svg" class="w-5 h-5 yellow-icon"></a>
+    </div>
 </div>
 
 <script>
-    const userNames = [
-        "KIAN", "ALPHA", "VAULT", "ARCHITECT", "RISK_ZERO", 
-        "MAKER", "LIQUID", "ZENITH", "MACRO", "BLOCK", 
-        "STACKER", "ASSET", "VORTEX", "ATLAS", "ORACLE", 
-        "GHOST", "PROXY", "DELTA", "SIGMA", "OMEGA"
-    ];
-    const userHandles = [
-        "rakel8990", "alpha_prime", "concrete_vault", "yield_arch", "risk_zero",
-        "market_maker", "liquid_flow", "zenith_node", "macro_vision", "block_pioneer",
-        "sat_stacker", "prime_asset", "vortex_trader", "atlas_cap", "mint_oracle",
-        "chain_ghost", "proxy_user", "delta_neutral", "sigma_dev", "omega_vault"
+    // THE USER LIST (20)
+    const users = [
+        {name: "KIAN", handle: "rakel8990"}, {name: "Osita", handle: "Osita__1"},
+        {name: "PA-MI", handle: "urochimaru90"}, {name: "Hailemariam", handle: "goodhabit300"},
+        {name: "Grek", handle: "cybergrek"}, {name: "Mizzy", handle: "mizzy_web3"},
+        {name: "Mongral", handle: "mongralinweb3"}, {name: "Nomi", handle: "Nomiie143"},
+        {name: "Lidy", handle: "Lidy_web3"}, {name: "Alpha", handle: "alpha_vaults"},
+        {name: "Vault_X", handle: "vault_x_btc"}, {name: "Concrete_Fan", handle: "fan_concrete"},
+        {name: "Yield_King", handle: "king_yield"}, {name: "Risk_Zero", handle: "risk_zero_0"},
+        {name: "DeFi_Builder", handle: "builder_def"}, {name: "Onchain_Lord", handle: "onchain_l"},
+        {name: "Liquid_Staker", handle: "staker_liq"}, {name: "Vault_Guardian", handle: "guardian_v"},
+        {name: "Macro_Bull", handle: "macro_bull_1"}, {name: "Concrete_Alpha", handle: "alpha_concrete"}
     ];
 
     function build() {
@@ -173,26 +207,27 @@
         // GOLDEN 10
         for(let i=0; i<10; i++) {
             g.innerHTML += `
-                <a href="https://x.com/${userHandles[i]}" target="_blank" class="gold-card p-8 rounded-3xl text-center block group">
-                    <p class="text-white font-bold text-sm tracking-tight">${userNames[i]}</p>
-                    <p class="text-yellow-500/60 text-[10px] mono mt-1 group-hover:text-yellow-400">@${userHandles[i]}</p>
+                <a href="https://x.com/${users[i].handle}" target="_blank" class="gold-card p-8 rounded-3xl text-center block group">
+                    <p class="text-white font-bold text-sm tracking-tight">${users[i].name}</p>
+                    <p class="text-yellow-500/50 text-[10px] mono mt-1">@${users[i].handle}</p>
                 </a>`;
         }
 
-        // SILVER 20
+        // SILVER 20 (Using the 20 users)
         for(let i=0; i<20; i++) {
             s.innerHTML += `
-                <a href="https://x.com/${userHandles[i % 20]}" target="_blank" class="silver-card p-6 rounded-2xl text-center block group">
-                    <p class="text-zinc-200 font-semibold text-xs">${userNames[i % 20]}</p>
-                    <p class="text-zinc-500 text-[9px] mono mt-1">@${userHandles[i % 20]}</p>
+                <a href="https://x.com/${users[i].handle}" target="_blank" class="silver-card p-5 rounded-2xl text-center block group">
+                    <p class="text-zinc-200 font-semibold text-xs">${users[i].name}</p>
+                    <p class="text-zinc-500 text-[9px] mono mt-1">@${users[i].handle}</p>
                 </a>`;
         }
 
-        // TRENCHES 40
+        // TRENCHES 40 (Duplicating the 20 users)
         for(let i=0; i<40; i++) {
+            const user = users[i % 20];
             t.innerHTML += `
-                <a href="https://x.com/${userHandles[i % 20]}" target="_blank" class="trench-tag px-4 py-2 rounded-lg text-[10px] mono text-zinc-500 block group">
-                    ${userNames[i % 20]} <span class="text-zinc-700 ml-1 group-hover:text-zinc-400">@${userHandles[i % 20]}</span>
+                <a href="https://x.com/${user.handle}" target="_blank" class="trench-tag px-4 py-2 rounded-lg text-[9px] mono block group">
+                    ${user.name} <span class="opacity-40 ml-1">@${user.handle}</span>
                 </a>`;
         }
     }
