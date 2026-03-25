@@ -1,407 +1,153 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Concrete Radar</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+<div class="max-w-md mx-auto mb-16 px-4">
+    <div class="relative group">
+        <div class="absolute -inset-0.5 bg-gradient-to-r from-yellow-500/10 to-orange-500/10 rounded-2xl blur opacity-30 group-focus-within:opacity-100 transition duration-700"></div>
+        <i class="fa-solid fa-bolt absolute left-5 top-1/2 -translate-y-1/2 text-zinc-600 group-focus-within:text-yellow-400 transition-colors"></i>
+        <input type="text" id="globalRadarSearch" onkeyup="runGlobalSearch()" placeholder="Scan 100+ Radar targets..." 
+            class="relative w-full bg-zinc-950 border border-white/5 rounded-2xl py-4 px-14 text-sm focus:outline-none focus:border-yellow-400/50 transition-all text-white placeholder:text-zinc-700">
+    </div>
+    <p id="searchStats" class="text-[9px] text-zinc-600 mt-3 uppercase tracking-widest text-center">System Live // Awaiting Input</p>
+</div>
+
+<div class="category-block mb-16" id="goldSection">
+    <div class="flex items-center justify-center gap-3 mb-8">
+        <div class="h-px w-8 bg-gradient-to-r from-transparent to-yellow-500"></div>
+        <span class="text-[10px] text-yellow-500 font-black uppercase tracking-[0.4em]">The Golden 10</span>
+        <div class="h-px w-8 bg-gradient-to-l from-transparent to-yellow-500"></div>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-5 gap-4 px-4">
+        <div class="creator-item gold-slot bg-zinc-900 border-2 border-yellow-500/40 p-5 rounded-2xl group hover:border-yellow-400 transition-all cursor-pointer">
+            <span class="block font-bold text-white text-sm">@GOLD_CREATOR_01</span>
+            <span class="text-yellow-500 text-[9px] font-mono tracking-tighter uppercase">ELITE STATUS</span>
+        </div>
+        <div class="creator-item gold-slot bg-zinc-900 border-2 border-yellow-500/40 p-5 rounded-2xl group hover:border-yellow-400 transition-all cursor-pointer"><span class="block font-bold text-white text-sm">@GOLD_CREATOR_02</span><span class="text-yellow-500 text-[9px] font-mono tracking-tighter uppercase">ELITE STATUS</span></div>
+        <div class="creator-item gold-slot bg-zinc-900 border-2 border-yellow-500/40 p-5 rounded-2xl group hover:border-yellow-400 transition-all cursor-pointer"><span class="block font-bold text-white text-sm">@GOLD_CREATOR_03</span><span class="text-yellow-500 text-[9px] font-mono tracking-tighter uppercase">ELITE STATUS</span></div>
+        <div class="creator-item gold-slot bg-zinc-900 border-2 border-yellow-500/40 p-5 rounded-2xl group hover:border-yellow-400 transition-all cursor-pointer"><span class="block font-bold text-white text-sm">@GOLD_CREATOR_04</span><span class="text-yellow-500 text-[9px] font-mono tracking-tighter uppercase">ELITE STATUS</span></div>
+        <div class="creator-item gold-slot bg-zinc-900 border-2 border-yellow-500/40 p-5 rounded-2xl group hover:border-yellow-400 transition-all cursor-pointer"><span class="block font-bold text-white text-sm">@GOLD_CREATOR_05</span><span class="text-yellow-500 text-[9px] font-mono tracking-tighter uppercase">ELITE STATUS</span></div>
+        <div class="creator-item gold-slot bg-zinc-900 border-2 border-yellow-500/40 p-5 rounded-2xl group hover:border-yellow-400 transition-all cursor-pointer"><span class="block font-bold text-white text-sm">@GOLD_CREATOR_06</span><span class="text-yellow-500 text-[9px] font-mono tracking-tighter uppercase">ELITE STATUS</span></div>
+        <div class="creator-item gold-slot bg-zinc-900 border-2 border-yellow-500/40 p-5 rounded-2xl group hover:border-yellow-400 transition-all cursor-pointer"><span class="block font-bold text-white text-sm">@GOLD_CREATOR_07</span><span class="text-yellow-500 text-[9px] font-mono tracking-tighter uppercase">ELITE STATUS</span></div>
+        <div class="creator-item gold-slot bg-zinc-900 border-2 border-yellow-500/40 p-5 rounded-2xl group hover:border-yellow-400 transition-all cursor-pointer"><span class="block font-bold text-white text-sm">@GOLD_CREATOR_08</span><span class="text-yellow-500 text-[9px] font-mono tracking-tighter uppercase">ELITE STATUS</span></div>
+        <div class="creator-item gold-slot bg-zinc-900 border-2 border-yellow-500/40 p-5 rounded-2xl group hover:border-yellow-400 transition-all cursor-pointer"><span class="block font-bold text-white text-sm">@GOLD_CREATOR_09</span><span class="text-yellow-500 text-[9px] font-mono tracking-tighter uppercase">ELITE STATUS</span></div>
+        <div class="creator-item gold-slot bg-zinc-900 border-2 border-yellow-500/40 p-5 rounded-2xl group hover:border-yellow-400 transition-all cursor-pointer"><span class="block font-bold text-white text-sm">@GOLD_CREATOR_10</span><span class="text-yellow-500 text-[9px] font-mono tracking-tighter uppercase">ELITE STATUS</span></div>
+    </div>
+</div>
+
+<div class="category-block mb-16" id="silverSection">
+    <span class="text-[10px] text-zinc-400 font-black uppercase tracking-[0.4em] block text-center mb-8">The Silver 10</span>
+    <div class="grid grid-cols-2 sm:grid-cols-5 gap-3 px-4">
+        <div class="creator-item silver-card bg-zinc-900/40 border border-zinc-800 p-4 rounded-xl hover:border-zinc-500 transition-all cursor-pointer">
+            <span class="block font-medium text-zinc-200 text-xs">@SILVER_RADAR_01</span>
+            <span class="text-zinc-600 text-[8px] uppercase tracking-widest">Rising</span>
+        </div>
+        <div class="creator-item silver-card bg-zinc-900/40 border border-zinc-800 p-4 rounded-xl cursor-pointer"><span class="block font-medium text-zinc-200 text-xs">@SILVER_RADAR_02</span></div>
+        <div class="creator-item silver-card bg-zinc-900/40 border border-zinc-800 p-4 rounded-xl cursor-pointer"><span class="block font-medium text-zinc-200 text-xs">@SILVER_RADAR_03</span></div>
+        <div class="creator-item silver-card bg-zinc-900/40 border border-zinc-800 p-4 rounded-xl cursor-pointer"><span class="block font-medium text-zinc-200 text-xs">@SILVER_RADAR_04</span></div>
+        <div class="creator-item silver-card bg-zinc-900/40 border border-zinc-800 p-4 rounded-xl cursor-pointer"><span class="block font-medium text-zinc-200 text-xs">@SILVER_RADAR_05</span></div>
+        <div class="creator-item silver-card bg-zinc-900/40 border border-zinc-800 p-4 rounded-xl cursor-pointer"><span class="block font-medium text-zinc-200 text-xs">@SILVER_RADAR_06</span></div>
+        <div class="creator-item silver-card bg-zinc-900/40 border border-zinc-800 p-4 rounded-xl cursor-pointer"><span class="block font-medium text-zinc-200 text-xs">@SILVER_RADAR_07</span></div>
+        <div class="creator-item silver-card bg-zinc-900/40 border border-zinc-800 p-4 rounded-xl cursor-pointer"><span class="block font-medium text-zinc-200 text-xs">@SILVER_RADAR_08</span></div>
+        <div class="creator-item silver-card bg-zinc-900/40 border border-zinc-800 p-4 rounded-xl cursor-pointer"><span class="block font-medium text-zinc-200 text-xs">@SILVER_RADAR_09</span></div>
+        <div class="creator-item silver-card bg-zinc-900/40 border border-zinc-800 p-4 rounded-xl cursor-pointer"><span class="block font-medium text-zinc-200 text-xs">@SILVER_RADAR_10</span></div>
+    </div>
+</div>
+
+<div class="category-block" id="trenchSection">
+    <span class="text-[10px] text-zinc-700 font-black uppercase tracking-[0.4em] block text-center mb-8">The Trenches Pool</span>
+    <div class="flex flex-wrap justify-center gap-2 px-6 max-w-5xl mx-auto">
+        <span class="creator-item trench-tag bg-zinc-900/20 border border-zinc-900 px-3 py-1.5 rounded text-[10px] text-zinc-600 hover:text-yellow-500 hover:border-yellow-500/20 transition-all cursor-default">@USER_TRENCH_01</span>
+        <span class="creator-item trench-tag bg-zinc-900/20 border border-zinc-900 px-3 py-1.5 rounded text-[10px] text-zinc-600 hover:text-yellow-500 hover:border-yellow-500/20 transition-all cursor-default">@USER_TRENCH_02</span>
+        <span class="creator-item trench-tag bg-zinc-900/20 border border-zinc-900 px-3 py-1.5 rounded text-[10px] text-zinc-600 hover:text-yellow-500 hover:border-yellow-500/20 transition-all cursor-default">@USER_TRENCH_03</span>
+        <span class="creator-item trench-tag bg-zinc-900/20 border border-zinc-900 px-3 py-1.5 rounded text-[10px] text-zinc-600 hover:text-yellow-500 hover:border-yellow-500/20 transition-all cursor-default">@USER_TRENCH_04</span>
+        <span class="creator-item trench-tag bg-zinc-900/20 border border-zinc-900 px-3 py-1.5 rounded text-[10px] text-zinc-600 hover:text-yellow-500 hover:border-yellow-500/20 transition-all cursor-default">@USER_TRENCH_05</span>
+        <span class="creator-item trench-tag bg-zinc-900/20 border border-zinc-900 px-3 py-1.5 rounded text-[10px] text-zinc-600 hover:text-yellow-500 hover:border-yellow-500/20 transition-all cursor-default">@USER_TRENCH_06</span>
+        <span class="creator-item trench-tag bg-zinc-900/20 border border-zinc-900 px-3 py-1.5 rounded text-[10px] text-zinc-600 hover:text-yellow-500 hover:border-yellow-500/20 transition-all cursor-default">@USER_TRENCH_07</span>
+        <span class="creator-item trench-tag bg-zinc-900/20 border border-zinc-900 px-3 py-1.5 rounded text-[10px] text-zinc-600 hover:text-yellow-500 hover:border-yellow-500/20 transition-all cursor-default">@USER_TRENCH_08</span>
+        <span class="creator-item trench-tag bg-zinc-900/20 border border-zinc-900 px-3 py-1.5 rounded text-[10px] text-zinc-600 hover:text-yellow-500 hover:border-yellow-500/20 transition-all cursor-default">@USER_TRENCH_09</span>
+        <span class="creator-item trench-tag bg-zinc-900/20 border border-zinc-900 px-3 py-1.5 rounded text-[10px] text-zinc-600 hover:text-yellow-500 hover:border-yellow-500/20 transition-all cursor-default">@USER_TRENCH_10</span>
+        <span class="creator-item trench-tag bg-zinc-900/20 border border-zinc-900 px-3 py-1.5 rounded text-[10px] text-zinc-600 hover:text-yellow-500 hover:border-yellow-500/20 transition-all cursor-default">@USER_TRENCH_11</span>
+        <span class="creator-item trench-tag bg-zinc-900/20 border border-zinc-900 px-3 py-1.5 rounded text-[10px] text-zinc-600 hover:text-yellow-500 hover:border-yellow-500/20 transition-all cursor-default">@USER_TRENCH_12</span>
+        <span class="creator-item trench-tag bg-zinc-900/20 border border-zinc-900 px-3 py-1.5 rounded text-[10px] text-zinc-600 hover:text-yellow-500 hover:border-yellow-500/20 transition-all cursor-default">@USER_TRENCH_13</span>
+        <span class="creator-item trench-tag bg-zinc-900/20 border border-zinc-900 px-3 py-1.5 rounded text-[10px] text-zinc-600 hover:text-yellow-500 hover:border-yellow-500/20 transition-all cursor-default">@USER_TRENCH_14</span>
+        <span class="creator-item trench-tag bg-zinc-900/20 border border-zinc-900 px-3 py-1.5 rounded text-[10px] text-zinc-600 hover:text-yellow-500 hover:border-yellow-500/20 transition-all cursor-default">@USER_TRENCH_15</span>
+        <span class="creator-item trench-tag bg-zinc-900/20 border border-zinc-900 px-3 py-1.5 rounded text-[10px] text-zinc-600 hover:text-yellow-500 hover:border-yellow-500/20 transition-all cursor-default">@USER_TRENCH_16</span>
+        <span class="creator-item trench-tag bg-zinc-900/20 border border-zinc-900 px-3 py-1.5 rounded text-[10px] text-zinc-600 hover:text-yellow-500 hover:border-yellow-500/20 transition-all cursor-default">@USER_TRENCH_17</span>
+        <span class="creator-item trench-tag bg-zinc-900/20 border border-zinc-900 px-3 py-1.5 rounded text-[10px] text-zinc-600 hover:text-yellow-500 hover:border-yellow-500/20 transition-all cursor-default">@USER_TRENCH_18</span>
+        <span class="creator-item trench-tag bg-zinc-900/20 border border-zinc-900 px-3 py-1.5 rounded text-[10px] text-zinc-600 hover:text-yellow-500 hover:border-yellow-500/20 transition-all cursor-default">@USER_TRENCH_19</span>
+        <span class="creator-item trench-tag bg-zinc-900/20 border border-zinc-900 px-3 py-1.5 rounded text-[10px] text-zinc-600 hover:text-yellow-500 hover:border-yellow-500/20 transition-all cursor-default">@USER_TRENCH_20</span>
+        <span class="creator-item trench-tag bg-zinc-900/20 border border-zinc-900 px-3 py-1.5 rounded text-[10px] text-zinc-600 hover:text-yellow-500 hover:border-yellow-500/20 transition-all cursor-default">@USER_TRENCH_21</span>
+        <span class="creator-item trench-tag bg-zinc-900/20 border border-zinc-900 px-3 py-1.5 rounded text-[10px] text-zinc-600 hover:text-yellow-500 hover:border-yellow-500/20 transition-all cursor-default">@USER_TRENCH_22</span>
+        <span class="creator-item trench-tag bg-zinc-900/20 border border-zinc-900 px-3 py-1.5 rounded text-[10px] text-zinc-600 hover:text-yellow-500 hover:border-yellow-500/20 transition-all cursor-default">@USER_TRENCH_23</span>
+        <span class="creator-item trench-tag bg-zinc-900/20 border border-zinc-900 px-3 py-1.5 rounded text-[10px] text-zinc-600 hover:text-yellow-500 hover:border-yellow-500/20 transition-all cursor-default">@USER_TRENCH_24</span>
+        <span class="creator-item trench-tag bg-zinc-900/20 border border-zinc-900 px-3 py-1.5 rounded text-[10px] text-zinc-600 hover:text-yellow-500 hover:border-yellow-500/20 transition-all cursor-default">@USER_TRENCH_25</span>
+        <span class="creator-item trench-tag bg-zinc-900/20 border border-zinc-900 px-3 py-1.5 rounded text-[10px] text-zinc-600 hover:text-yellow-500 hover:border-yellow-500/20 transition-all cursor-default">@USER_TRENCH_26</span>
+        <span class="creator-item trench-tag bg-zinc-900/20 border border-zinc-900 px-3 py-1.5 rounded text-[10px] text-zinc-600 hover:text-yellow-500 hover:border-yellow-500/20 transition-all cursor-default">@USER_TRENCH_27</span>
+        <span class="creator-item trench-tag bg-zinc-900/20 border border-zinc-900 px-3 py-1.5 rounded text-[10px] text-zinc-600 hover:text-yellow-500 hover:border-yellow-500/20 transition-all cursor-default">@USER_TRENCH_28</span>
+        <span class="creator-item trench-tag bg-zinc-900/20 border border-zinc-900 px-3 py-1.5 rounded text-[10px] text-zinc-600 hover:text-yellow-500 hover:border-yellow-500/20 transition-all cursor-default">@USER_TRENCH_29</span>
+        <span class="creator-item trench-tag bg-zinc-900/20 border border-zinc-900 px-3 py-1.5 rounded text-[10px] text-zinc-600 hover:text-yellow-500 hover:border-yellow-500/20 transition-all cursor-default">@USER_TRENCH_30</span>
+        <span class="creator-item trench-tag bg-zinc-900/20 border border-zinc-900 px-3 py-1.5 rounded text-[10px] text-zinc-600 hover:text-yellow-500 hover:border-yellow-500/20 transition-all cursor-default">@USER_TRENCH_31</span>
+        <span class="creator-item trench-tag bg-zinc-900/20 border border-zinc-900 px-3 py-1.5 rounded text-[10px] text-zinc-600 hover:text-yellow-500 hover:border-yellow-500/20 transition-all cursor-default">@USER_TRENCH_32</span>
+        <span class="creator-item trench-tag bg-zinc-900/20 border border-zinc-900 px-3 py-1.5 rounded text-[10px] text-zinc-600 hover:text-yellow-500 hover:border-yellow-500/20 transition-all cursor-default">@USER_TRENCH_33</span>
+        <span class="creator-item trench-tag bg-zinc-900/20 border border-zinc-900 px-3 py-1.5 rounded text-[10px] text-zinc-600 hover:text-yellow-500 hover:border-yellow-500/20 transition-all cursor-default">@USER_TRENCH_34</span>
+        <span class="creator-item trench-tag bg-zinc-900/20 border border-zinc-900 px-3 py-1.5 rounded text-[10px] text-zinc-600 hover:text-yellow-500 hover:border-yellow-500/20 transition-all cursor-default">@USER_TRENCH_35</span>
+        <span class="creator-item trench-tag bg-zinc-900/20 border border-zinc-900 px-3 py-1.5 rounded text-[10px] text-zinc-600 hover:text-yellow-500 hover:border-yellow-500/20 transition-all cursor-default">@USER_TRENCH_36</span>
+        <span class="creator-item trench-tag bg-zinc-900/20 border border-zinc-900 px-3 py-1.5 rounded text-[10px] text-zinc-600 hover:text-yellow-500 hover:border-yellow-500/20 transition-all cursor-default">@USER_TRENCH_37</span>
+        <span class="creator-item trench-tag bg-zinc-900/20 border border-zinc-900 px-3 py-1.5 rounded text-[10px] text-zinc-600 hover:text-yellow-500 hover:border-yellow-500/20 transition-all cursor-default">@USER_TRENCH_38</span>
+        <span class="creator-item trench-tag bg-zinc-900/20 border border-zinc-900 px-3 py-1.5 rounded text-[10px] text-zinc-600 hover:text-yellow-500 hover:border-yellow-500/20 transition-all cursor-default">@USER_TRENCH_39</span>
+        <span class="creator-item trench-tag bg-zinc-900/20 border border-zinc-900 px-3 py-1.5 rounded text-[10px] text-zinc-600 hover:text-yellow-500 hover:border-yellow-500/20 transition-all cursor-default">@USER_TRENCH_40</span>
+    </div>
+</div>
+
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600&display=swap');
+    /* Premium Hierarchy Styles */
+    .gold-slot {
+        animation: elitePulse 4s infinite ease-in-out;
+        transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .gold-slot:hover { transform: translateY(-5px) scale(1.02); }
 
-    body {
-        font-family: 'Inter', system-ui, sans-serif;
-        overflow-x: hidden;
-    }
-    .title-font {
-        font-family: 'Space Grotesk', sans-serif;
-    }
-
-    .card {
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    .card:hover {
-        transform: translateY(-6px);
-        box-shadow: 0 0 30px -5px rgb(245 213 95 / 0.5);
+    @keyframes elitePulse {
+        0%, 100% { border-color: rgba(234, 179, 8, 0.4); box-shadow: 0 0 15px -5px rgba(234, 179, 8, 0.2); }
+        50% { border-color: rgba(234, 179, 8, 0.8); box-shadow: 0 0 25px 0px rgba(234, 179, 8, 0.4); }
     }
 
-    .accordion-header {
-        transition: all 0.3s ease;
-    }
-    .accordion-content {
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    .accordion.active .accordion-content {
-        max-height: 1200px;
-    }
-    .chevron {
-        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    .accordion.active .chevron {
-        transform: rotate(180deg);
-    }
-
-    .glow-yellow {
-        text-shadow: 0 0 25px rgb(245 213 95);
-    }
-
-    /* TICKER ANIMATION */
-    @keyframes marquee {
-        0% { transform: translateX(0); }
-        100% { transform: translateX(-50%); }
-    }
-    .animate-marquee { display: flex; animation: marquee 35s linear infinite; }
-
-    /* FLOATING BUTTON */
-    .floating-btn {
-        position: fixed;
-        bottom: 25px;
-        right: 25px;
-        background: #F5D55F;
-        color: black;
-        padding: 12px 18px;
-        border-radius: 30px;
-        text-decoration: none;
-        font-weight: 600;
-        font-size: 14px;
-        box-shadow: 0 10px 20px -5px rgb(245 213 95 / 0.4);
-        transition: all 0.2s ease;
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        z-index: 60;
-    }
-
-    /* BOTTOM-RIGHT POPUP */
-    #popup {
-        display: none;
-        position: fixed;
-        bottom: 85px; 
-        right: 25px;
-        width: 320px;
-        max-width: calc(100vw - 50px);
-        background: #1A1A1A;
-        border-radius: 20px;
-        border: 1px solid #F5D55F;
-        padding: 24px;
-        z-index: 100;
-        box-shadow: 0 20px 40px -10px rgba(0,0,0,0.8), 0 0 20px -5px rgb(245 213 95 / 0.3);
-    }
-
-    .yellow-icon {
-        filter: invert(85%) sepia(26%) saturate(1000%) hue-rotate(345deg) brightness(102%) contrast(101%);
-    }
-
-    @media (max-width: 640px) {
-        .title-font.text-7xl { font-size: 3.5rem; }
-        .text-xl { font-size: 1.1rem; }
-    }
+    .silver-card:hover { border-color: #a1a1aa; transform: translateY(-2px); transition: all 0.2s; }
 </style>
-</head>
-<body class="bg-zinc-950 text-white min-h-screen">
 
-<div class="bg-yellow-400/10 border-b border-yellow-400/20 py-2 overflow-hidden w-full sticky top-0 z-30 backdrop-blur-md">
-    <div class="animate-marquee whitespace-nowrap">
-        <span class="mx-10 text-[10px] font-bold text-yellow-400 uppercase tracking-widest">● Total Depositors reached <span class="text-white">50.96K</span></span>
-        <span class="mx-10 text-[10px] font-bold text-yellow-400 uppercase tracking-widest">● Article of the week > <span class="text-white">How Do Concrete Vaults Actually Work?</span></span>
-        <span class="mx-10 text-[10px] font-bold text-yellow-400 uppercase tracking-widest">● Concrete has reached <span class="text-white">$1,000,000,000 in TVL!</span></span>
-        <span class="mx-10 text-[10px] font-bold text-yellow-400 uppercase tracking-widest">● Total Depositors reached <span class="text-white">50.96K</span></span>
-        <span class="mx-10 text-[10px] font-bold text-yellow-400 uppercase tracking-widest">● Article of the week > <span class="text-white">How Do Concrete Vaults Actually Work?</span></span>
-        <span class="mx-10 text-[10px] font-bold text-yellow-400 uppercase tracking-widest">● Concrete has reached <span class="text-white">$1,000,000,000 in TVL!</span></span>
-    </div>
-</div>
-
-<div class="max-w-6xl mx-auto px-6 py-12 relative">
-
-    <div class="text-center mb-12">
-        <h1 class="title-font text-7xl md:text-8xl font-semibold tracking-tighter text-yellow-400 glow-yellow">CONCRETE</h1>
-        <h1 class="title-font text-7xl md:text-8xl font-semibold tracking-tighter -mt-4">RADAR</h1>
-    </div>
-
-    <p class="text-xl md:text-2xl text-zinc-400 max-w-2xl mx-auto text-center mb-16">
-        tracking the real ones posting, building, and moving capital through vaults
-    </p>
-
-    <div onclick="toggleAccordion(this)" class="accordion bg-zinc-900 border border-yellow-400/10 rounded-3xl mb-12 overflow-hidden cursor-pointer">
-        <div class="accordion-header flex items-center justify-between px-6 md:px-8 py-6 text-lg font-medium">
-            <div class="flex items-center gap-3">
-                <i class="fa-solid fa-vault text-yellow-400"></i>
-                <span>What is Concrete + Links</span>
-            </div>
-            <svg xmlns="http://www.w3.org/2000/svg" class="chevron w-5 h-5 text-yellow-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-            </svg>
-        </div>
-        <div class="accordion-content px-6 md:px-8 pb-8 text-zinc-300 leading-relaxed">
-            <p class="mb-6">
-                Concrete is a DeFi platform that provides automated, risk-managed vaults where users deposit assets and earn yield without
-                manually managing strategies,turning complex DeFi into a one-click system for onchain capital deployment and compounding.
-            </p>
-            
-            <div class="bg-zinc-950/50 border border-yellow-400/5 rounded-2xl p-6 mb-8">
-                <h4 class="text-yellow-400 font-semibold mb-2">Why Concrete Radar?</h4>
-                <p class="text-sm text-zinc-400">
-                    To filter the noise. This is the central hub for the most active contributors, real-time stats, and community-led alpha that you won't find on a standard dashboard.
-                </p>
-            </div>
-
-            <div class="flex flex-wrap gap-6 text-yellow-400">
-                <a href="https://points.concrete.xyz/home" target="_blank" class="flex items-center gap-2 hover:text-yellow-300 transition-colors">
-                    <i class="fa-solid fa-arrow-up-right-from-square"></i> Points Dashboard
-                </a>
-                <a href="https://discord.gg/concretexyz" target="_blank" class="flex items-center gap-2 hover:text-yellow-300 transition-colors">
-                    <i class="fa-brands fa-discord"></i> Discord
-                </a>
-                <a href="https://x.com/ConcreteXYZ" target="_blank" class="flex items-center gap-2 hover:text-yellow-300 transition-colors">
-                    <i class="fa-brands fa-x-twitter"></i> Twitter
-                </a>
-            </div>
-        </div>
-    </div>
-
-    <div class="text-center mb-12">
-        <h2 class="text-yellow-400 text-xl font-semibold mb-6 flex items-center gap-2 justify-center">
-            <span class="w-3 h-px bg-yellow-400"></span> CORE TEAM
-        </h2>
-        <div class="flex flex-wrap justify-center gap-4 md:gap-8">
-            <a href="https://x.com/dill_sl" target="_blank" class="card group bg-zinc-900 border border-zinc-800 hover:border-yellow-400 rounded-2xl p-6 w-full sm:w-64">
-                <div class="w-24 h-24 mx-auto rounded-2xl overflow-hidden border-2 border-yellow-400">
-                    <img src="dill.jpg" alt="@dill_sl" class="w-full h-full object-cover">
-                </div>
-                <div class="text-center mt-4"><p class="font-medium group-hover:text-yellow-400 transition-colors">@dill_sl</p><p class="text-xs text-zinc-500">Co-founder</p></div>
-            </a>
-            <a href="https://x.com/GustavoRSSilva" target="_blank" class="card group bg-zinc-900 border border-zinc-800 hover:border-yellow-400 rounded-2xl p-6 w-full sm:w-64">
-                <div class="w-24 h-24 mx-auto rounded-2xl overflow-hidden border-2 border-yellow-400">
-                    <img src="gustavo.jpg" alt="@GustavoRSSilva" class="w-full h-full object-cover">
-                </div>
-                <div class="text-center mt-4"><p class="font-medium group-hover:text-yellow-400 transition-colors">@GustavoRSSilva</p><p class="text-xs text-zinc-500">Engineering Manager</p></div>
-            </a>
-            <a href="https://x.com/blueprintluke" target="_blank" class="card group bg-zinc-900 border border-zinc-800 hover:border-yellow-400 rounded-2xl p-6 w-full sm:w-64">
-                <div class="w-24 h-24 mx-auto rounded-2xl overflow-hidden border-2 border-yellow-400">
-                    <img src="luke.jpg" alt="@blueprintluke" class="w-full h-full object-cover">
-                </div>
-                <div class="text-center mt-4"><p class="font-medium group-hover:text-yellow-400 transition-colors">@blueprintluke</p><p class="text-xs text-zinc-500">CGO</p></div>
-            </a>
-            <a href="https://x.com/andonpv" target="_blank" class="card group bg-zinc-900 border border-zinc-800 hover:border-yellow-400 rounded-2xl p-6 w-full sm:w-64">
-                <div class="w-24 h-24 mx-auto rounded-2xl overflow-hidden border-2 border-yellow-400">
-                    <img src="depoche.jpg" alt="@andonpv" class="w-full h-full object-cover">
-                </div>
-                <div class="text-center mt-4"><p class="font-medium group-hover:text-yellow-400 transition-colors">@andonpv</p><p class="text-xs text-zinc-500">Lead QA</p></div>
-            </a>
-            <a href="https://x.com/crypttoji" target="_blank" class="card group bg-zinc-900 border border-zinc-800 hover:border-yellow-400 rounded-2xl p-6 w-full sm:w-64">
-                <div class="w-24 h-24 mx-auto rounded-2xl overflow-hidden border-2 border-yellow-400">
-                    <img src="toji.jpg" alt="@crypttoji" class="w-full h-full object-cover">
-                </div>
-                <div class="text-center mt-4"><p class="font-medium group-hover:text-yellow-400 transition-colors">@crypttoji</p><p class="text-xs text-zinc-500">Marketing</p></div>
-            </a>
-            <a href="https://x.com/nic_builds" target="_blank" class="card group bg-zinc-900 border border-zinc-800 hover:border-yellow-400 rounded-2xl p-6 w-full sm:w-64">
-                <div class="w-24 h-24 mx-auto rounded-2xl overflow-hidden border-2 border-yellow-400">
-                    <img src="nic.jpg" alt="@nic_builds" class="w-full h-full object-cover">
-                </div>
-                <div class="text-center mt-4"><p class="font-medium group-hover:text-yellow-400 transition-colors">@nic_builds</p><p class="text-xs text-zinc-500">CEO</p></div>
-            </a>
-            <a href="https://x.com/concrete_intern" target="_blank" class="card group bg-zinc-900 border border-zinc-800 hover:border-yellow-400 rounded-2xl p-6 w-full sm:w-64">
-                <div class="w-24 h-24 mx-auto rounded-2xl overflow-hidden border-2 border-yellow-400">
-                    <img src="the INTERN.jpg" alt="@concrete_intern" class="w-full h-full object-cover">
-                </div>
-                <div class="text-center mt-4"><p class="font-medium group-hover:text-yellow-400 transition-colors">@concrete_intern</p><p class="text-xs text-zinc-500">Permanent bullposter</p></div>
-            </a>
-        </div>
-    </div>
-
-    <div class="text-center mb-12">
-        <h2 class="text-yellow-400 text-xl font-semibold mb-6 flex items-center gap-2 justify-center">
-            <span class="w-3 h-px bg-yellow-400"></span> MOAI HOLDERS
-        </h2>
-        <div class="flex flex-wrap justify-center gap-4">
-            <a href="https://x.com/mongralinweb3" target="_blank" class="card group bg-zinc-900 border border-zinc-800 hover:border-yellow-400 rounded-2xl p-6 w-full sm:w-64">
-                <p class="font-medium text-lg">Mongral</p><p class="text-yellow-400">@mongralinweb3</p>
-            </a>
-            <a href="https://x.com/Nomiie143" target="_blank" class="card group bg-zinc-900 border border-zinc-800 hover:border-yellow-400 rounded-2xl p-6 w-full sm:w-64">
-                <p class="font-medium text-lg">Nomi</p><p class="text-yellow-400">@Nomiie143</p>
-            </a>
-            <a href="https://x.com/Lidy_web3" target="_blank" class="card group bg-zinc-900 border border-zinc-800 hover:border-yellow-400 rounded-2xl p-6 w-full sm:w-64">
-                <p class="font-medium text-lg">Lidy</p><p class="text-yellow-400">@Lidy_web3</p>
-            </a>
-        </div>
-    </div>
-
-    <div class="text-center mb-12">
-        <h2 class="text-yellow-400 text-xl font-semibold mb-6 flex items-center gap-2 justify-center">
-            <span class="w-3 h-px bg-yellow-400"></span> CONCRETE CONTENT CREATORS
-        </h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
-            <a href="https://x.com/rakel8990" target="_blank" class="card bg-zinc-900 border border-zinc-800 hover:border-yellow-400 rounded-2xl p-6 text-center">kian <span class="block text-yellow-400">@rakel8990</span></a>
-            <a href="https://x.com/Osita__1" target="_blank" class="card bg-zinc-900 border border-zinc-800 hover:border-yellow-400 rounded-2xl p-6 text-center">Osita <span class="block text-yellow-400">@Osita__1</span></a>
-            <a href="https://x.com/urochimaru90" target="_blank" class="card bg-zinc-900 border border-zinc-800 hover:border-yellow-400 rounded-2xl p-6 text-center">PA-MI <span class="block text-yellow-400">@urochimaru90</span></a>
-            <a href="https://x.com/goodhabit300" target="_blank" class="card bg-zinc-900 border border-zinc-800 hover:border-yellow-400 rounded-2xl p-6 text-center">Hailemariam <span class="block text-yellow-400">@goodhabit300</span></a>
-            <a href="https://x.com/PhucvinhN1965" target="_blank" class="card bg-zinc-900 border border-zinc-800 hover:border-yellow-400 rounded-2xl p-6 text-center">vinh nguyễn <span class="block text-yellow-400">@PhucvinhN1965</span></a>
-            <a href="https://x.com/cybergrek" target="_blank" class="card bg-zinc-900 border border-zinc-800 hover:border-yellow-400 rounded-2xl p-6 text-center">Grek <span class="block text-yellow-400">@cybergrek</span></a>
-            <a href="https://x.com/Mugi_wara_95" target="_blank" class="card bg-zinc-900 border border-zinc-800 hover:border-yellow-400 rounded-2xl p-6 text-center">Mugiwara <span class="block text-yellow-400">@Mugi_wara_95</span></a>
-            <a href="https://x.com/alex___nba" target="_blank" class="card bg-zinc-900 border border-zinc-800 hover:border-yellow-400 rounded-2xl p-6 text-center">Alex <span class="block text-yellow-400">@alex___nba</span></a>
-            <a href="https://x.com/mr_gee_ster" target="_blank" class="card bg-zinc-900 border border-zinc-800 hover:border-yellow-400 rounded-2xl p-6 text-center">mr_gee_tech <span class="block text-yellow-400">@mr_gee_ster</span></a>
-            <a href="https://x.com/imAbdulazeez0p" target="_blank" class="card bg-zinc-900 border border-zinc-800 hover:border-yellow-400 rounded-2xl p-6 text-center">Abdulazeez <span class="block text-yellow-400">@imAbdulazeez0p</span></a>
-            <a href="https://x.com/Resilient_22" target="_blank" class="card bg-zinc-900 border border-zinc-800 hover:border-yellow-400 rounded-2xl p-6 text-center">MR. B <span class="block text-yellow-400">@Resilient_22</span></a>
-            <a href="https://x.com/Sir_I_U" target="_blank" class="card bg-zinc-900 border border-zinc-800 hover:border-yellow-400 rounded-2xl p-6 text-center">MR MUI <span class="block text-yellow-400">@Sir_I_U</span></a>
-            <a href="https://x.com/Afolabixyz" target="_blank" class="card bg-zinc-900 border border-zinc-800 hover:border-yellow-400 rounded-2xl p-6 text-center">AFOLABI <span class="block text-yellow-400">@Afolabixyz</span></a>
-            <a href="https://x.com/imshubhamsingh7" target="_blank" class="card bg-zinc-900 border border-zinc-800 hover:border-yellow-400 rounded-2xl p-6 text-center">Shubham Singh <span class="block text-yellow-400">@imshubhamsingh7</span></a>
-            <a href="https://x.com/Darkknightz456" target="_blank" class="card bg-zinc-900 border border-zinc-800 hover:border-yellow-400 rounded-2xl p-6 text-center">DarkKnight <span class="block text-yellow-400">@Darkknightz456</span></a>
-            <a href="https://x.com/mizzy_web3" target="_blank" class="card bg-zinc-900 border border-zinc-800 hover:border-yellow-400 rounded-2xl p-6 text-center">Mizzy <span class="block text-yellow-400">@mizzy_web3</span></a>
-            <a href="https://x.com/JKTech933" target="_blank" class="card bg-zinc-900 border border-zinc-800 hover:border-yellow-400 rounded-2xl p-6 text-center">JK Tech <span class="block text-yellow-400">@JKTech933</span></a>
-            <a href="https://x.com/1ozzid" target="_blank" class="card bg-zinc-900 border border-zinc-800 hover:border-yellow-400 rounded-2xl p-6 text-center">dev.ozzid <span class="block text-yellow-400">@1ozzid</span></a>
-            <a href="https://x.com/hana51024" target="_blank" class="card bg-zinc-900 border border-zinc-800 hover:border-yellow-400 rounded-2xl p-6 text-center">Hana <span class="block text-yellow-400">@hana51024</span></a>
-            <a href="https://x.com/HustleMontego" target="_blank" class="card bg-zinc-900 border border-zinc-800 hover:border-yellow-400 rounded-2xl p-6 text-center">Montego <span class="block text-yellow-400">@HustleMontego</span></a>
-        </div>
-    </div>
-
-    <div class="text-center mb-12">
-        <h2 class="text-yellow-400 text-xl font-semibold mb-6 flex items-center gap-2 justify-center">
-            <span class="w-3 h-px bg-yellow-400"></span>
-            WEEKLY SPOTLIGHT POSTS
-        </h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div class="bg-zinc-900 border border-yellow-400/10 rounded-3xl p-6">
-                <blockquote class="twitter-tweet" data-theme="dark"><p lang="en" dir="ltr">GMCRETE👋👋<br><br>looking for more MOAI holders <br> if you&#39;re one of &#39;em comment here<br><br>WE building..... <a href="https://t.co/58E42iQJQS">https://t.co/58E42iQJQS</a> <a href="https://t.co/au787TjkGI">pic.twitter.com/au787TjkGI</a></p>&mdash; kian 🗿 (@rakel8990) <a href="https://twitter.com/rakel8990/status/2035751345727090739?ref_src=twsrc%5Etfw">March 22, 2026</a></blockquote>
-            </div>
-            <div class="bg-zinc-900 border border-yellow-400/10 rounded-3xl p-6">
-                <blockquote class="twitter-tweet" data-theme="dark"><p lang="en" dir="ltr">GMCRETE👋👋<br><br>looking for more MOAI holders <br> if you&#39;re one of &#39;em comment here<br><br>WE building..... <a href="https://t.co/58E42iQJQS">https://t.co/58E42iQJQS</a> <a href="https://t.co/au787TjkGI">pic.twitter.com/au787TjkGI</a></p>&mdash; kian 🗿 (@rakel8990) <a href="https://twitter.com/rakel8990/status/2035751345727090739?ref_src=twsrc%5Etfw">March 22, 2026</a></blockquote>
-            </div>
-            <div class="bg-zinc-900 border border-yellow-400/10 rounded-3xl p-6">
-                <blockquote class="twitter-tweet" data-theme="dark"><p lang="en" dir="ltr">GMCRETE👋👋<br><br>looking for more MOAI holders <br> if you&#39;re one of &#39;em comment here<br><br>WE building..... <a href="https://t.co/58E42iQJQS">https://t.co/58E42iQJQS</a> <a href="https://t.co/au787TjkGI">pic.twitter.com/au787TjkGI</a></p>&mdash; kian 🗿 (@rakel8990) <a href="https://twitter.com/rakel8990/status/2035751345727090739?ref_src=twsrc%5Etfw">March 22, 2026</a></blockquote>
-            </div>
-            <div class="bg-zinc-900 border border-yellow-400/10 rounded-3xl p-6">
-                <blockquote class="twitter-tweet" data-theme="dark"><p lang="en" dir="ltr">GMCRETE👋👋<br><br>looking for more MOAI holders <br> if you&#39;re one of &#39;em comment here<br><br>WE building..... <a href="https://t.co/58E42iQJQS">https://t.co/58E42iQJQS</a> <a href="https://t.co/au787TjkGI">pic.twitter.com/au787TjkGI</a></p>&mdash; kian 🗿 (@rakel8990) <a href="https://twitter.com/rakel8990/status/2035751345727090739?ref_src=twsrc%5Etfw">March 22, 2026</a></blockquote>
-            </div>
-        </div>
-    </div>
-
-    <div onclick="toggleAccordion(this)" class="accordion bg-zinc-900 border border-yellow-400/10 rounded-3xl mb-12 overflow-hidden cursor-pointer">
-        <div class="accordion-header flex items-center justify-between px-6 md:px-8 py-6 text-lg font-medium">
-            <div class="flex items-center gap-3">
-                <i class="fa-solid fa-newspaper text-yellow-400"></i>
-                <span>Weekly Articles • New topic every Monday</span>
-            </div>
-            <svg xmlns="http://www.w3.org/2000/svg" class="chevron w-5 h-5 text-yellow-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-            </svg>
-        </div>
-        <div class="accordion-content px-6 md:px-8 pb-8 text-zinc-300 leading-relaxed">
-            <div class="bg-zinc-950 border border-yellow-400/30 rounded-3xl p-8">
-                <p class="italic text-lg mb-4">"How Do Concrete Vaults Actually Work?"</p>
-                
-                <div class="mb-6">
-                    <span class="text-[10px] text-zinc-500 uppercase tracking-widest block mb-1">Submission Deadline:</span>
-                    <div id="countdown" class="text-yellow-400 font-mono text-2xl tracking-tighter">00:00:00:00</div>
-                </div>
-
-                <div class="flex flex-col gap-3">
-                    <a href="https://x.com/rakel8990/status/2036677605710037380?s=20" target="_blank" class="text-xs text-yellow-400 hover:underline">Read full article →</a>
-                    <a href="https://discord.com/channels/1220537696087445565/1382107811508391987/1485675023447494846" target="_blank" class="text-xs text-zinc-400 hover:text-white transition-colors">Instructions for this week's article</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div onclick="toggleAccordion(this)" class="accordion bg-zinc-900 border border-yellow-400/10 rounded-3xl mb-24 overflow-hidden cursor-pointer">
-        <div class="accordion-header flex items-center justify-between px-6 md:px-8 py-6 text-lg font-medium">
-            <div class="flex items-center gap-3">
-                <i class="fa-solid fa-sack-dollar text-yellow-400"></i>
-                <span>How to Collect Bags</span>
-            </div>
-            <svg xmlns="http://www.w3.org/2000/svg" class="chevron w-5 h-5 text-yellow-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-            </svg>
-        </div>
-        <div class="accordion-content px-6 md:px-8 pb-8 text-zinc-300 leading-relaxed">
-            <p class="mb-6">Earn points by completing social tasks on X and Discord. Writing insightful tweets about Concrete’s vaults and sharing experiences helps you rank up.</p>
-            <div class="flex flex-wrap gap-8 text-sm">
-                <div>
-                    <span class="block text-yellow-400 font-medium mb-1">Earn bags by:</span>
-                    <ul class="space-y-1"><li>● Posting on X</li><li>● Joining Discord</li><li>● Sharing ideas</li></ul>
-                </div>
-                <div>
-                    <span class="block text-yellow-400 font-medium mb-2">My referral code:</span>
-                    <div class="bg-zinc-950 border border-yellow-400/30 rounded-2xl px-6 py-3 font-mono text-xl text-yellow-300">1ad605d7</div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="text-center py-12 border-t border-zinc-800">
-        <p class="text-zinc-400 text-sm">
-            built by <a href="https://x.com/rakel8990" target="_blank" class="text-yellow-400 font-bold hover:underline">KIAN</a>, 
-            who's a <span class="text-amber-200/80">"concrete maxi"</span>
-        </p>
-    </div>
-
-</div>
-
-<a href="javascript:void(0)" onclick="openPopup()" class="floating-btn">
-    <i class="fa-solid fa-plus"></i> Get Listed
-</a>
-
-<div id="popup">
-    <div class="flex justify-between items-start mb-4">
-        <span class="text-yellow-400 text-xs font-bold uppercase tracking-widest">Listing Request</span>
-        <button onclick="closePopup()" class="text-zinc-500 hover:text-white text-xl">&times;</button>
-    </div>
-    <p class="text-zinc-300 text-sm leading-relaxed mb-6">
-        No ghosts allowed. If you’re <span class="text-yellow-400">active</span> and building in Concrete, prove it first.
-    </p>
-    <div class="flex flex-col items-center gap-4">
-        <div class="flex justify-center gap-8">
-            <a href="https://x.com/rakel8990" target="_blank"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/x.svg" class="w-6 h-6 yellow-icon"></a>
-            <a href="https://t.me/order_denied" target="_blank"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/telegram.svg" class="w-6 h-6 yellow-icon"></a>
-        </div>
-        <p class="text-[10px] text-zinc-600 italic">dm me if u think u got the sauce...</p>
-    </div>
-</div>
-
-<script src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 <script>
-    function toggleAccordion(el) { el.classList.toggle('active'); }
-    function openPopup() { 
-        const p = document.getElementById('popup');
-        p.style.display = p.style.display === 'block' ? 'none' : 'block';
-    }
-    function closePopup() { document.getElementById('popup').style.display = 'none'; }
-    
-    window.onclick = function(event) {
-        let p = document.getElementById('popup');
-        if (!p.contains(event.target) && !event.target.closest('.floating-btn')) {
-            closePopup();
+/** * GLOBAL SEARCH LOGIC
+ * Scans every element with class 'creator-item' across the entire page.
+ * Use this class on Core Team and MOAI Holders to include them in the scan.
+ */
+function runGlobalSearch() {
+    let query = document.getElementById('globalRadarSearch').value.toLowerCase();
+    let creators = document.querySelectorAll('.creator-item'); 
+    let sections = document.querySelectorAll('.category-block');
+    let visibleCount = 0;
+
+    creators.forEach(item => {
+        let text = item.innerText.toLowerCase();
+        if (text.includes(query)) {
+            // Restore original display style (trench tags are inline-block)
+            item.style.display = item.classList.contains('trench-tag') ? "inline-block" : "block";
+            visibleCount++;
+        } else {
+            item.style.display = "none";
         }
+    });
+
+    // Smart Section Hiding: If a category has no matches, hide it entirely
+    sections.forEach(sec => {
+        let matches = sec.querySelectorAll('.creator-item:not([style*="display: none"])');
+        sec.style.display = (matches.length > 0 || query === "") ? "block" : "none";
+    });
+
+    // Update Status Text
+    const stats = document.getElementById('searchStats');
+    if (query === "") {
+        stats.innerText = "System Live // Awaiting Input";
+        stats.classList.remove('text-yellow-400');
+    } else {
+        stats.innerText = `Scan Complete: ${visibleCount} Targets found`;
+        stats.classList.add('text-yellow-400');
     }
-
-    // COUNTDOWN TIMER LOGIC
-    function updateCountdown() {
-        const now = new Date();
-        const nextSunday = new Date();
-        // Calculate days until next Sunday (0 is Sunday)
-        nextSunday.setDate(now.getDate() + (7 - now.getDay()) % 7);
-        nextSunday.setHours(0, 0, 0, 0);
-
-        // If today is Sunday and it's already past midnight, move to next Sunday
-        if (nextSunday <= now) {
-            nextSunday.setDate(nextSunday.getDate() + 7);
-        }
-
-        const diff = nextSunday - now;
-
-        const d = Math.floor(diff / (1000 * 60 * 60 * 24));
-        const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
-        const m = Math.floor((diff / 1000 / 60) % 60);
-        const s = Math.floor((diff / 1000) % 60);
-
-        document.getElementById('countdown').innerHTML = 
-            `${d.toString().padStart(2, '0')}d : ${h.toString().padStart(2, '0')}h : ${m.toString().padStart(2, '0')}m : ${s.toString().padStart(2, '0')}s`;
-    }
-
-    setInterval(updateCountdown, 1000);
-    updateCountdown();
+}
 </script>
-
-</body>
-</html>
