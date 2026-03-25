@@ -1,192 +1,233 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CONCRETE | THE RADAR</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Concrete Radar</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600&family=JetBrains+Mono:wght@400;500&display=swap');
 
-        :root {
-            --gold: #f5d55f;
-            --dark-bg: #09090b;
-        }
+    body {
+        font-family: 'Inter', system-ui, sans-serif;
+        overflow-x: hidden;
+    }
+    .title-font {
+        font-family: 'Space Grotesk', sans-serif;
+    }
+    .mono { font-family: 'JetBrains Mono', monospace; }
 
-        body {
-            background-color: var(--dark-bg);
-            color: #ffffff;
-            font-family: 'Inter', sans-serif;
-            scroll-behavior: smooth;
-            overflow-x: hidden;
-        }
+    .card {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 0 30px -5px rgb(245 213 95 / 0.5);
+    }
 
-        /* --- TICKER STYLE --- */
-        .ticker-wrap {
-            width: 100%;
-            overflow: hidden;
-            background: rgba(245, 213, 95, 0.1);
-            border-bottom: 1px solid rgba(245, 213, 95, 0.2);
-            white-space: nowrap;
-            padding: 10px 0;
-        }
-        .ticker-move {
-            display: inline-block;
-            animation: ticker 30s linear infinite;
-        }
-        @keyframes ticker {
-            0% { transform: translateX(100%); }
-            100% { transform: translateX(-100%); }
-        }
+    /* --- THE GOLDEN EFFECT (image_7e158a.jpg) --- */
+    .golden-card {
+        background: linear-gradient(145deg, #1a1a1a 0%, #0a0a0a 100%) !important;
+        border: 1px solid rgba(245, 213, 95, 0.3) !important;
+        position: relative;
+    }
+    .golden-card::before {
+        content: ""; position: absolute; top: 0; left: 0;
+        width: 12px; height: 12px;
+        border-top: 2px solid #F5D55F; border-left: 2px solid #F5D55F;
+        opacity: 0.6;
+    }
 
-        /* --- GOLDEN TIER "EXPENSIVE" LOOK --- */
-        .golden-card {
-            background: linear-gradient(145deg, #1a1a1a 0%, #0a0a0a 100%);
-            border: 1px solid rgba(245, 213, 95, 0.3);
-            position: relative;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        /* Corner Accents */
-        .golden-card::before {
-            content: ""; position: absolute; top: 0; left: 0;
-            width: 12px; height: 12px;
-            border-top: 2px solid var(--gold); border-left: 2px solid var(--gold);
-            opacity: 0.6;
-        }
-        .golden-card:hover {
-            border-color: var(--gold);
-            box-shadow: 0 0 40px rgba(245, 213, 95, 0.25);
-            transform: translateY(-6px);
-        }
+    /* ACCORDION LOGIC */
+    .accordion.active .accordion-content {
+        max-height: 1200px;
+    }
+    .accordion-content {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .accordion.active .chevron {
+        transform: rotate(180deg);
+    }
+    .chevron { transition: transform 0.4s ease; }
 
-        /* --- SEARCH & POPUP UI --- */
-        .match-highlight {
-            border-color: var(--gold) !important;
-            box-shadow: 0 0 60px rgba(245, 213, 95, 0.5) !important;
-            transform: scale(1.05);
-            z-index: 50;
-        }
-        .card-hidden { display: none !important; }
-        .mono { font-family: 'JetBrains Mono', monospace; }
+    .glow-yellow {
+        text-shadow: 0 0 25px rgb(245 213 95);
+    }
 
-        /* Popup - Bottom Right Correction */
-        #get-listed-popup {
-            position: fixed;
-            bottom: 24px;
-            right: 24px;
-            z-index: 1000;
-        }
-    </style>
+    /* TICKER ANIMATION */
+    @keyframes marquee {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+    }
+    .animate-marquee { display: flex; animation: marquee 35s linear infinite; }
+
+    /* FLOATING BUTTON & POPUP */
+    .floating-btn {
+        position: fixed; bottom: 25px; right: 25px;
+        background: #F5D55F; color: black;
+        padding: 12px 18px; border-radius: 30px;
+        font-weight: 600; font-size: 14px;
+        box-shadow: 0 10px 20px -5px rgb(245 213 95 / 0.4);
+        z-index: 100; display: flex; align-items: center; gap: 6px;
+    }
+
+    #popup {
+        display: none; position: fixed; bottom: 85px; right: 25px;
+        width: 320px; background: #1A1A1A; border-radius: 20px;
+        border: 1px solid #F5D55F; padding: 24px; z-index: 100;
+        box-shadow: 0 20px 40px -10px rgba(0,0,0,0.8);
+    }
+
+    .match-highlight {
+        border-color: #F5D55F !important;
+        box-shadow: 0 0 40px rgba(245, 213, 95, 0.4) !important;
+        transform: scale(1.03);
+    }
+
+    .card-hidden { display: none !important; }
+</style>
 </head>
-<body class="pb-40">
+<body class="bg-zinc-950 text-white min-h-screen">
 
-    <div class="ticker-wrap sticky top-0 z-[110] backdrop-blur-md">
-        <div class="ticker-move mono text-[10px] uppercase tracking-widest text-yellow-500">
-            System Alert: Total Depositors reached 50.96K • Risk-Adjusted Yield Optimized • Concrete Vaults Active • 
+<div class="bg-yellow-400/10 border-b border-yellow-400/20 py-2 overflow-hidden w-full sticky top-0 z-50 backdrop-blur-md">
+    <div class="animate-marquee whitespace-nowrap">
+        <span class="mx-10 text-[10px] font-bold text-yellow-400 uppercase tracking-widest">● Total Depositors reached <span class="text-white">50.96K</span></span>
+        <span class="mx-10 text-[10px] font-bold text-yellow-400 uppercase tracking-widest">● Concrete has reached <span class="text-white">$1,000,000,000 in TVL!</span></span>
+        <span class="mx-10 text-[10px] font-bold text-yellow-400 uppercase tracking-widest">● Article of the week > <span class="text-white">How Do Concrete Vaults Actually Work?</span></span>
+        <span class="mx-10 text-[10px] font-bold text-yellow-400 uppercase tracking-widest">● Total Depositors reached <span class="text-white">50.96K</span></span>
+    </div>
+</div>
+
+<div class="max-w-6xl mx-auto px-6 py-12 relative">
+
+    <div class="text-center mb-12">
+        <h1 class="title-font text-7xl md:text-8xl font-semibold tracking-tighter text-yellow-400 glow-yellow uppercase">Concrete</h1>
+        <h1 class="title-font text-7xl md:text-8xl font-semibold tracking-tighter -mt-4 uppercase">Radar</h1>
+    </div>
+
+    <div class="max-w-xl mx-auto mb-16 relative">
+        <input type="text" id="radarSearch" onkeyup="executeSearch()" placeholder="SCANNING FOR TARGETS..." 
+        class="w-full bg-zinc-900 border border-zinc-800 rounded-2xl py-4 px-12 text-xs focus:outline-none focus:border-yellow-500/50 text-white mono uppercase tracking-widest">
+        <i class="fa-solid fa-crosshairs absolute left-5 top-1/2 -translate-y-1/2 text-zinc-600"></i>
+        <div id="noResults" class="hidden text-center mt-4 text-zinc-600 mono text-[10px] uppercase">Not found, sorry. Target not in database</div>
+    </div>
+
+    <div onclick="toggleAccordion(this)" class="accordion bg-zinc-900 border border-yellow-400/10 rounded-3xl mb-12 overflow-hidden cursor-pointer">
+        <div class="flex items-center justify-between px-8 py-6 text-lg font-medium">
+            <div class="flex items-center gap-3"><i class="fa-solid fa-vault text-yellow-400"></i><span>What is Concrete + Links</span></div>
+            <i class="fa-solid fa-chevron-down chevron text-yellow-400"></i>
+        </div>
+        <div class="accordion-content px-8 pb-8 text-zinc-300">
+            <p class="mb-6">Concrete is a DeFi platform providing automated, risk-managed vaults. Turning complex DeFi into a one-click system for capital deployment.</p>
+            <div class="flex flex-wrap gap-6 text-yellow-400">
+                <a href="#" class="hover:underline">Points Dashboard</a>
+                <a href="#" class="hover:underline">Discord</a>
+                <a href="#" class="hover:underline">Twitter</a>
+            </div>
         </div>
     </div>
 
-    <header class="py-12 border-b border-white/5 bg-[#09090b]/80 backdrop-blur-xl">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="relative group">
-                <input type="text" id="radarSearch" onkeyup="executeSearch()" 
-                placeholder="SCANNING FOR TARGETS..." 
-                class="w-full bg-[#0d0d0d] border border-zinc-800 rounded-xl py-5 px-14 text-xs focus:outline-none focus:border-yellow-500/50 text-white mono tracking-widest uppercase transition-all">
-                <i class="fa-solid fa-crosshairs absolute left-6 top-1/2 -translate-y-1/2 text-zinc-700"></i>
+    <div class="text-center mb-24">
+        <h2 class="text-yellow-400 text-sm font-bold tracking-[0.3em] uppercase mb-10">// CORE TEAM</h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6" id="coreTeam">
+            <a href="https://x.com/nic_builds" target="_blank" class="card bg-zinc-900 border border-zinc-800 p-6 rounded-2xl">
+                <div class="w-20 h-20 mx-auto rounded-xl border-2 border-yellow-400 overflow-hidden mb-4 bg-zinc-800"></div>
+                <p class="text-sm font-bold">@nic_builds</p>
+                <p class="text-[10px] text-zinc-500 uppercase">CEO</p>
+            </a>
             </div>
-            <div id="noResults" class="hidden text-center mt-6 text-zinc-600 mono text-[10px] uppercase">
-                Not found, sorry. Target not in database
-            </div>
-        </div>
-    </header>
+    </div>
 
-    <main class="max-w-6xl mx-auto px-6 space-y-28 mt-16">
-        
-        <section id="tier-gold">
-            <h2 class="text-yellow-500 font-bold tracking-[0.3em] uppercase text-sm mb-10 flex items-center gap-4">
-                <span class="h-[1px] w-12 bg-yellow-500/30"></span> THE GOLDEN 10
+    <div class="space-y-24">
+        <section id="goldTier">
+            <h2 class="text-yellow-400 text-sm font-bold tracking-[0.3em] uppercase mb-8 flex items-center gap-4">
+                <span class="h-px w-10 bg-yellow-400"></span> THE GOLDEN 10
             </h2>
-            <div class="grid grid-cols-2 md:grid-cols-5 gap-6" id="gold-grid"></div>
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-4" id="gold-grid"></div>
         </section>
 
-        <section id="tier-silver">
-            <h2 class="text-zinc-400 font-semibold tracking-[0.3em] uppercase text-xs mb-10 flex items-center gap-4">
-                <span class="h-[1px] w-12 bg-zinc-800"></span> SILVER COLLECTIVE
+        <section id="silverTier">
+            <h2 class="text-zinc-500 text-sm font-bold tracking-[0.3em] uppercase mb-8 flex items-center gap-4">
+                <span class="h-px w-10 bg-zinc-800"></span> SILVER COLLECTIVE
             </h2>
             <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4" id="silver-grid"></div>
         </section>
 
-        <section id="tier-trench">
-            <h2 class="text-zinc-700 font-semibold tracking-[0.3em] uppercase text-xs mb-10 flex items-center gap-4">
-                <span class="h-[1px] w-12 bg-zinc-900"></span> THE TRENCHES
-            </h2>
-            <div class="grid grid-cols-2 md:grid-cols-5 lg:grid-cols-8 gap-3" id="trench-grid"></div>
+        <section id="trenchTier">
+            <h2 class="text-zinc-700 text-xs font-bold tracking-[0.3em] uppercase mb-8 italic">// THE TRENCHES</h2>
+            <div class="flex flex-wrap gap-2" id="trench-grid"></div>
         </section>
-    </main>
-
-    <div id="get-listed-popup" class="bg-zinc-900 border border-zinc-800 p-4 rounded-xl shadow-2xl flex items-center gap-4 animate-bounce">
-        <div class="text-[10px] mono text-zinc-400">WANT TO APPEAR ON THE RADAR?</div>
-        <button class="bg-yellow-500 text-black text-[10px] font-bold px-4 py-2 rounded-lg uppercase">Get Listed</button>
     </div>
 
-    <script>
-        const userList = [
-            "rakel8990", "alpha_prime", "concrete_vault", "yield_arch", "risk_zero",
-            "market_maker", "liquid_flow", "zenith_node", "macro_vision", "block_pioneer",
-            "sat_stacker", "prime_asset", "vortex_trader", "atlas_cap", "mint_oracle",
-            "chain_ghost", "proxy_user", "delta_neutral", "sigma_dev", "omega_vault"
-        ];
+</div>
 
-        function initRadar() {
-            const grids = {
-                gold: { el: document.getElementById('gold-grid'), count: 10, class: 'golden-card p-10' },
-                silver: { el: document.getElementById('silver-grid'), count: 20, class: 'bg-zinc-900/40 border border-zinc-800 p-6' },
-                trench: { el: document.getElementById('trench-grid'), count: 40, class: 'bg-zinc-950 border border-zinc-900/50 p-4 text-[10px]' }
-            };
+<div class="text-center py-12 border-t border-zinc-900 mt-20">
+    <p class="text-zinc-500 text-xs">built by <span class="text-yellow-400 font-bold">KIAN</span>, concrete maxi</p>
+</div>
 
-            for (const key in grids) {
-                for (let i = 0; i < grids[key].count; i++) {
-                    const handle = userList[i % 20];
-                    grids[key].el.innerHTML += `
-                        <a href="https://x.com/${handle}" target="_blank" 
-                           class="radar-item group rounded-2xl text-center flex items-center justify-center min-h-[100px] transition-all duration-300 ${grids[key].class}">
-                            <span class="text-white group-hover:text-yellow-400 font-medium">@${handle}</span>
-                        </a>`;
-                }
+<a href="javascript:void(0)" onclick="openPopup()" class="floating-btn"><i class="fa-solid fa-plus"></i> Get Listed</a>
+<div id="popup">
+    <div class="flex justify-between items-center mb-4">
+        <span class="text-yellow-400 text-xs font-bold uppercase tracking-widest">Listing Request</span>
+        <button onclick="closePopup()" class="text-zinc-500 text-xl">&times;</button>
+    </div>
+    <p class="text-zinc-400 text-xs mb-6">If you’re active and building in Concrete, DM me.</p>
+    <div class="flex justify-center gap-6">
+        <a href="https://x.com/rakel8990" target="_blank" class="text-yellow-400 text-xl"><i class="fa-brands fa-x-twitter"></i></a>
+    </div>
+</div>
+
+<script>
+    const users = ["rakel8990", "alpha_prime", "concrete_vault", "yield_arch", "risk_zero", "market_maker", "liquid_flow", "zenith_node", "macro_vision", "block_pioneer", "sat_stacker", "prime_asset", "vortex_trader", "atlas_cap", "mint_oracle", "chain_ghost", "proxy_user", "delta_neutral", "sigma_dev", "omega_vault"];
+
+    function initRadar() {
+        const g = document.getElementById('gold-grid');
+        const s = document.getElementById('silver-grid');
+        const t = document.getElementById('trench-grid');
+
+        for(let i=0; i<10; i++) g.innerHTML += createCard(users[i%20], 'golden-card p-8');
+        for(let i=0; i<20; i++) s.innerHTML += createCard(users[i%20], 'bg-zinc-900/50 border border-zinc-800 p-5 text-sm');
+        for(let i=0; i<40; i++) t.innerHTML += `<span class="radar-item bg-zinc-900/30 border border-zinc-800 px-3 py-1 rounded text-[10px] text-zinc-600 mono uppercase">@${users[i%20]}</span>`;
+    }
+
+    function createCard(handle, classes) {
+        return `<a href="https://x.com/${handle}" target="_blank" class="radar-item card rounded-2xl text-center flex items-center justify-center min-h-[90px] ${classes}"><span class="font-medium">@${handle}</span></a>`;
+    }
+
+    function toggleAccordion(el) { el.classList.toggle('active'); }
+    function openPopup() { document.getElementById('popup').style.display = 'block'; }
+    function closePopup() { document.getElementById('popup').style.display = 'none'; }
+
+    function executeSearch() {
+        const query = document.getElementById('radarSearch').value.toLowerCase().trim();
+        const items = document.querySelectorAll('.radar-item');
+        const error = document.getElementById('noResults');
+        let found = 0;
+        let match = null;
+
+        items.forEach(item => {
+            const handle = item.textContent.toLowerCase().replace('@', '');
+            item.classList.remove('match-highlight');
+            if (handle.includes(query)) {
+                item.classList.remove('card-hidden');
+                found++;
+                if (handle === query) match = item;
+            } else {
+                item.classList.add('card-hidden');
             }
+        });
+
+        error.style.display = (found === 0 && query !== "") ? "block" : "none";
+        if (match && query.length > 2) {
+            match.classList.add('match-highlight');
+            match.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
+    }
 
-        function executeSearch() {
-            const query = document.getElementById('radarSearch').value.toLowerCase().trim();
-            const items = document.querySelectorAll('.radar-item');
-            const error = document.getElementById('noResults');
-            let found = 0;
-            let match = null;
-
-            items.forEach(item => {
-                const handle = item.textContent.toLowerCase().replace('@', '').trim();
-                item.classList.remove('match-highlight');
-
-                if (handle.includes(query)) {
-                    item.classList.remove('card-hidden');
-                    found++;
-                    if (handle === query) match = item;
-                } else {
-                    item.classList.add('card-hidden');
-                }
-            });
-
-            error.style.display = (found === 0 && query !== "") ? "block" : "none";
-
-            // 100% Match Scroll
-            if (match && query.length > 2) {
-                match.classList.add('match-highlight');
-                match.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }
-        }
-
-        initRadar();
-    </script>
+    initRadar();
+</script>
 </body>
 </html>
