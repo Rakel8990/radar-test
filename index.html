@@ -11,223 +11,192 @@
 
     body {
         font-family: 'Inter', system-ui, sans-serif;
+        background-color: #050505;
+        color: white;
         overflow-x: hidden;
     }
-    .title-font {
-        font-family: 'Space Grotesk', sans-serif;
-    }
+    .title-font { font-family: 'Space Grotesk', sans-serif; }
     .mono { font-family: 'JetBrains Mono', monospace; }
 
-    .card {
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    /* --- GOLDEN TIER EFFECT: OBSIDIAN GLOW --- */
+    .gold-card {
+        background: linear-gradient(145deg, #1a1a10 0%, #050505 100%);
+        border: 1px solid rgba(245, 213, 95, 0.2);
+        transition: all 0.4s ease;
     }
-    .card:hover {
-        transform: translateY(-6px);
-        box-shadow: 0 0 30px -5px rgb(245 213 95 / 0.5);
+    .gold-card:hover {
+        border-color: #F5D55F;
+        box-shadow: 0 0 30px rgba(245, 213, 95, 0.2);
+        transform: translateY(-5px);
     }
 
-    /* --- THE GOLDEN EFFECT (image_7e158a.jpg) --- */
-    .golden-card {
-        background: linear-gradient(145deg, #1a1a1a 0%, #0a0a0a 100%) !important;
-        border: 1px solid rgba(245, 213, 95, 0.3) !important;
-        position: relative;
+    /* --- SILVER TIER EFFECT: PLATINUM GLASS --- */
+    .silver-card {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(5px);
+        transition: all 0.3s ease;
     }
-    .golden-card::before {
-        content: ""; position: absolute; top: 0; left: 0;
-        width: 12px; height: 12px;
-        border-top: 2px solid #F5D55F; border-left: 2px solid #F5D55F;
-        opacity: 0.6;
+    .silver-card:hover {
+        border-color: rgba(255, 255, 255, 0.4);
+        background: rgba(255, 255, 255, 0.07);
+    }
+
+    /* --- TRENCHES EFFECT: DARK TAGS --- */
+    .trench-tag {
+        background: #0a0a0a;
+        border: 1px solid #1a1a1a;
+        transition: all 0.2s ease;
+    }
+    .trench-tag:hover {
+        background: #111;
+        border-color: #333;
+        color: #eee;
     }
 
     /* ACCORDION LOGIC */
-    .accordion.active .accordion-content {
-        max-height: 1200px;
-    }
+    .accordion.active .accordion-content { max-height: 1200px; }
     .accordion-content {
         max-height: 0;
         overflow: hidden;
         transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
-    .accordion.active .chevron {
-        transform: rotate(180deg);
-    }
+    .accordion.active .chevron { transform: rotate(180deg); }
     .chevron { transition: transform 0.4s ease; }
 
-    .glow-yellow {
-        text-shadow: 0 0 25px rgb(245 213 95);
-    }
-
-    /* TICKER ANIMATION */
-    @keyframes marquee {
-        0% { transform: translateX(0); }
-        100% { transform: translateX(-50%); }
-    }
+    /* TICKER */
+    @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
     .animate-marquee { display: flex; animation: marquee 35s linear infinite; }
 
-    /* FLOATING BUTTON & POPUP */
+    /* POPUP & BUTTON */
     .floating-btn {
         position: fixed; bottom: 25px; right: 25px;
         background: #F5D55F; color: black;
         padding: 12px 18px; border-radius: 30px;
         font-weight: 600; font-size: 14px;
         box-shadow: 0 10px 20px -5px rgb(245 213 95 / 0.4);
-        z-index: 100; display: flex; align-items: center; gap: 6px;
+        z-index: 100;
     }
-
     #popup {
         display: none; position: fixed; bottom: 85px; right: 25px;
         width: 320px; background: #1A1A1A; border-radius: 20px;
         border: 1px solid #F5D55F; padding: 24px; z-index: 100;
-        box-shadow: 0 20px 40px -10px rgba(0,0,0,0.8);
     }
-
-    .match-highlight {
-        border-color: #F5D55F !important;
-        box-shadow: 0 0 40px rgba(245, 213, 95, 0.4) !important;
-        transform: scale(1.03);
-    }
-
-    .card-hidden { display: none !important; }
 </style>
 </head>
-<body class="bg-zinc-950 text-white min-h-screen">
+<body>
 
 <div class="bg-yellow-400/10 border-b border-yellow-400/20 py-2 overflow-hidden w-full sticky top-0 z-50 backdrop-blur-md">
     <div class="animate-marquee whitespace-nowrap">
         <span class="mx-10 text-[10px] font-bold text-yellow-400 uppercase tracking-widest">● Total Depositors reached <span class="text-white">50.96K</span></span>
-        <span class="mx-10 text-[10px] font-bold text-yellow-400 uppercase tracking-widest">● Concrete has reached <span class="text-white">$1,000,000,000 in TVL!</span></span>
-        <span class="mx-10 text-[10px] font-bold text-yellow-400 uppercase tracking-widest">● Article of the week > <span class="text-white">How Do Concrete Vaults Actually Work?</span></span>
+        <span class="mx-10 text-[10px] font-bold text-yellow-400 uppercase tracking-widest">● Concrete TVL: <span class="text-white">$1,000,000,000</span></span>
+        <span class="mx-10 text-[10px] font-bold text-yellow-400 uppercase tracking-widest">● Article: <span class="text-white">How Do Concrete Vaults Actually Work?</span></span>
         <span class="mx-10 text-[10px] font-bold text-yellow-400 uppercase tracking-widest">● Total Depositors reached <span class="text-white">50.96K</span></span>
     </div>
 </div>
 
 <div class="max-w-6xl mx-auto px-6 py-12 relative">
 
-    <div class="text-center mb-12">
-        <h1 class="title-font text-7xl md:text-8xl font-semibold tracking-tighter text-yellow-400 glow-yellow uppercase">Concrete</h1>
+    <div class="text-center mb-16">
+        <h1 class="title-font text-7xl md:text-8xl font-semibold tracking-tighter text-yellow-400 uppercase">Concrete</h1>
         <h1 class="title-font text-7xl md:text-8xl font-semibold tracking-tighter -mt-4 uppercase">Radar</h1>
+        <p class="text-zinc-500 mt-6 mono text-xs tracking-[0.4em] uppercase">Tracking the foundation of De-Fi</p>
     </div>
 
-    <div class="max-w-xl mx-auto mb-16 relative">
-        <input type="text" id="radarSearch" onkeyup="executeSearch()" placeholder="SCANNING FOR TARGETS..." 
-        class="w-full bg-zinc-900 border border-zinc-800 rounded-2xl py-4 px-12 text-xs focus:outline-none focus:border-yellow-500/50 text-white mono uppercase tracking-widest">
-        <i class="fa-solid fa-crosshairs absolute left-5 top-1/2 -translate-y-1/2 text-zinc-600"></i>
-        <div id="noResults" class="hidden text-center mt-4 text-zinc-600 mono text-[10px] uppercase">Not found, sorry. Target not in database</div>
-    </div>
-
-    <div onclick="toggleAccordion(this)" class="accordion bg-zinc-900 border border-yellow-400/10 rounded-3xl mb-12 overflow-hidden cursor-pointer">
-        <div class="flex items-center justify-between px-8 py-6 text-lg font-medium">
-            <div class="flex items-center gap-3"><i class="fa-solid fa-vault text-yellow-400"></i><span>What is Concrete + Links</span></div>
+    <div onclick="this.classList.toggle('active')" class="accordion bg-zinc-900/50 border border-white/5 rounded-3xl mb-20 overflow-hidden cursor-pointer">
+        <div class="flex items-center justify-between px-8 py-6">
+            <div class="flex items-center gap-3"><i class="fa-solid fa-vault text-yellow-400"></i><span class="font-medium">What is Concrete + Links</span></div>
             <i class="fa-solid fa-chevron-down chevron text-yellow-400"></i>
         </div>
-        <div class="accordion-content px-8 pb-8 text-zinc-300">
-            <p class="mb-6">Concrete is a DeFi platform providing automated, risk-managed vaults. Turning complex DeFi into a one-click system for capital deployment.</p>
-            <div class="flex flex-wrap gap-6 text-yellow-400">
-                <a href="#" class="hover:underline">Points Dashboard</a>
-                <a href="#" class="hover:underline">Discord</a>
-                <a href="#" class="hover:underline">Twitter</a>
+        <div class="accordion-content px-8 pb-8 text-zinc-400 text-sm leading-relaxed">
+            Concrete provides automated, risk-managed vaults. Turning complex DeFi into a one-click system for capital deployment.
+            <div class="flex gap-6 mt-4 text-yellow-400 font-bold">
+                <a href="#">Dashboard</a> <a href="#">Discord</a> <a href="#">Twitter</a>
             </div>
         </div>
     </div>
 
-    <div class="text-center mb-24">
-        <h2 class="text-yellow-400 text-sm font-bold tracking-[0.3em] uppercase mb-10">// CORE TEAM</h2>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6" id="coreTeam">
-            <a href="https://x.com/nic_builds" target="_blank" class="card bg-zinc-900 border border-zinc-800 p-6 rounded-2xl">
-                <div class="w-20 h-20 mx-auto rounded-xl border-2 border-yellow-400 overflow-hidden mb-4 bg-zinc-800"></div>
-                <p class="text-sm font-bold">@nic_builds</p>
-                <p class="text-[10px] text-zinc-500 uppercase">CEO</p>
-            </a>
-            </div>
-    </div>
+    <section class="mb-24">
+        <h2 class="text-yellow-500 text-xs font-bold tracking-[0.5em] mb-10 flex items-center gap-4">
+            <span class="h-[1px] w-12 bg-yellow-500/30"></span> THE GOLDEN 10
+        </h2>
+        <div class="grid grid-cols-2 md:grid-cols-5 gap-6" id="gold-grid"></div>
+    </section>
 
-    <div class="space-y-24">
-        <section id="goldTier">
-            <h2 class="text-yellow-400 text-sm font-bold tracking-[0.3em] uppercase mb-8 flex items-center gap-4">
-                <span class="h-px w-10 bg-yellow-400"></span> THE GOLDEN 10
-            </h2>
-            <div class="grid grid-cols-2 md:grid-cols-5 gap-4" id="gold-grid"></div>
-        </section>
+    <section class="mb-24">
+        <h2 class="text-zinc-400 text-xs font-bold tracking-[0.5em] mb-10 flex items-center gap-4">
+            <span class="h-[1px] w-12 bg-zinc-800"></span> SILVER COLLECTIVE
+        </h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4" id="silver-grid"></div>
+    </section>
 
-        <section id="silverTier">
-            <h2 class="text-zinc-500 text-sm font-bold tracking-[0.3em] uppercase mb-8 flex items-center gap-4">
-                <span class="h-px w-10 bg-zinc-800"></span> SILVER COLLECTIVE
-            </h2>
-            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4" id="silver-grid"></div>
-        </section>
-
-        <section id="trenchTier">
-            <h2 class="text-zinc-700 text-xs font-bold tracking-[0.3em] uppercase mb-8 italic">// THE TRENCHES</h2>
-            <div class="flex flex-wrap gap-2" id="trench-grid"></div>
-        </section>
-    </div>
+    <section class="mb-32">
+        <h2 class="text-zinc-700 text-[10px] font-bold tracking-[0.5em] mb-8 uppercase italic">// THE TRENCHES</h2>
+        <div class="flex flex-wrap gap-3" id="trench-grid"></div>
+    </section>
 
 </div>
 
-<div class="text-center py-12 border-t border-zinc-900 mt-20">
-    <p class="text-zinc-500 text-xs">built by <span class="text-yellow-400 font-bold">KIAN</span>, concrete maxi</p>
-</div>
+<footer class="text-center py-10 border-t border-white/5">
+    <p class="text-zinc-600 text-[10px] mono uppercase">Built by <span class="text-yellow-500 font-bold">KIAN</span> • Concrete Maxi</p>
+</footer>
 
-<a href="javascript:void(0)" onclick="openPopup()" class="floating-btn"><i class="fa-solid fa-plus"></i> Get Listed</a>
+<a href="javascript:void(0)" onclick="document.getElementById('popup').style.display='block'" class="floating-btn"><i class="fa-solid fa-plus"></i> Get Listed</a>
 <div id="popup">
     <div class="flex justify-between items-center mb-4">
-        <span class="text-yellow-400 text-xs font-bold uppercase tracking-widest">Listing Request</span>
-        <button onclick="closePopup()" class="text-zinc-500 text-xl">&times;</button>
+        <span class="text-yellow-400 text-[10px] font-bold uppercase mono">Request Access</span>
+        <button onclick="document.getElementById('popup').style.display='none'" class="text-zinc-500">&times;</button>
     </div>
-    <p class="text-zinc-400 text-xs mb-6">If you’re active and building in Concrete, DM me.</p>
-    <div class="flex justify-center gap-6">
-        <a href="https://x.com/rakel8990" target="_blank" class="text-yellow-400 text-xl"><i class="fa-brands fa-x-twitter"></i></a>
-    </div>
+    <p class="text-zinc-400 text-xs mb-4">Prove your activity in Concrete to get listed.</p>
+    <a href="https://x.com/rakel8990" target="_blank" class="text-yellow-400 text-sm hover:underline">DM @rakel8990</a>
 </div>
 
 <script>
-    const users = ["rakel8990", "alpha_prime", "concrete_vault", "yield_arch", "risk_zero", "market_maker", "liquid_flow", "zenith_node", "macro_vision", "block_pioneer", "sat_stacker", "prime_asset", "vortex_trader", "atlas_cap", "mint_oracle", "chain_ghost", "proxy_user", "delta_neutral", "sigma_dev", "omega_vault"];
+    const userNames = [
+        "KIAN", "ALPHA", "VAULT", "ARCHITECT", "RISK_ZERO", 
+        "MAKER", "LIQUID", "ZENITH", "MACRO", "BLOCK", 
+        "STACKER", "ASSET", "VORTEX", "ATLAS", "ORACLE", 
+        "GHOST", "PROXY", "DELTA", "SIGMA", "OMEGA"
+    ];
+    const userHandles = [
+        "rakel8990", "alpha_prime", "concrete_vault", "yield_arch", "risk_zero",
+        "market_maker", "liquid_flow", "zenith_node", "macro_vision", "block_pioneer",
+        "sat_stacker", "prime_asset", "vortex_trader", "atlas_cap", "mint_oracle",
+        "chain_ghost", "proxy_user", "delta_neutral", "sigma_dev", "omega_vault"
+    ];
 
-    function initRadar() {
+    function build() {
         const g = document.getElementById('gold-grid');
         const s = document.getElementById('silver-grid');
         const t = document.getElementById('trench-grid');
 
-        for(let i=0; i<10; i++) g.innerHTML += createCard(users[i%20], 'golden-card p-8');
-        for(let i=0; i<20; i++) s.innerHTML += createCard(users[i%20], 'bg-zinc-900/50 border border-zinc-800 p-5 text-sm');
-        for(let i=0; i<40; i++) t.innerHTML += `<span class="radar-item bg-zinc-900/30 border border-zinc-800 px-3 py-1 rounded text-[10px] text-zinc-600 mono uppercase">@${users[i%20]}</span>`;
-    }
+        // GOLDEN 10
+        for(let i=0; i<10; i++) {
+            g.innerHTML += `
+                <a href="https://x.com/${userHandles[i]}" target="_blank" class="gold-card p-8 rounded-3xl text-center block group">
+                    <p class="text-white font-bold text-sm tracking-tight">${userNames[i]}</p>
+                    <p class="text-yellow-500/60 text-[10px] mono mt-1 group-hover:text-yellow-400">@${userHandles[i]}</p>
+                </a>`;
+        }
 
-    function createCard(handle, classes) {
-        return `<a href="https://x.com/${handle}" target="_blank" class="radar-item card rounded-2xl text-center flex items-center justify-center min-h-[90px] ${classes}"><span class="font-medium">@${handle}</span></a>`;
-    }
+        // SILVER 20
+        for(let i=0; i<20; i++) {
+            s.innerHTML += `
+                <a href="https://x.com/${userHandles[i % 20]}" target="_blank" class="silver-card p-6 rounded-2xl text-center block group">
+                    <p class="text-zinc-200 font-semibold text-xs">${userNames[i % 20]}</p>
+                    <p class="text-zinc-500 text-[9px] mono mt-1">@${userHandles[i % 20]}</p>
+                </a>`;
+        }
 
-    function toggleAccordion(el) { el.classList.toggle('active'); }
-    function openPopup() { document.getElementById('popup').style.display = 'block'; }
-    function closePopup() { document.getElementById('popup').style.display = 'none'; }
-
-    function executeSearch() {
-        const query = document.getElementById('radarSearch').value.toLowerCase().trim();
-        const items = document.querySelectorAll('.radar-item');
-        const error = document.getElementById('noResults');
-        let found = 0;
-        let match = null;
-
-        items.forEach(item => {
-            const handle = item.textContent.toLowerCase().replace('@', '');
-            item.classList.remove('match-highlight');
-            if (handle.includes(query)) {
-                item.classList.remove('card-hidden');
-                found++;
-                if (handle === query) match = item;
-            } else {
-                item.classList.add('card-hidden');
-            }
-        });
-
-        error.style.display = (found === 0 && query !== "") ? "block" : "none";
-        if (match && query.length > 2) {
-            match.classList.add('match-highlight');
-            match.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        // TRENCHES 40
+        for(let i=0; i<40; i++) {
+            t.innerHTML += `
+                <a href="https://x.com/${userHandles[i % 20]}" target="_blank" class="trench-tag px-4 py-2 rounded-lg text-[10px] mono text-zinc-500 block group">
+                    ${userNames[i % 20]} <span class="text-zinc-700 ml-1 group-hover:text-zinc-400">@${userHandles[i % 20]}</span>
+                </a>`;
         }
     }
-
-    initRadar();
+    build();
 </script>
 </body>
 </html>
