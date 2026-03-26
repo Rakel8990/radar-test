@@ -1,199 +1,661 @@
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Concrete Radar</title>
-
-<script src="https://cdn.tailwindcss.com"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600&display=swap');
-
-body { font-family: 'Inter', sans-serif; overflow-x: hidden; }
-.title-font { font-family: 'Space Grotesk', sans-serif; }
-
-/* EXISTING CARD */
-.card { transition: 0.3s; }
-.card:hover { transform: translateY(-6px); box-shadow: 0 0 30px -5px rgb(245 213 95 / 0.5); }
-
-/* 🔥 3D GOLDEN CARDS */
-.parent { perspective: 1000px; }
-
-.card-3d {
-    padding-top: 50px;
-    border: 2px solid #27272a;
-    transform-style: preserve-3d;
-    background: linear-gradient(135deg, #0000 18.75%, #F5D55F 0 31.25%, #0000 0),
-                repeating-linear-gradient(45deg, #27272a -6.25% 6.25%, #18181b 0 18.75%);
-    background-size: 60px 60px;
-    background-color: #18181b;
-    transition: 0.5s;
-    border-radius: 16px;
-}
-.card-3d:hover {
-    background-position: -100px 100px, -100px 100px;
-    transform: rotate3d(0.5, 1, 0, 20deg);
-}
-
-.content-box {
-    background: #F5D55F;
-    padding: 30px 18px 18px;
-    transform-style: preserve-3d;
-    border-radius: 14px;
-}
-
-.card-title { font-size: 14px; font-weight: 900; color: #18181b; transform: translate3d(0,0,40px); }
-.card-content { font-size: 9px; font-weight: 800; color: #18181b; margin-top: 6px; transform: translate3d(0,0,25px); text-transform: uppercase; }
-
-.see-more {
-    display: inline-block;
-    margin-top: 10px;
-    background: #18181b;
-    color: #F5D55F;
-    padding: 4px 8px;
-    font-weight: 900;
-    font-size: 10px;
-    transform: translate3d(0,0,30px);
-    border-radius: 6px;
-}
-
-.date-box {
-    position: absolute;
-    top: 12px;
-    right: 12px;
-    width: 42px;
-    height: 42px;
-    background: #18181b;
-    border: 1px solid #F5D55F;
-    transform: translate3d(0,0,60px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    border-radius: 10px;
-}
-.month { font-size: 7px; color: #F5D55F; font-weight: 900; }
-.date { font-size: 14px; color: #F5D55F; font-weight: 900; }
-
-/* OTHER */
-.tier-label {
-    font-size: 10px;
-    font-weight: bold;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    margin-bottom: 1rem;
-    display: inline-block;
-    padding: 4px 10px;
-    border-radius: 999px;
-}
-</style>
-</head>
-
-<body class="bg-zinc-950 text-white">
-
-<div class="max-w-6xl mx-auto px-6 py-12">
-
-<!-- TITLE -->
-<div class="text-center mb-16">
-<h1 class="title-font text-7xl text-yellow-400">CONCRETE</h1>
-<h1 class="title-font text-7xl -mt-4">RADAR</h1>
-</div>
-
-<!-- 🔥 GOLDEN TIER (UPDATED) -->
-<div class="mb-20">
-<span class="tier-label bg-yellow-400/20 text-yellow-400">Golden Tier • Top 10</span>
-
-<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
-
-<div class="parent"><div class="card-3d relative">
-<div class="date-box"><span class="month">Rank</span><span class="date">01</span></div>
-<div class="content-box">
-<span class="card-title">KIAN</span>
-<p class="card-content">Narrative Lead<br><span class="opacity-40">(Setting the vibe)</span></p>
-<a href="https://x.com/rakel8990" target="_blank" class="see-more">X</a>
-</div></div></div>
-
-<div class="parent"><div class="card-3d relative">
-<div class="date-box"><span class="month">Rank</span><span class="date">02</span></div>
-<div class="content-box">
-<span class="card-title">OSITA</span>
-<p class="card-content">Meme Commander<br><span class="opacity-40">(Viral energy)</span></p>
-<a href="https://x.com/Osita__1" target="_blank" class="see-more">X</a>
-</div></div></div>
-
-<div class="parent"><div class="card-3d relative">
-<div class="date-box"><span class="month">Rank</span><span class="date">03</span></div>
-<div class="content-box">
-<span class="card-title">PA-MI</span>
-<p class="card-content">Thread Architect<br><span class="opacity-40">(Educational)</span></p>
-<a href="https://x.com/urochimaru90" target="_blank" class="see-more">X</a>
-</div></div></div>
-
-<div class="parent"><div class="card-3d relative">
-<div class="date-box"><span class="month">Rank</span><span class="date">04</span></div>
-<div class="content-box">
-<span class="card-title">Hailemariam</span>
-<p class="card-content">Signal Booster</p>
-<a href="https://x.com/goodhabit300" target="_blank" class="see-more">X</a>
-</div></div></div>
-
-<div class="parent"><div class="card-3d relative">
-<div class="date-box"><span class="month">Rank</span><span class="date">05</span></div>
-<div class="content-box">
-<span class="card-title">Vinh Nguyen</span>
-<p class="card-content">Community Catalyst</p>
-<a href="https://x.com/PhucvinhN1965" target="_blank" class="see-more">X</a>
-</div></div></div>
-
-<div class="parent"><div class="card-3d relative">
-<div class="date-box"><span class="month">Rank</span><span class="date">06</span></div>
-<div class="content-box">
-<span class="card-title">Grek</span>
-<p class="card-content">Hype Strategist</p>
-<a href="https://x.com/cybergrek" target="_blank" class="see-more">X</a>
-</div></div></div>
-
-<div class="parent"><div class="card-3d relative">
-<div class="date-box"><span class="month">Rank</span><span class="date">07</span></div>
-<div class="content-box">
-<span class="card-title">Mugiwara</span>
-<p class="card-content">Alpha Scout</p>
-<a href="https://x.com/Mugi_wara_95" target="_blank" class="see-more">X</a>
-</div></div></div>
-
-<div class="parent"><div class="card-3d relative">
-<div class="date-box"><span class="month">Rank</span><span class="date">08</span></div>
-<div class="content-box">
-<span class="card-title">Alex</span>
-<p class="card-content">Visual Storyteller</p>
-<a href="https://x.com/alex___nba" target="_blank" class="see-more">X</a>
-</div></div></div>
-
-<div class="parent"><div class="card-3d relative">
-<div class="date-box"><span class="month">Rank</span><span class="date">09</span></div>
-<div class="content-box">
-<span class="card-title">mr_gee_tech</span>
-<p class="card-content">Culture Maker</p>
-<a href="https://x.com/mr_gee_ster" target="_blank" class="see-more">X</a>
-</div></div></div>
-
-<div class="parent"><div class="card-3d relative">
-<div class="date-box"><span class="month">Rank</span><span class="date">10</span></div>
-<div class="content-box">
-<span class="card-title">Abdulazeez</span>
-<p class="card-content">Sentiment Driver</p>
-<a href="https://x.com/imAbdulazeez0p" target="_blank" class="see-more">X</a>
-</div></div></div>
-
-</div>
-</div>
-
-</div>
-
-</body>
-</html>
-```
-
+diff --git a/index.html b/index.html
+index 7bb3c7461c5b2f20bfc12944e26c1b15039a1d50..b57767b377e3a54cad1d32d06dc7d6be99cff586 100644
+--- a/index.html
++++ b/index.html
+@@ -1,199 +1,479 @@
+-```html
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Concrete Radar</title>
+-
+ <script src="https://cdn.tailwindcss.com"></script>
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+-
+ <style>
+-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600&display=swap');
+-
+-body { font-family: 'Inter', sans-serif; overflow-x: hidden; }
+-.title-font { font-family: 'Space Grotesk', sans-serif; }
+-
+-/* EXISTING CARD */
+-.card { transition: 0.3s; }
+-.card:hover { transform: translateY(-6px); box-shadow: 0 0 30px -5px rgb(245 213 95 / 0.5); }
+-
+-/* 🔥 3D GOLDEN CARDS */
+-.parent { perspective: 1000px; }
+-
+-.card-3d {
+-    padding-top: 50px;
+-    border: 2px solid #27272a;
+-    transform-style: preserve-3d;
+-    background: linear-gradient(135deg, #0000 18.75%, #F5D55F 0 31.25%, #0000 0),
+-                repeating-linear-gradient(45deg, #27272a -6.25% 6.25%, #18181b 0 18.75%);
+-    background-size: 60px 60px;
+-    background-color: #18181b;
+-    transition: 0.5s;
+-    border-radius: 16px;
+-}
+-.card-3d:hover {
+-    background-position: -100px 100px, -100px 100px;
+-    transform: rotate3d(0.5, 1, 0, 20deg);
+-}
+-
+-.content-box {
+-    background: #F5D55F;
+-    padding: 30px 18px 18px;
+-    transform-style: preserve-3d;
+-    border-radius: 14px;
+-}
+-
+-.card-title { font-size: 14px; font-weight: 900; color: #18181b; transform: translate3d(0,0,40px); }
+-.card-content { font-size: 9px; font-weight: 800; color: #18181b; margin-top: 6px; transform: translate3d(0,0,25px); text-transform: uppercase; }
+-
+-.see-more {
+-    display: inline-block;
+-    margin-top: 10px;
+-    background: #18181b;
+-    color: #F5D55F;
+-    padding: 4px 8px;
+-    font-weight: 900;
+-    font-size: 10px;
+-    transform: translate3d(0,0,30px);
+-    border-radius: 6px;
+-}
+-
+-.date-box {
+-    position: absolute;
+-    top: 12px;
+-    right: 12px;
+-    width: 42px;
+-    height: 42px;
+-    background: #18181b;
+-    border: 1px solid #F5D55F;
+-    transform: translate3d(0,0,60px);
+-    display: flex;
+-    align-items: center;
+-    justify-content: center;
+-    flex-direction: column;
+-    border-radius: 10px;
+-}
+-.month { font-size: 7px; color: #F5D55F; font-weight: 900; }
+-.date { font-size: 14px; color: #F5D55F; font-weight: 900; }
+-
+-/* OTHER */
+-.tier-label {
+-    font-size: 10px;
+-    font-weight: bold;
+-    letter-spacing: 0.2em;
+-    text-transform: uppercase;
+-    margin-bottom: 1rem;
+-    display: inline-block;
+-    padding: 4px 10px;
+-    border-radius: 999px;
+-}
++    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600&display=swap');
++
++    body {
++        font-family: 'Inter', system-ui, sans-serif;
++        overflow-x: hidden;
++    }
++    .title-font {
++        font-family: 'Space Grotesk', sans-serif;
++    }
++
++    .card {
++        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
++    }
++    .card:hover {
++        transform: translateY(-6px);
++        box-shadow: 0 0 30px -5px rgb(245 213 95 / 0.5);
++    }
++
++    .accordion-header {
++        transition: all 0.3s ease;
++    }
++    .accordion-content {
++        max-height: 0;
++        overflow: hidden;
++        transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
++    }
++    .accordion.active .accordion-content {
++        max-height: 1200px;
++    }
++    .chevron {
++        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
++    }
++    .accordion.active .chevron {
++        transform: rotate(180deg);
++    }
++
++    .glow-yellow {
++        text-shadow: 0 0 25px rgb(245 213 95);
++    }
++
++    /* TICKER ANIMATION */
++    @keyframes marquee {
++        0% { transform: translateX(0); }
++        100% { transform: translateX(-50%); }
++    }
++    .animate-marquee { display: flex; animation: marquee 35s linear infinite; }
++
++    /* FLOATING BUTTON */
++    .floating-btn {
++        position: fixed;
++        bottom: 25px;
++        right: 25px;
++        background: #F5D55F;
++        color: black;
++        padding: 12px 18px;
++        border-radius: 30px;
++        text-decoration: none;
++        font-weight: 600;
++        font-size: 14px;
++        box-shadow: 0 10px 20px -5px rgb(245 213 95 / 0.4);
++        transition: all 0.2s ease;
++        display: flex;
++        align-items: center;
++        gap: 6px;
++        z-index: 60;
++    }
++
++    /* BOTTOM-RIGHT POPUP */
++    #popup {
++        display: none;
++        position: fixed;
++        bottom: 85px;
++        right: 25px;
++        width: 320px;
++        max-width: calc(100vw - 50px);
++        background: #1A1A1A;
++        border-radius: 20px;
++        border: 1px solid #F5D55F;
++        padding: 24px;
++        z-index: 100;
++        box-shadow: 0 20px 40px -10px rgba(0,0,0,0.8), 0 0 20px -5px rgb(245 213 95 / 0.3);
++    }
++
++    .yellow-icon {
++        filter: invert(85%) sepia(26%) saturate(1000%) hue-rotate(345deg) brightness(102%) contrast(101%);
++    }
++
++    .tier-label {
++        @apply text-[10px] font-bold tracking-[0.2em] uppercase mb-4 inline-block px-3 py-1 rounded-full;
++    }
++
++    @media (max-width: 640px) {
++        .title-font.text-7xl { font-size: 3.5rem; }
++        .text-xl { font-size: 1.1rem; }
++    }
+ </style>
+ </head>
++<body class="bg-zinc-950 text-white min-h-screen">
+ 
+-<body class="bg-zinc-950 text-white">
++<div class="bg-yellow-400/10 border-b border-yellow-400/20 py-2 overflow-hidden w-full sticky top-0 z-30 backdrop-blur-md">
++    <div class="animate-marquee whitespace-nowrap">
++        <span class="mx-10 text-[10px] font-bold text-yellow-400 uppercase tracking-widest">● Total Depositors reached <span class="text-white">50.96K</span></span>
++        <span class="mx-10 text-[10px] font-bold text-yellow-400 uppercase tracking-widest">● Article of the week > <span class="text-white">How Do Concrete Vaults Actually Work?</span></span>
++        <span class="mx-10 text-[10px] font-bold text-yellow-400 uppercase tracking-widest">● Concrete has reached <span class="text-white">$1,000,000,000 in TVL!</span></span>
++        <span class="mx-10 text-[10px] font-bold text-yellow-400 uppercase tracking-widest">● Total Depositors reached <span class="text-white">50.96K</span></span>
++        <span class="mx-10 text-[10px] font-bold text-yellow-400 uppercase tracking-widest">● Article of the week > <span class="text-white">How Do Concrete Vaults Actually Work?</span></span>
++        <span class="mx-10 text-[10px] font-bold text-yellow-400 uppercase tracking-widest">● Concrete has reached <span class="text-white">$1,000,000,000 in TVL!</span></span>
++    </div>
++</div>
+ 
+-<div class="max-w-6xl mx-auto px-6 py-12">
++<div class="max-w-6xl mx-auto px-6 py-12 relative">
+ 
+-<!-- TITLE -->
+-<div class="text-center mb-16">
+-<h1 class="title-font text-7xl text-yellow-400">CONCRETE</h1>
+-<h1 class="title-font text-7xl -mt-4">RADAR</h1>
+-</div>
++    <div class="text-center mb-12">
++        <h1 class="title-font text-7xl md:text-8xl font-semibold tracking-tighter text-yellow-400 glow-yellow">CONCRETE</h1>
++        <h1 class="title-font text-7xl md:text-8xl font-semibold tracking-tighter -mt-4">RADAR</h1>
++    </div>
+ 
+-<!-- 🔥 GOLDEN TIER (UPDATED) -->
+-<div class="mb-20">
+-<span class="tier-label bg-yellow-400/20 text-yellow-400">Golden Tier • Top 10</span>
+-
+-<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+-
+-<div class="parent"><div class="card-3d relative">
+-<div class="date-box"><span class="month">Rank</span><span class="date">01</span></div>
+-<div class="content-box">
+-<span class="card-title">KIAN</span>
+-<p class="card-content">Narrative Lead<br><span class="opacity-40">(Setting the vibe)</span></p>
+-<a href="https://x.com/rakel8990" target="_blank" class="see-more">X</a>
+-</div></div></div>
+-
+-<div class="parent"><div class="card-3d relative">
+-<div class="date-box"><span class="month">Rank</span><span class="date">02</span></div>
+-<div class="content-box">
+-<span class="card-title">OSITA</span>
+-<p class="card-content">Meme Commander<br><span class="opacity-40">(Viral energy)</span></p>
+-<a href="https://x.com/Osita__1" target="_blank" class="see-more">X</a>
+-</div></div></div>
+-
+-<div class="parent"><div class="card-3d relative">
+-<div class="date-box"><span class="month">Rank</span><span class="date">03</span></div>
+-<div class="content-box">
+-<span class="card-title">PA-MI</span>
+-<p class="card-content">Thread Architect<br><span class="opacity-40">(Educational)</span></p>
+-<a href="https://x.com/urochimaru90" target="_blank" class="see-more">X</a>
+-</div></div></div>
+-
+-<div class="parent"><div class="card-3d relative">
+-<div class="date-box"><span class="month">Rank</span><span class="date">04</span></div>
+-<div class="content-box">
+-<span class="card-title">Hailemariam</span>
+-<p class="card-content">Signal Booster</p>
+-<a href="https://x.com/goodhabit300" target="_blank" class="see-more">X</a>
+-</div></div></div>
+-
+-<div class="parent"><div class="card-3d relative">
+-<div class="date-box"><span class="month">Rank</span><span class="date">05</span></div>
+-<div class="content-box">
+-<span class="card-title">Vinh Nguyen</span>
+-<p class="card-content">Community Catalyst</p>
+-<a href="https://x.com/PhucvinhN1965" target="_blank" class="see-more">X</a>
+-</div></div></div>
+-
+-<div class="parent"><div class="card-3d relative">
+-<div class="date-box"><span class="month">Rank</span><span class="date">06</span></div>
+-<div class="content-box">
+-<span class="card-title">Grek</span>
+-<p class="card-content">Hype Strategist</p>
+-<a href="https://x.com/cybergrek" target="_blank" class="see-more">X</a>
+-</div></div></div>
+-
+-<div class="parent"><div class="card-3d relative">
+-<div class="date-box"><span class="month">Rank</span><span class="date">07</span></div>
+-<div class="content-box">
+-<span class="card-title">Mugiwara</span>
+-<p class="card-content">Alpha Scout</p>
+-<a href="https://x.com/Mugi_wara_95" target="_blank" class="see-more">X</a>
+-</div></div></div>
+-
+-<div class="parent"><div class="card-3d relative">
+-<div class="date-box"><span class="month">Rank</span><span class="date">08</span></div>
+-<div class="content-box">
+-<span class="card-title">Alex</span>
+-<p class="card-content">Visual Storyteller</p>
+-<a href="https://x.com/alex___nba" target="_blank" class="see-more">X</a>
+-</div></div></div>
+-
+-<div class="parent"><div class="card-3d relative">
+-<div class="date-box"><span class="month">Rank</span><span class="date">09</span></div>
+-<div class="content-box">
+-<span class="card-title">mr_gee_tech</span>
+-<p class="card-content">Culture Maker</p>
+-<a href="https://x.com/mr_gee_ster" target="_blank" class="see-more">X</a>
+-</div></div></div>
+-
+-<div class="parent"><div class="card-3d relative">
+-<div class="date-box"><span class="month">Rank</span><span class="date">10</span></div>
+-<div class="content-box">
+-<span class="card-title">Abdulazeez</span>
+-<p class="card-content">Sentiment Driver</p>
+-<a href="https://x.com/imAbdulazeez0p" target="_blank" class="see-more">X</a>
+-</div></div></div>
++    <p class="text-xl md:text-2xl text-zinc-400 max-w-2xl mx-auto text-center mb-16">
++        tracking the real ones posting, building, and moving capital through vaults
++    </p>
++
++    <div onclick="toggleAccordion(this)" class="accordion bg-zinc-900 border border-yellow-400/10 rounded-3xl mb-12 overflow-hidden cursor-pointer">
++        <div class="accordion-header flex items-center justify-between px-6 md:px-8 py-6 text-lg font-medium">
++            <div class="flex items-center gap-3">
++                <i class="fa-solid fa-vault text-yellow-400"></i>
++                <span>What is Concrete + Links</span>
++            </div>
++            <svg xmlns="http://www.w3.org/2000/svg" class="chevron w-5 h-5 text-yellow-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
++                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
++            </svg>
++        </div>
++        <div class="accordion-content px-6 md:px-8 pb-8 text-zinc-300 leading-relaxed">
++            <p class="mb-6">
++                Concrete is a DeFi platform that provides automated, risk-managed vaults where users deposit assets and earn yield without
++                manually managing strategies,turning complex DeFi into a one-click system for onchain capital deployment and compounding.
++            </p>
++
++            <div class="bg-zinc-950/50 border border-yellow-400/5 rounded-2xl p-6 mb-8">
++                <h4 class="text-yellow-400 font-semibold mb-2">Why Concrete Radar?</h4>
++                <p class="text-sm text-zinc-400">
++                    To filter the noise. This is the central hub for the most active contributors, real-time stats, and community-led alpha that you won't find on a standard dashboard.
++                </p>
++            </div>
++
++            <div class="flex flex-wrap gap-6 text-yellow-400">
++                <a href="https://points.concrete.xyz/home" target="_blank" class="flex items-center gap-2 hover:text-yellow-300 transition-colors">
++                    <i class="fa-solid fa-arrow-up-right-from-square"></i> Points Dashboard
++                </a>
++                <a href="https://discord.gg/concretexyz" target="_blank" class="flex items-center gap-2 hover:text-yellow-300 transition-colors">
++                    <i class="fa-brands fa-discord"></i> Discord
++                </a>
++                <a href="https://x.com/ConcreteXYZ" target="_blank" class="flex items-center gap-2 hover:text-yellow-300 transition-colors">
++                    <i class="fa-brands fa-x-twitter"></i> Twitter
++                </a>
++            </div>
++        </div>
++    </div>
++
++    <div class="text-center mb-20">
++        <h2 class="text-yellow-400 text-xl font-semibold mb-8 flex items-center gap-2 justify-center">
++            <span class="w-3 h-px bg-yellow-400"></span> CORE TEAM
++        </h2>
++        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
++            <a href="https://x.com/dill_sl" target="_blank" class="card group bg-zinc-900 border border-zinc-800 hover:border-yellow-400 rounded-2xl p-6">
++                <div class="w-20 h-20 mx-auto rounded-2xl overflow-hidden border-2 border-yellow-400">
++                    <img src="dill.jpg" alt="@dill_sl" class="w-full h-full object-cover">
++                </div>
++                <div class="text-center mt-4"><p class="font-medium group-hover:text-yellow-400 transition-colors">@dill_sl</p><p class="text-xs text-zinc-500">Co-founder</p></div>
++            </a>
++            <a href="https://x.com/GustavoRSSilva" target="_blank" class="card group bg-zinc-900 border border-zinc-800 hover:border-yellow-400 rounded-2xl p-6">
++                <div class="w-20 h-20 mx-auto rounded-2xl overflow-hidden border-2 border-yellow-400">
++                    <img src="gustavo.jpg" alt="@GustavoRSSilva" class="w-full h-full object-cover">
++                </div>
++                <div class="text-center mt-4"><p class="font-medium group-hover:text-yellow-400 transition-colors">@GustavoRSSilva</p><p class="text-xs text-zinc-500">Engineering Manager</p></div>
++            </a>
++            <a href="https://x.com/blueprintluke" target="_blank" class="card group bg-zinc-900 border border-zinc-800 hover:border-yellow-400 rounded-2xl p-6">
++                <div class="w-20 h-20 mx-auto rounded-2xl overflow-hidden border-2 border-yellow-400">
++                    <img src="luke.jpg" alt="@blueprintluke" class="w-full h-full object-cover">
++                </div>
++                <div class="text-center mt-4"><p class="font-medium group-hover:text-yellow-400 transition-colors">@blueprintluke</p><p class="text-xs text-zinc-500">CGO</p></div>
++            </a>
++            <a href="https://x.com/andonpv" target="_blank" class="card group bg-zinc-900 border border-zinc-800 hover:border-yellow-400 rounded-2xl p-6">
++                <div class="w-20 h-20 mx-auto rounded-2xl overflow-hidden border-2 border-yellow-400">
++                    <img src="depoche.jpg" alt="@andonpv" class="w-full h-full object-cover">
++                </div>
++                <div class="text-center mt-4"><p class="font-medium group-hover:text-yellow-400 transition-colors">@andonpv</p><p class="text-xs text-zinc-500">Lead QA</p></div>
++            </a>
++            <a href="https://x.com/crypttoji" target="_blank" class="card group bg-zinc-900 border border-zinc-800 hover:border-yellow-400 rounded-2xl p-6">
++                <div class="w-20 h-20 mx-auto rounded-2xl overflow-hidden border-2 border-yellow-400">
++                    <img src="toji.jpg" alt="@crypttoji" class="w-full h-full object-cover">
++                </div>
++                <div class="text-center mt-4"><p class="font-medium group-hover:text-yellow-400 transition-colors">@crypttoji</p><p class="text-xs text-zinc-500">Marketing</p></div>
++            </a>
++            <a href="https://x.com/nic_builds" target="_blank" class="card group bg-zinc-900 border border-zinc-800 hover:border-yellow-400 rounded-2xl p-6">
++                <div class="w-20 h-20 mx-auto rounded-2xl overflow-hidden border-2 border-yellow-400">
++                    <img src="nic.jpg" alt="@nic_builds" class="w-full h-full object-cover">
++                </div>
++                <div class="text-center mt-4"><p class="font-medium group-hover:text-yellow-400 transition-colors">@nic_builds</p><p class="text-xs text-zinc-500">CEO</p></div>
++            </a>
++            <a href="https://x.com/concrete_intern" target="_blank" class="card group bg-zinc-900 border border-zinc-800 hover:border-yellow-400 rounded-2xl p-6">
++                <div class="w-20 h-20 mx-auto rounded-2xl overflow-hidden border-2 border-yellow-400">
++                    <img src="the INTERN.jpg" alt="@concrete_intern" class="w-full h-full object-cover">
++                </div>
++                <div class="text-center mt-4"><p class="font-medium group-hover:text-yellow-400 transition-colors">@concrete_intern</p><p class="text-xs text-zinc-500">Permanent bullposter</p></div>
++            </a>
++        </div>
++    </div>
++
++    <div class="text-center mb-20">
++        <h2 class="text-yellow-400 text-xl font-semibold mb-8 flex items-center gap-2 justify-center">
++            <span class="w-3 h-px bg-yellow-400"></span> MOAI HOLDERS
++        </h2>
++        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
++            <a href="https://x.com/mongralinweb3" target="_blank" class="card group bg-zinc-900 border border-zinc-800 hover:border-yellow-400 rounded-2xl p-4">
++                <p class="font-medium text-sm">Mongral</p><p class="text-yellow-400 text-xs">@mongralinweb3</p>
++            </a>
++            <a href="https://x.com/Nomiie143" target="_blank" class="card group bg-zinc-900 border border-zinc-800 hover:border-yellow-400 rounded-2xl p-4">
++                <p class="font-medium text-sm">Nomi</p><p class="text-yellow-400 text-xs">@Nomiie143</p>
++            </a>
++            <a href="https://x.com/nguynng26509670" target="_blank" class="card group bg-zinc-900 border border-zinc-800 hover:border-yellow-400 rounded-2xl p-4">
++                <p class="font-medium text-sm">CipherAtlas (♦,♦)</p><p class="text-yellow-400 text-xs">@nguynng26509670</p>
++            </a>
++            <a href="https://x.com/mrNhanNguyen" target="_blank" class="card group bg-zinc-900 border border-zinc-800 hover:border-yellow-400 rounded-2xl p-4">
++                <p class="font-medium text-sm">Mr Simple</p><p class="text-yellow-400 text-xs">@mrNhanNguyen</p>
++            </a>
++            <a href="https://x.com/rage_degen" target="_blank" class="card group bg-zinc-900 border border-zinc-800 hover:border-yellow-400 rounded-2xl p-4">
++                <p class="font-medium text-sm">Rage (♦,♦)</p><p class="text-yellow-400 text-xs">@rage_degen</p>
++            </a>
++            <a href="https://x.com/DucAnhXM" target="_blank" class="card group bg-zinc-900 border border-zinc-800 hover:border-yellow-400 rounded-2xl p-4">
++                <p class="font-medium text-sm">JTN 🧪 (,)</p><p class="text-yellow-400 text-xs">@DucAnhXM</p>
++            </a>
++        </div>
++    </div>
++
++    <div class="mb-24">
++        <h2 class="text-yellow-400 text-xl font-semibold mb-12 flex items-center gap-2 justify-center">
++            <span class="w-3 h-px bg-yellow-400"></span> CONCRETE CONTENT CREATORS
++        </h2>
++
++        <div class="mb-16">
++            <span class="tier-label bg-yellow-400/20 text-yellow-400">Golden Tier • 10 Slots</span>
++            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4">
++                <a href="#" class="card bg-zinc-900 border border-yellow-400/40 rounded-2xl p-6 text-center">kian <span class="block text-yellow-400 text-xs">@rakel8990</span></a>
++                <a href="#" class="card bg-zinc-900 border border-yellow-400/40 rounded-2xl p-6 text-center">Osita <span class="block text-yellow-400 text-xs">@Osita__1</span></a>
++                <a href="#" class="card bg-zinc-900 border border-yellow-400/40 rounded-2xl p-6 text-center">PA-MI <span class="block text-yellow-400 text-xs">@urochimaru90</span></a>
++                <a href="#" class="card bg-zinc-900 border border-yellow-400/40 rounded-2xl p-6 text-center">Hailemariam <span class="block text-yellow-400 text-xs">@goodhabit300</span></a>
++                <a href="#" class="card bg-zinc-900 border border-yellow-400/40 rounded-2xl p-6 text-center">vinh nguyễn <span class="block text-yellow-400 text-xs">@PhucvinhN1965</span></a>
++                <a href="#" class="card bg-zinc-900 border border-yellow-400/40 rounded-2xl p-6 text-center">Grek <span class="block text-yellow-400 text-xs">@cybergrek</span></a>
++                <a href="#" class="card bg-zinc-900 border border-yellow-400/40 rounded-2xl p-6 text-center">Mugiwara <span class="block text-yellow-400 text-xs">@Mugi_wara_95</span></a>
++                <a href="#" class="card bg-zinc-900 border border-yellow-400/40 rounded-2xl p-6 text-center">Alex <span class="block text-yellow-400 text-xs">@alex___nba</span></a>
++                <a href="#" class="card bg-zinc-900 border border-yellow-400/40 rounded-2xl p-6 text-center">mr_gee_tech <span class="block text-yellow-400 text-xs">@mr_gee_ster</span></a>
++                <a href="#" class="card bg-zinc-900 border border-yellow-400/40 rounded-2xl p-6 text-center">Abdulazeez <span class="block text-yellow-400 text-xs">@imAbdulazeez0p</span></a>
++            </div>
++        </div>
++
++        <div class="mb-16">
++            <span class="tier-label bg-zinc-400/10 text-zinc-400 border border-zinc-800">Silver Tier • 20 Slots</span>
++            <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 gap-3">
++                <a href="#" class="card bg-zinc-900/50 border border-zinc-800 rounded-xl p-4 text-center text-sm">MR. B <span class="block text-yellow-400 text-[10px]">@Resilient_22</span></a>
++                <a href="#" class="card bg-zinc-900/50 border border-zinc-800 rounded-xl p-4 text-center text-sm">MR MUI <span class="block text-yellow-400 text-[10px]">@Sir_I_U</span></a>
++                <a href="#" class="card bg-zinc-900/50 border border-zinc-800 rounded-xl p-4 text-center text-sm">AFOLABI <span class="block text-yellow-400 text-[10px]">@Afolabixyz</span></a>
++                <a href="#" class="card bg-zinc-900/50 border border-zinc-800 rounded-xl p-4 text-center text-sm">Shubham Singh <span class="block text-yellow-400 text-[10px]">@imshubhamsingh7</span></a>
++                <a href="#" class="card bg-zinc-900/50 border border-zinc-800 rounded-xl p-4 text-center text-sm">DarkKnight <span class="block text-yellow-400 text-[10px]">@Darkknightz456</span></a>
++                <a href="#" class="card bg-zinc-900/50 border border-zinc-800 rounded-xl p-4 text-center text-sm">Mizzy <span class="block text-yellow-400 text-[10px]">@mizzy_web3</span></a>
++                <a href="#" class="card bg-zinc-900/50 border border-zinc-800 rounded-xl p-4 text-center text-sm">JK Tech <span class="block text-yellow-400 text-[10px]">@JKTech933</span></a>
++                <a href="#" class="card bg-zinc-900/50 border border-zinc-800 rounded-xl p-4 text-center text-sm">dev.ozzid <span class="block text-yellow-400 text-[10px]">@1ozzid</span></a>
++                <a href="#" class="card bg-zinc-900/50 border border-zinc-800 rounded-xl p-4 text-center text-sm">Hana <span class="block text-yellow-400 text-[10px]">@hana51024</span></a>
++                <a href="#" class="card bg-zinc-900/50 border border-zinc-800 rounded-xl p-4 text-center text-sm">Montego <span class="block text-yellow-400 text-[10px]">@HustleMontego</span></a>
++                <div class="border border-zinc-800/50 rounded-xl p-4 flex items-center justify-center text-zinc-700 text-[10px] italic font-mono">AVAILABLE</div>
++                <div class="border border-zinc-800/50 rounded-xl p-4 flex items-center justify-center text-zinc-700 text-[10px] italic font-mono">AVAILABLE</div>
++                <div class="border border-zinc-800/50 rounded-xl p-4 flex items-center justify-center text-zinc-700 text-[10px] italic font-mono">AVAILABLE</div>
++                <div class="border border-zinc-800/50 rounded-xl p-4 flex items-center justify-center text-zinc-700 text-[10px] italic font-mono">AVAILABLE</div>
++                <div class="border border-zinc-800/50 rounded-xl p-4 flex items-center justify-center text-zinc-700 text-[10px] italic font-mono">AVAILABLE</div>
++                <div class="border border-zinc-800/50 rounded-xl p-4 flex items-center justify-center text-zinc-700 text-[10px] italic font-mono">AVAILABLE</div>
++                <div class="border border-zinc-800/50 rounded-xl p-4 flex items-center justify-center text-zinc-700 text-[10px] italic font-mono">AVAILABLE</div>
++                <div class="border border-zinc-800/50 rounded-xl p-4 flex items-center justify-center text-zinc-700 text-[10px] italic font-mono">AVAILABLE</div>
++                <div class="border border-zinc-800/50 rounded-xl p-4 flex items-center justify-center text-zinc-700 text-[10px] italic font-mono">AVAILABLE</div>
++                <div class="border border-zinc-800/50 rounded-xl p-4 flex items-center justify-center text-zinc-700 text-[10px] italic font-mono">AVAILABLE</div>
++            </div>
++        </div>
++
++        <div>
++            <span class="tier-label bg-amber-900/10 text-amber-700 border border-zinc-900">Standard Tier • 40 Slots</span>
++            <div class="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 gap-2">
++                <div class="h-8 border border-zinc-900 rounded-md bg-zinc-950/20 flex items-center justify-center text-[8px] text-zinc-800">EMPTY</div>
++                <div class="h-8 border border-zinc-900 rounded-md bg-zinc-950/20 flex items-center justify-center text-[8px] text-zinc-800">EMPTY</div>
++                <div class="h-8 border border-zinc-900 rounded-md bg-zinc-950/20 flex items-center justify-center text-[8px] text-zinc-800">EMPTY</div>
++                <div class="h-8 border border-zinc-900 rounded-md bg-zinc-950/20 flex items-center justify-center text-[8px] text-zinc-800">EMPTY</div>
++                <div class="h-8 border border-zinc-900 rounded-md bg-zinc-950/20 flex items-center justify-center text-[8px] text-zinc-800">EMPTY</div>
++                <div class="h-8 border border-zinc-900 rounded-md bg-zinc-950/20 flex items-center justify-center text-[8px] text-zinc-800">EMPTY</div>
++                <div class="h-8 border border-zinc-900 rounded-md bg-zinc-950/20 flex items-center justify-center text-[8px] text-zinc-800">EMPTY</div>
++                <div class="h-8 border border-zinc-900 rounded-md bg-zinc-950/20 flex items-center justify-center text-[8px] text-zinc-800">EMPTY</div>
++                <div class="h-8 border border-zinc-900 rounded-md bg-zinc-950/20 flex items-center justify-center text-[8px] text-zinc-800">EMPTY</div>
++                <div class="h-8 border border-zinc-900 rounded-md bg-zinc-950/20 flex items-center justify-center text-[8px] text-zinc-800">EMPTY</div>
++                <div class="h-8 border border-zinc-900 rounded-md bg-zinc-950/20 flex items-center justify-center text-[8px] text-zinc-800">EMPTY</div>
++                <div class="h-8 border border-zinc-900 rounded-md bg-zinc-950/20 flex items-center justify-center text-[8px] text-zinc-800">EMPTY</div>
++                <div class="h-8 border border-zinc-900 rounded-md bg-zinc-950/20 flex items-center justify-center text-[8px] text-zinc-800">EMPTY</div>
++                <div class="h-8 border border-zinc-900 rounded-md bg-zinc-950/20 flex items-center justify-center text-[8px] text-zinc-800">EMPTY</div>
++                <div class="h-8 border border-zinc-900 rounded-md bg-zinc-950/20 flex items-center justify-center text-[8px] text-zinc-800">EMPTY</div>
++                <div class="h-8 border border-zinc-900 rounded-md bg-zinc-950/20 flex items-center justify-center text-[8px] text-zinc-800">EMPTY</div>
++                <div class="h-8 border border-zinc-900 rounded-md bg-zinc-950/20 flex items-center justify-center text-[8px] text-zinc-800">EMPTY</div>
++                <div class="h-8 border border-zinc-900 rounded-md bg-zinc-950/20 flex items-center justify-center text-[8px] text-zinc-800">EMPTY</div>
++                <div class="h-8 border border-zinc-900 rounded-md bg-zinc-950/20 flex items-center justify-center text-[8px] text-zinc-800">EMPTY</div>
++                <div class="h-8 border border-zinc-900 rounded-md bg-zinc-950/20 flex items-center justify-center text-[8px] text-zinc-800">EMPTY</div>
++                <div class="h-8 border border-zinc-900 rounded-md bg-zinc-950/20 flex items-center justify-center text-[8px] text-zinc-800">EMPTY</div>
++                <div class="h-8 border border-zinc-900 rounded-md bg-zinc-950/20 flex items-center justify-center text-[8px] text-zinc-800">EMPTY</div>
++                <div class="h-8 border border-zinc-900 rounded-md bg-zinc-950/20 flex items-center justify-center text-[8px] text-zinc-800">EMPTY</div>
++                <div class="h-8 border border-zinc-900 rounded-md bg-zinc-950/20 flex items-center justify-center text-[8px] text-zinc-800">EMPTY</div>
++                <div class="h-8 border border-zinc-900 rounded-md bg-zinc-950/20 flex items-center justify-center text-[8px] text-zinc-800">EMPTY</div>
++                <div class="h-8 border border-zinc-900 rounded-md bg-zinc-950/20 flex items-center justify-center text-[8px] text-zinc-800">EMPTY</div>
++                <div class="h-8 border border-zinc-900 rounded-md bg-zinc-950/20 flex items-center justify-center text-[8px] text-zinc-800">EMPTY</div>
++                <div class="h-8 border border-zinc-900 rounded-md bg-zinc-950/20 flex items-center justify-center text-[8px] text-zinc-800">EMPTY</div>
++                <div class="h-8 border border-zinc-900 rounded-md bg-zinc-950/20 flex items-center justify-center text-[8px] text-zinc-800">EMPTY</div>
++                <div class="h-8 border border-zinc-900 rounded-md bg-zinc-950/20 flex items-center justify-center text-[8px] text-zinc-800">EMPTY</div>
++                <div class="h-8 border border-zinc-900 rounded-md bg-zinc-950/20 flex items-center justify-center text-[8px] text-zinc-800">EMPTY</div>
++                <div class="h-8 border border-zinc-900 rounded-md bg-zinc-950/20 flex items-center justify-center text-[8px] text-zinc-800">EMPTY</div>
++                <div class="h-8 border border-zinc-900 rounded-md bg-zinc-950/20 flex items-center justify-center text-[8px] text-zinc-800">EMPTY</div>
++                <div class="h-8 border border-zinc-900 rounded-md bg-zinc-950/20 flex items-center justify-center text-[8px] text-zinc-800">EMPTY</div>
++                <div class="h-8 border border-zinc-900 rounded-md bg-zinc-950/20 flex items-center justify-center text-[8px] text-zinc-800">EMPTY</div>
++                <div class="h-8 border border-zinc-900 rounded-md bg-zinc-950/20 flex items-center justify-center text-[8px] text-zinc-800">EMPTY</div>
++                <div class="h-8 border border-zinc-900 rounded-md bg-zinc-950/20 flex items-center justify-center text-[8px] text-zinc-800">EMPTY</div>
++                <div class="h-8 border border-zinc-900 rounded-md bg-zinc-950/20 flex items-center justify-center text-[8px] text-zinc-800">EMPTY</div>
++                <div class="h-8 border border-zinc-900 rounded-md bg-zinc-950/20 flex items-center justify-center text-[8px] text-zinc-800">EMPTY</div>
++                <div class="h-8 border border-zinc-900 rounded-md bg-zinc-950/20 flex items-center justify-center text-[8px] text-zinc-800">EMPTY</div>
++            </div>
++        </div>
++    </div>
++
++    <div class="text-center mb-12">
++        <h2 class="text-yellow-400 text-xl font-semibold mb-6 flex items-center gap-2 justify-center">
++            <span class="w-3 h-px bg-yellow-400"></span>
++            WEEKLY SPOTLIGHT POSTS
++        </h2>
++        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
++            <div class="bg-zinc-900 border border-yellow-400/10 rounded-3xl p-6">
++                <blockquote class="twitter-tweet" data-theme="dark"><p lang="en" dir="ltr">GMCRETE👋👋<br><br>looking for more MOAI holders <br> if you&#39;re one of &#39;em comment here<br><br>WE building..... <a href="https://t.co/58E42iQJQS">https://t.co/58E42iQJQS</a> <a href="https://t.co/au787TjkGI">pic.twitter.com/au787TjkGI</a></p>&mdash; kian 🗿 (@rakel8990) <a href="https://twitter.com/rakel8990/status/2035751345727090739?ref_src=twsrc%5Etfw">March 22, 2026</a></blockquote>
++            </div>
++            <div class="bg-zinc-900 border border-yellow-400/10 rounded-3xl p-6">
++                <blockquote class="twitter-tweet" data-theme="dark"><p lang="en" dir="ltr">GMCRETE👋👋<br><br>looking for more MOAI holders <br> if you&#39;re one of &#39;em comment here<br><br>WE building..... <a href="https://t.co/58E42iQJQS">https://t.co/58E42iQJQS</a> <a href="https://t.co/au787TjkGI">pic.twitter.com/au787TjkGI</a></p>&mdash; kian 🗿 (@rakel8990) <a href="https://twitter.com/rakel8990/status/2035751345727090739?ref_src=twsrc%5Etfw">March 22, 2026</a></blockquote>
++            </div>
++            <div class="bg-zinc-900 border border-yellow-400/10 rounded-3xl p-6">
++                <blockquote class="twitter-tweet" data-theme="dark"><p lang="en" dir="ltr">GMCRETE👋👋<br><br>looking for more MOAI holders <br> if you&#39;re one of &#39;em comment here<br><br>WE building..... <a href="https://t.co/58E42iQJQS">https://t.co/58E42iQJQS</a> <a href="https://t.co/au787TjkGI">pic.twitter.com/au787TjkGI</a></p>&mdash; kian 🗿 (@rakel8990) <a href="https://twitter.com/rakel8990/status/2035751345727090739?ref_src=twsrc%5Etfw">March 22, 2026</a></blockquote>
++            </div>
++            <div class="bg-zinc-900 border border-yellow-400/10 rounded-3xl p-6">
++                <blockquote class="twitter-tweet" data-theme="dark"><p lang="en" dir="ltr">GMCRETE👋👋<br><br>looking for more MOAI holders <br> if you&#39;re one of &#39;em comment here<br><br>WE building..... <a href="https://t.co/58E42iQJQS">https://t.co/58E42iQJQS</a> <a href="https://t.co/au787TjkGI">pic.twitter.com/au787TjkGI</a></p>&mdash; kian 🗿 (@rakel8990) <a href="https://twitter.com/rakel8990/status/2035751345727090739?ref_src=twsrc%5Etfw">March 22, 2026</a></blockquote>
++            </div>
++        </div>
++    </div>
++
++    <div onclick="toggleAccordion(this)" class="accordion bg-zinc-900 border border-yellow-400/10 rounded-3xl mb-12 overflow-hidden cursor-pointer">
++        <div class="accordion-header flex items-center justify-between px-6 md:px-8 py-6 text-lg font-medium">
++            <div class="flex items-center gap-3">
++                <i class="fa-solid fa-newspaper text-yellow-400"></i>
++                <span>Weekly Articles • New topic every Monday</span>
++            </div>
++            <svg xmlns="http://www.w3.org/2000/svg" class="chevron w-5 h-5 text-yellow-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
++                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
++            </svg>
++        </div>
++        <div class="accordion-content px-6 md:px-8 pb-8 text-zinc-300 leading-relaxed">
++            <div class="bg-zinc-950 border border-yellow-400/30 rounded-3xl p-8">
++                <p class="italic text-lg mb-4">"How Do Concrete Vaults Actually Work?"</p>
++
++                <div class="mb-6">
++                    <span class="text-[10px] text-zinc-500 uppercase tracking-widest block mb-1">Submission Deadline:</span>
++                    <div id="countdown" class="text-yellow-400 font-mono text-2xl tracking-tighter">00:00:00:00</div>
++                </div>
++
++                <div class="flex flex-col gap-3">
++                    <a href="https://x.com/rakel8990/status/2036677605710037380?s=20" target="_blank" class="text-xs text-yellow-400 hover:underline">Read full article →</a>
++                    <a href="https://discord.com/channels/1220537696087445565/1382107811508391987/1485675023447494846" target="_blank" class="text-xs text-zinc-400 hover:text-white transition-colors">Instructions for this week's article</a>
++                </div>
++            </div>
++        </div>
++    </div>
++
++    <div onclick="toggleAccordion(this)" class="accordion bg-zinc-900 border border-yellow-400/10 rounded-3xl mb-24 overflow-hidden cursor-pointer">
++        <div class="accordion-header flex items-center justify-between px-6 md:px-8 py-6 text-lg font-medium">
++            <div class="flex items-center gap-3">
++                <i class="fa-solid fa-sack-dollar text-yellow-400"></i>
++                <span>How to Collect Bags</span>
++            </div>
++            <svg xmlns="http://www.w3.org/2000/svg" class="chevron w-5 h-5 text-yellow-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
++                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
++            </svg>
++        </div>
++        <div class="accordion-content px-6 md:px-8 pb-8 text-zinc-300 leading-relaxed">
++            <p class="mb-6">Earn points by completing social tasks on X and Discord. Writing insightful tweets about Concrete’s vaults and sharing experiences helps you rank up.</p>
++            <div class="flex flex-wrap gap-8 text-sm">
++                <div>
++                    <span class="block text-yellow-400 font-medium mb-1">Earn bags by:</span>
++                    <ul class="space-y-1"><li>● Posting on X</li><li>● Joining Discord</li><li>● Sharing ideas</li></ul>
++                </div>
++                <div>
++                    <span class="block text-yellow-400 font-medium mb-2">My referral code:</span>
++                    <div class="bg-zinc-950 border border-yellow-400/30 rounded-2xl px-6 py-3 font-mono text-xl text-yellow-300">1ad605d7</div>
++                </div>
++            </div>
++        </div>
++    </div>
++
++    <div class="text-center py-12 border-t border-zinc-800">
++        <p class="text-zinc-400 text-sm">
++            built by <a href="https://x.com/rakel8990" target="_blank" class="text-yellow-400 font-bold hover:underline">KIAN</a>,
++            who's a <span class="text-amber-200/80">"concrete maxi"</span>
++        </p>
++    </div>
+ 
+ </div>
+-</div>
+ 
++<a href="javascript:void(0)" onclick="openPopup()" class="floating-btn">
++    <i class="fa-solid fa-plus"></i> Get Listed
++</a>
++
++<div id="popup">
++    <div class="flex justify-between items-start mb-4">
++        <span class="text-yellow-400 text-xs font-bold uppercase tracking-widest">Listing Request</span>
++        <button onclick="closePopup()" class="text-zinc-500 hover:text-white text-xl">&times;</button>
++    </div>
++    <p class="text-zinc-300 text-sm leading-relaxed mb-6">
++        No ghosts allowed. If you’re <span class="text-yellow-400">active</span> and building in Concrete, prove it first.
++    </p>
++    <div class="flex flex-col items-center gap-4">
++        <div class="flex justify-center gap-8">
++            <a href="https://x.com/rakel8990" target="_blank"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/x.svg" class="w-6 h-6 yellow-icon"></a>
++            <a href="https://t.me/order_denied" target="_blank"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/telegram.svg" class="w-6 h-6 yellow-icon"></a>
++        </div>
++        <p class="text-[10px] text-zinc-600 italic">dm me if u think u got the sauce...</p>
++    </div>
+ </div>
+ 
++<script src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
++<script>
++    function toggleAccordion(el) { el.classList.toggle('active'); }
++    function openPopup() {
++        const p = document.getElementById('popup');
++        p.style.display = p.style.display === 'block' ? 'none' : 'block';
++    }
++    function closePopup() { document.getElementById('popup').style.display = 'none'; }
++
++    window.onclick = function(event) {
++        let p = document.getElementById('popup');
++        if (!p.contains(event.target) && !event.target.closest('.floating-btn')) {
++            closePopup();
++        }
++    }
++
++    // COUNTDOWN TIMER LOGIC
++    function updateCountdown() {
++        const now = new Date();
++        const nextSunday = new Date();
++        nextSunday.setDate(now.getDate() + (7 - now.getDay()) % 7);
++        nextSunday.setHours(0, 0, 0, 0);
++        if (nextSunday <= now) {
++            nextSunday.setDate(nextSunday.getDate() + 7);
++        }
++        const diff = nextSunday - now;
++        const d = Math.floor(diff / (1000 * 60 * 60 * 24));
++        const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
++        const m = Math.floor((diff / 1000 / 60) % 60);
++        const s = Math.floor((diff / 1000) % 60);
++        document.getElementById('countdown').innerHTML =
++            `${d.toString().padStart(2, '0')}d : ${h.toString().padStart(2, '0')}h : ${m.toString().padStart(2, '0')}m : ${s.toString().padStart(2, '0')}s`;
++    }
++    setInterval(updateCountdown, 1000);
++    updateCountdown();
++</script>
++
+ </body>
+ </html>
+-```
+-
