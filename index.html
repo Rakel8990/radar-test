@@ -1,199 +1,306 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Concrete Golden Tier</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Concrete Radar | Full Master</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Space+Grotesk:wght@700;900&display=swap');
+        
+        body { background-color: #09090b; color: white; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+        .title-font { font-family: 'Space Grotesk', sans-serif; }
 
-<!-- Tailwind -->
-<script src="https://cdn.tailwindcss.com"></script>
+        /* TICKER ANIMATION */
+        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        .animate-marquee { display: flex; animation: marquee 30s linear infinite; }
 
-<!-- Font -->
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Space+Grotesk:wght@700;900&display=swap" rel="stylesheet">
+        /* --- MINI 3D SYSTEM (Scaled 50% for Golden Tier) --- */
+        .parent { perspective: 1000px; width: 100%; }
+        .card {
+            padding-top: 25px;
+            border: 2px solid #141414;
+            transform-style: preserve-3d;
+            background: linear-gradient(135deg, #0000 18.75%, #F5D55F 0 31.25%, #0000 0),
+                        repeating-linear-gradient(45deg, #27272a -6.25% 6.25%, #141414 0 18.75%);
+            background-size: 30px 30px;
+            background-color: #141414;
+            transition: 0.5s;
+        }
+        .card:hover {
+            background-position: -50px 50px, -50px 50px;
+            transform: rotate3d(0.5, 1, 0, 20deg);
+        }
+        .content-box {
+            background: #F5D55F;
+            padding: 18px 12px 12px;
+            transform-style: preserve-3d;
+        }
+        .card-title {
+            font-size: 11px;
+            font-weight: 900;
+            color: #141414;
+            transform: translate3d(0,0,25px);
+        }
+        .card-content {
+            font-size: 7px;
+            font-weight: 800;
+            color: #141414;
+            margin-top: 4px;
+            transform: translate3d(0,0,15px);
+            text-transform: uppercase;
+            line-height: 1.1;
+        }
+        .see-more {
+            display: inline-block;
+            margin-top: 0.6rem;
+            background: #141414;
+            color: #F5D55F;
+            padding: 3px 6px;
+            font-size: 9px;
+            font-weight: 900;
+            transform: translate3d(0,0,20px);
+            text-decoration: none;
+        }
+        .date-box {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            width: 28px;
+            height: 28px;
+            background: #141414;
+            border: 1px solid #F5D55F;
+            transform: translate3d(0,0,40px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .month { font-size: 4px; color: #F5D55F; font-weight: 900; text-transform: uppercase; }
+        .date { font-size: 10px; color: #F5D55F; font-weight: 900; }
 
-<style>
-body {
-  background: #09090b;
-  color: white;
-  font-family: 'Inter', sans-serif;
-}
-
-/* 3D SYSTEM */
-.parent { perspective: 1000px; }
-
-.card {
-  padding-top: 50px;
-  border: 3px solid #141414;
-  transform-style: preserve-3d;
-  background: linear-gradient(135deg, #0000 18.75%, #F5D55F 0 31.25%, #0000 0),
-              repeating-linear-gradient(45deg, #27272a -6.25% 6.25%, #141414 0 18.75%);
-  background-size: 60px 60px;
-  background-color: #141414;
-  transition: 0.5s;
-}
-
-.card:hover {
-  background-position: -100px 100px, -100px 100px;
-  transform: rotate3d(0.5, 1, 0, 25deg);
-}
-
-.content-box {
-  background: #F5D55F;
-  padding: 35px 20px 20px;
-  transform-style: preserve-3d;
-}
-
-.card-title {
-  font-size: 18px;
-  font-weight: 900;
-  color: #141414;
-  transform: translate3d(0,0,50px);
-}
-
-.card-content {
-  font-size: 10px;
-  font-weight: 800;
-  color: #141414;
-  margin-top: 8px;
-  transform: translate3d(0,0,30px);
-  text-transform: uppercase;
-}
-
-.see-more {
-  display: inline-block;
-  margin-top: 1rem;
-  background: #141414;
-  color: #F5D55F;
-  padding: 6px 10px;
-  font-weight: 900;
-  transform: translate3d(0,0,40px);
-}
-
-.date-box {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  width: 50px;
-  height: 50px;
-  background: #141414;
-  border: 1px solid #F5D55F;
-  transform: translate3d(0,0,80px);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.month {
-  font-size: 8px;
-  color: #F5D55F;
-  font-weight: 900;
-}
-
-.date {
-  font-size: 18px;
-  color: #F5D55F;
-  font-weight: 900;
-}
-</style>
+        /* --- UI COMPONENTS FROM DOC --- */
+        #popup { display: none; position: fixed; bottom: 85px; right: 25px; width: 320px; background: #141414; border: 1px solid #F5D55F; border-radius: 12px; padding: 24px; z-index: 100; box-shadow: 0 20px 40px rgba(0,0,0,0.8); }
+        .floating-btn { position: fixed; bottom: 25px; right: 25px; background: #F5D55F; color: #000; padding: 12px 24px; font-weight: 900; z-index: 99; cursor: pointer; border: 2px solid #000; border-radius: 4px; }
+        .acc-content { display: none; padding: 15px; border-top: 1px solid #27272a; font-size: 12px; color: #a1a1aa; line-height: 1.6; }
+    </style>
 </head>
-
 <body>
 
-<div class="max-w-7xl mx-auto px-6 py-16">
+    <div class="bg-[#141414] border-b border-[#F5D55F]/20 py-2 overflow-hidden sticky top-0 z-50 backdrop-blur-md">
+        <div class="animate-marquee whitespace-nowrap">
+            <span class="mx-10 text-[10px] font-black text-[#F5D55F] uppercase tracking-widest">● LIVE VAULT APY: 12.4%</span>
+            <span class="mx-10 text-[10px] font-black text-[#F5D55F] uppercase tracking-widest">● CONCRETE TVL: $1.02B</span>
+            <span class="mx-10 text-[10px] font-black text-white uppercase tracking-widest">● NEW ARTICLE: VAULT RISK VS REWARD</span>
+            <span class="mx-10 text-[10px] font-black text-[#F5D55F] uppercase tracking-widest">● DEPOSITORS: 14,201</span>
+        </div>
+    </div>
 
-<h1 class="text-5xl font-black text-[#F5D55F] mb-12">GOLDEN TIER</h1>
+    <div class="max-w-7xl mx-auto px-6 py-16">
+        
+        <div class="text-center mb-24">
+            <h1 class="title-font text-8xl md:text-9xl font-black tracking-tighter text-[#F5D55F] leading-none">CONCRETE</h1>
+            <h1 class="title-font text-5xl md:text-7xl font-black tracking-tight -mt-4 opacity-90">RADAR</h1>
+            <p class="mt-4 text-zinc-500 font-bold uppercase text-[10px] tracking-widest">The Official Creator Ranking Terminal</p>
+        </div>
 
-<div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8">
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-32">
+            <div class="bg-zinc-900/50 border border-zinc-800 p-4 flex items-center gap-4 rounded-lg">
+                <div class="w-10 h-10 bg-[#F5D55F] rounded"></div>
+                <div><p class="text-xs font-black">@nic_builds</p><p class="text-[9px] text-zinc-500 font-bold uppercase">CEO</p></div>
+            </div>
+            <div class="bg-zinc-900/50 border border-zinc-800 p-4 flex items-center gap-4 rounded-lg">
+                <div class="w-10 h-10 bg-[#F5D55F] rounded"></div>
+                <div><p class="text-xs font-black">@blueprintluke</p><p class="text-[9px] text-zinc-500 font-bold uppercase">CGO</p></div>
+            </div>
+            <div class="bg-zinc-900/50 border border-zinc-800 p-4 flex items-center gap-4 rounded-lg">
+                <div class="w-10 h-10 bg-[#F5D55F] rounded"></div>
+                <div><p class="text-xs font-black">@dill_sl</p><p class="text-[9px] text-zinc-500 font-bold uppercase">Co-Founder</p></div>
+            </div>
+            <div class="bg-zinc-900/50 border border-zinc-800 p-4 flex items-center gap-4 rounded-lg">
+                <div class="w-10 h-10 bg-[#F5D55F] rounded"></div>
+                <div><p class="text-xs font-black">@crypttoji</p><p class="text-[9px] text-zinc-500 font-bold uppercase">Marketing</p></div>
+            </div>
+        </div>
 
-<!-- CARD TEMPLATE START -->
+        <div class="mb-32">
+            <h2 class="text-[#F5D55F] text-[10px] font-black uppercase mb-8 tracking-[0.4em] text-center italic">Moai Holders • The Elite</h2>
+            <div class="flex justify-center gap-6">
+                <div class="bg-zinc-900/80 border border-yellow-500/30 px-6 py-3 rounded-full flex items-center gap-3">
+                    <div class="w-6 h-6 bg-yellow-500 rounded-full"></div>
+                    <span class="text-xs font-black">Mongral</span>
+                </div>
+                <div class="bg-zinc-900/80 border border-yellow-500/30 px-6 py-3 rounded-full flex items-center gap-3">
+                    <div class="w-6 h-6 bg-yellow-500 rounded-full"></div>
+                    <span class="text-xs font-black">Nomi</span>
+                </div>
+            </div>
+        </div>
 
-<div class="parent"><div class="card relative">
-<div class="date-box"><span class="month">Rank</span><span class="date">01</span></div>
-<div class="content-box">
-<span class="card-title">KIAN</span>
-<p class="card-content">Narrative Lead<br><span class="opacity-40">(Setting the vibe)</span></p>
-<a href="https://x.com/rakel8990" target="_blank" class="see-more">X</a>
-</div></div></div>
+        <div class="mb-32">
+            <h2 class="border-l-4 border-[#F5D55F] pl-4 text-[#F5D55F] text-xs font-black uppercase mb-12 tracking-widest">Golden Tier • Top 10</h2>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+                
+                <div class="parent">
+                    <div class="card relative">
+                        <div class="date-box"><span class="month">Rank</span><span class="date">01</span></div>
+                        <div class="content-box">
+                            <span class="card-title">KIAN</span>
+                            <p class="card-content">Narrative Lead</p>
+                            <a href="https://x.com/rakel8990" target="_blank" class="see-more">X</a>
+                        </div>
+                    </div>
+                </div>
 
-<div class="parent"><div class="card relative">
-<div class="date-box"><span class="month">Rank</span><span class="date">02</span></div>
-<div class="content-box">
-<span class="card-title">OSITA</span>
-<p class="card-content">Meme Commander<br><span class="opacity-40">(Viral energy)</span></p>
-<a href="https://x.com/Osita__1" target="_blank" class="see-more">X</a>
-</div></div></div>
+                <div class="parent">
+                    <div class="card relative">
+                        <div class="date-box"><span class="month">Rank</span><span class="date">02</span></div>
+                        <div class="content-box">
+                            <span class="card-title">OSITA</span>
+                            <p class="card-content">Meme Commander</p>
+                            <a href="https://x.com/Osita__1" target="_blank" class="see-more">X</a>
+                        </div>
+                    </div>
+                </div>
 
-<div class="parent"><div class="card relative">
-<div class="date-box"><span class="month">Rank</span><span class="date">03</span></div>
-<div class="content-box">
-<span class="card-title">PA-MI</span>
-<p class="card-content">Thread Architect<br><span class="opacity-40">(Educational)</span></p>
-<a href="https://x.com/urochimaru90" target="_blank" class="see-more">X</a>
-</div></div></div>
+                <div class="parent">
+                    <div class="card relative">
+                        <div class="date-box"><span class="month">Rank</span><span class="date">03</span></div>
+                        <div class="content-box">
+                            <span class="card-title">PA-MI</span>
+                            <p class="card-content">Thread Architect</p>
+                            <a href="https://x.com/urochimaru90" target="_blank" class="see-more">X</a>
+                        </div>
+                    </div>
+                </div>
 
-<div class="parent"><div class="card relative">
-<div class="date-box"><span class="month">Rank</span><span class="date">04</span></div>
-<div class="content-box">
-<span class="card-title">CREATOR_04</span>
-<p class="card-content">Signal Booster<br><span class="opacity-40">(Amplifying news)</span></p>
-<a href="#" class="see-more">X</a>
-</div></div></div>
+                <script>
+                    const goldData = [
+                        {n: "USER_04", r: "Signal Booster", rk: "04"},
+                        {n: "USER_05", r: "Comm Catalyst", rk: "05"},
+                        {n: "USER_06", r: "Hype Strat", rk: "06"},
+                        {n: "USER_07", r: "Alpha Scout", rk: "07"},
+                        {n: "USER_08", r: "Visual Story", rk: "08"},
+                        {n: "USER_09", r: "Culture Maker", rk: "09"},
+                        {n: "USER_10", r: "Sentiment", rk: "10"}
+                    ];
+                    goldData.forEach(d => {
+                        document.write(`
+                        <div class="parent">
+                            <div class="card relative">
+                                <div class="date-box"><span class="month">Rank</span><span class="date">${d.rk}</span></div>
+                                <div class="content-box">
+                                    <span class="card-title">${d.n}</span>
+                                    <p class="card-content">${d.r}</p>
+                                    <a href="#" class="see-more">X</a>
+                                </div>
+                            </div>
+                        </div>`);
+                    });
+                </script>
+            </div>
+        </div>
 
-<div class="parent"><div class="card relative">
-<div class="date-box"><span class="month">Rank</span><span class="date">05</span></div>
-<div class="content-box">
-<span class="card-title">CREATOR_05</span>
-<p class="card-content">Community Catalyst<br><span class="opacity-40">(Engagement)</span></p>
-<a href="#" class="see-more">X</a>
-</div></div></div>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-40">
+            <div>
+                <h2 class="text-zinc-500 text-[10px] font-black uppercase mb-8 tracking-[0.4em]">Silver Tier • 20 Slots</h2>
+                <div class="grid grid-cols-2 gap-3">
+                    <script>
+                        for(let i=11; i<=30; i++) {
+                            document.write(`<div class="bg-zinc-900/30 border border-zinc-800 p-3 rounded flex items-center gap-3 grayscale opacity-60 hover:opacity-100 hover:grayscale-0 transition cursor-pointer">
+                                <div class="w-6 h-6 bg-zinc-700 rounded-full"></div>
+                                <span class="text-[9px] font-bold text-zinc-400">#${i} AVAILABLE</span>
+                            </div>`);
+                        }
+                    </script>
+                </div>
+            </div>
+            <div>
+                <h2 class="text-zinc-700 text-[10px] font-black uppercase mb-8 tracking-[0.4em]">Standard Tier • Community</h2>
+                <div class="grid grid-cols-4 md:grid-cols-5 gap-2">
+                    <script>
+                        for(let i=31; i<=80; i++) {
+                            document.write(`<div class="bg-zinc-900/10 border border-zinc-800/20 py-2 text-[8px] text-zinc-600 text-center font-black rounded hover:text-[#F5D55F] transition cursor-crosshair">#${i}</div>`);
+                        }
+                    </script>
+                </div>
+            </div>
+        </div>
 
-<div class="parent"><div class="card relative">
-<div class="date-box"><span class="month">Rank</span><span class="date">06</span></div>
-<div class="content-box">
-<span class="card-title">CREATOR_06</span>
-<p class="card-content">Hype Strategist<br><span class="opacity-40">(Anticipation)</span></p>
-<a href="#" class="see-more">X</a>
-</div></div></div>
+        <div class="mb-40">
+            <h2 class="text-center text-[#F5D55F] font-black text-2xl mb-12 italic">WEEKLY SPOTLIGHT POSTS</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="aspect-video bg-zinc-900 border border-zinc-800 rounded-xl flex items-center justify-center text-zinc-700 text-[10px] uppercase font-bold tracking-widest">Post_Embed_01</div>
+                <div class="aspect-video bg-zinc-900 border border-zinc-800 rounded-xl flex items-center justify-center text-zinc-700 text-[10px] uppercase font-bold tracking-widest">Post_Embed_02</div>
+                <div class="aspect-video bg-zinc-900 border border-zinc-800 rounded-xl flex items-center justify-center text-zinc-700 text-[10px] uppercase font-bold tracking-widest">Post_Embed_03</div>
+            </div>
+        </div>
 
-<div class="parent"><div class="card relative">
-<div class="date-box"><span class="month">Rank</span><span class="date">07</span></div>
-<div class="content-box">
-<span class="card-title">CREATOR_07</span>
-<p class="card-content">Alpha Scout<br><span class="opacity-40">(Finding early info)</span></p>
-<a href="#" class="see-more">X</a>
-</div></div></div>
+        <div class="max-w-4xl mx-auto space-y-32">
+            
+            <div class="text-center">
+                <h2 class="text-[#F5D55F] font-black text-xl mb-4">WEEKLY ARTICLES</h2>
+                <div class="bg-[#141414] border border-[#F5D55F]/30 p-8 rounded-2xl">
+                    <p class="text-zinc-400 text-sm mb-6 uppercase font-bold">Next Alpha Release In:</p>
+                    <div class="text-5xl font-black text-white tracking-tighter" id="countdown">04:21:55:01</div>
+                </div>
+            </div>
 
-<div class="parent"><div class="card relative">
-<div class="date-box"><span class="month">Rank</span><span class="date">08</span></div>
-<div class="content-box">
-<span class="card-title">CREATOR_08</span>
-<p class="card-content">Visual Storyteller<br><span class="opacity-40">(Graphics)</span></p>
-<a href="#" class="see-more">X</a>
-</div></div></div>
+            <div class="space-y-4">
+                <h2 class="text-center text-[#F5D55F] font-black text-xl mb-8">HOW TO COLLECT BAGS</h2>
+                <div class="border border-zinc-800 rounded-2xl overflow-hidden">
+                    <div onclick="toggleAcc('acc1')" class="p-5 bg-zinc-900/50 cursor-pointer flex justify-between items-center group">
+                        <span class="text-sm font-black group-hover:text-[#F5D55F] transition">01. DEPOSIT INTO CONCRETE VAULTS</span>
+                        <i class="fas fa-chevron-down text-zinc-700 group-hover:text-[#F5D55F]"></i>
+                    </div>
+                    <div id="acc1" class="acc-content bg-zinc-900/20">
+                        Choose a vault strategy on the Concrete platform. Deposit USDC to generate risk-adjusted yield and qualify for Radar point multipliers.
+                    </div>
+                    
+                    <div onclick="toggleAcc('acc2')" class="p-5 bg-zinc-900/50 border-t border-zinc-800 cursor-pointer flex justify-between items-center group">
+                        <span class="text-sm font-black group-hover:text-[#F5D55F] transition">02. CREATE ALPHA CONTENT</span>
+                        <i class="fas fa-chevron-down text-zinc-700 group-hover:text-[#F5D55F]"></i>
+                    </div>
+                    <div id="acc2" class="acc-content bg-zinc-900/20">
+                        Publish threads, memes, or articles about Concrete ecosystem narratives. High-engagement posts move you up the Golden Tier leaderboard.
+                    </div>
+                </div>
+            </div>
+        </div>
 
-<div class="parent"><div class="card relative">
-<div class="date-box"><span class="month">Rank</span><span class="date">09</span></div>
-<div class="content-box">
-<span class="card-title">CREATOR_09</span>
-<p class="card-content">Culture Maker<br><span class="opacity-40">(Maxi energy)</span></p>
-<a href="#" class="see-more">X</a>
-</div></div></div>
+    </div>
 
-<div class="parent"><div class="card relative">
-<div class="date-box"><span class="month">Rank</span><span class="date">10</span></div>
-<div class="content-box">
-<span class="card-title">CREATOR_10</span>
-<p class="card-content">Sentiment Driver<br><span class="opacity-40">(Market mood)</span></p>
-<a href="#" class="see-more">X</a>
-</div></div></div>
+    <div onclick="openPopup()" class="floating-btn text-xs font-black uppercase">Get Listed +</div>
+    
+    <div id="popup">
+        <div class="flex justify-between items-center mb-6 border-b border-zinc-800 pb-3">
+            <span class="text-[#F5D55F] text-[10px] font-black uppercase tracking-[0.2em]">Listing Request</span>
+            <button onclick="closePopup()" class="text-zinc-600 hover:text-white transition">X</button>
+        </div>
+        <p class="text-[11px] text-zinc-400 mb-8 font-medium leading-relaxed">To secure your rank on the Concrete Radar terminal, please contact an ambassador via X or Telegram for verification.</p>
+        <div class="flex gap-8 justify-center">
+            <a href="https://x.com/rakel8990" class="text-[#F5D55F] hover:scale-125 transition-transform"><i class="fa-brands fa-x-twitter text-2xl"></i></a>
+            <a href="#" class="text-[#F5D55F] hover:scale-125 transition-transform"><i class="fa-brands fa-telegram text-2xl"></i></a>
+        </div>
+    </div>
 
-<!-- CARD TEMPLATE END -->
+    <script>
+        function openPopup() { document.getElementById('popup').style.display = 'block'; }
+        function closePopup() { document.getElementById('popup').style.display = 'none'; }
+        
+        function toggleAcc(id) {
+            const el = document.getElementById(id);
+            const all = document.querySelectorAll('.acc-content');
+            all.forEach(a => { if(a.id !== id) a.style.display = 'none'; }); // Close others
+            el.style.display = el.style.display === 'block' ? 'none' : 'block';
+        }
 
-</div>
-</div>
-
+        // Simple Countdown logic
+        setInterval(() => {
+            const timer = document.getElementById('countdown');
+            // Mock logic to make numbers flicker slightly
+        }, 1000);
+    </script>
 </body>
 </html>
-```
