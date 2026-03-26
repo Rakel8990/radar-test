@@ -6,7 +6,211 @@
     <title>Concrete Radar | Full Master</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <style><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Concrete Radar</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Space+Grotesk:wght@700;900&display=swap');
+        
+        body {
+            background-color: #0b0b0b;
+            color: white;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .title-font {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .animate-marquee {
+            display: flex;
+            animation: marquee 30s linear infinite;
+        }
+
+        .listing-popup {
+            display: none;
+            position: fixed;
+            bottom: 85px;
+            right: 25px;
+            width: 320px;
+            background: #1A1A1A;
+            border: 1px solid #F5D55F;
+            border-radius: 20px;
+            padding: 24px;
+            z-index: 100;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+        }
+
+        .listing-btn {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background: #F5D55F;
+            color: black;
+            padding: 12px 18px;
+            border-radius: 30px;
+            font-weight: 800;
+            z-index: 60;
+            box-shadow: 0 4px 15px rgba(245, 213, 95, 0.3);
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .listing-btn:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-yellow-400/10 border-b border-yellow-400/20 py-2 overflow-hidden w-full sticky top-0 z-50 backdrop-blur-md">
+        <div class="animate-marquee whitespace-nowrap">
+            <span class="mx-10 text-[10px] font-bold text-yellow-400 uppercase tracking-widest">● LIVE VAULT APY: <span class="text-white">12.4%</span></span>
+            <span class="mx-10 text-[10px] font-bold text-yellow-400 uppercase tracking-widest">● CONCRETE TVL: <span class="text-white">$1.02B</span></span>
+            <span class="mx-10 text-[10px] font-bold text-yellow-400 uppercase tracking-widest">● DEPOSITORS: <span class="text-white">14,201</span></span>
+            <span class="mx-10 text-[10px] font-bold text-yellow-400 uppercase tracking-widest">● NEW ARTICLE: <span class="text-white">VAULT RISK VS REWARD</span></span>
+        </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-6 py-12">
+        
+        <div class="text-center mb-20">
+            <h1 class="title-font text-8xl md:text-9xl font-black tracking-tighter text-yellow-400 leading-none text-shadow-xl">CONCRETE</h1>
+            <h1 class="title-font text-5xl md:text-7xl font-black tracking-tight -mt-4 opacity-90">RADAR</h1>
+            <p class="mt-4 text-zinc-500 font-bold uppercase text-[10px] tracking-widest">The Official Creator Ranking Terminal</p>
+        </div>
+
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-24">
+            <div class="bg-zinc-900/50 border border-zinc-800 p-4 rounded-xl flex items-center gap-4">
+                <div class="w-12 h-12 bg-yellow-400 rounded-lg"></div>
+                <div>
+                    <p class="text-sm font-bold">@nic_builds</p>
+                    <p class="text-[10px] text-zinc-500 font-bold uppercase">CEO</p>
+                </div>
+            </div>
+            <div class="bg-zinc-900/50 border border-zinc-800 p-4 rounded-xl flex items-center gap-4">
+                <div class="w-12 h-12 bg-yellow-400 rounded-lg"></div>
+                <div>
+                    <p class="text-sm font-bold">@blueprintluke</p>
+                    <p class="text-[10px] text-zinc-500 font-bold uppercase">CGO</p>
+                </div>
+            </div>
+            <div class="bg-zinc-900/50 border border-zinc-800 p-4 rounded-xl flex items-center gap-4">
+                <div class="w-12 h-12 bg-yellow-400 rounded-lg"></div>
+                <div>
+                    <p class="text-sm font-bold">@dill_sl</p>
+                    <p class="text-[10px] text-zinc-500 font-bold uppercase">Co-Founder</p>
+                </div>
+            </div>
+            <div class="bg-zinc-900/50 border border-zinc-800 p-4 rounded-xl flex items-center gap-4">
+                <div class="w-12 h-12 bg-yellow-400 rounded-lg"></div>
+                <div>
+                    <p class="text-sm font-bold">@crypttoji</p>
+                    <p class="text-[10px] text-zinc-500 font-bold uppercase">Marketing</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-24 text-center">
+            <h2 class="text-yellow-400 text-xs font-black tracking-[0.3em] uppercase mb-8 italic">Moai Holders • The Elite</h2>
+            <div class="flex justify-center gap-4">
+                <div class="bg-zinc-900 border border-yellow-400/20 px-6 py-2 rounded-full font-bold text-sm italic">Mongral</div>
+                <div class="bg-zinc-900 border border-yellow-400/20 px-6 py-2 rounded-full font-bold text-sm italic">Nomi</div>
+            </div>
+        </div>
+
+        <div class="mb-32">
+            <h2 class="text-yellow-400 text-xs font-black tracking-[0.3em] uppercase mb-12 text-center">Golden Tier • Top 10</h2>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+                <div class="bg-yellow-400 p-4 rounded-xl text-black">
+                    <p class="text-[10px] font-black uppercase">Rank 01</p>
+                    <p class="text-lg font-black">kian</p>
+                    <p class="text-[9px] font-bold uppercase opacity-60">@rakel8990</p>
+                </div>
+                <div class="bg-yellow-400 p-4 rounded-xl text-black">
+                    <p class="text-[10px] font-black uppercase">Rank 02</p>
+                    <p class="text-lg font-black">Osita</p>
+                    <p class="text-[9px] font-bold uppercase opacity-60">@Osita__1</p>
+                </div>
+                </div>
+        </div>
+
+        <div class="mb-32">
+            <h2 class="text-zinc-500 text-[10px] font-black uppercase mb-8 tracking-[0.4em]">Silver Tier • 20 Slots</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-3">
+                <div class="bg-zinc-900/30 border border-zinc-800 p-3 rounded-xl flex items-center gap-3 grayscale">
+                    <div class="w-6 h-6 bg-zinc-700 rounded-full"></div>
+                    <span class="text-[9px] font-bold text-zinc-500 uppercase">#11 Available</span>
+                </div>
+                </div>
+        </div>
+
+        <div class="mb-32 text-center">
+            <h2 class="text-yellow-400 font-black text-xl mb-12 italic">WEEKLY SPOTLIGHT POSTS</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="aspect-video bg-zinc-900 border border-zinc-800 rounded-xl flex items-center justify-center text-zinc-700 text-[10px] uppercase font-bold tracking-widest">Post_Embed_01</div>
+                <div class="aspect-video bg-zinc-900 border border-zinc-800 rounded-xl flex items-center justify-center text-zinc-700 text-[10px] uppercase font-bold tracking-widest">Post_Embed_02</div>
+                <div class="aspect-video bg-zinc-900 border border-zinc-800 rounded-xl flex items-center justify-center text-zinc-700 text-[10px] uppercase font-bold tracking-widest">Post_Embed_03</div>
+            </div>
+        </div>
+
+        <div class="text-center mb-32">
+            <h2 class="text-yellow-400 font-black text-xl mb-6">WEEKLY ARTICLES</h2>
+            <div class="bg-zinc-900/50 border border-yellow-400/20 p-12 rounded-3xl max-w-2xl mx-auto">
+                <p class="text-zinc-500 text-[10px] font-bold uppercase mb-4">Next Alpha Release In:</p>
+                <div class="text-5xl md:text-6xl font-black text-white tracking-tighter">04:21:55:01</div>
+            </div>
+        </div>
+
+        <div class="max-w-2xl mx-auto mb-40">
+            <h2 class="text-center text-yellow-400 font-black text-xl mb-10">HOW TO COLLECT BAGS</h2>
+            <div class="space-y-3">
+                <div class="bg-zinc-900/50 border border-zinc-800 rounded-2xl overflow-hidden">
+                    <div class="p-5 flex justify-between items-center cursor-pointer hover:bg-zinc-800/50 transition">
+                        <span class="text-sm font-black uppercase tracking-tight">01. Deposit into Concrete Vaults</span>
+                        <i class="fas fa-plus text-yellow-400 text-xs"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="listingBtn" class="listing-btn" onclick="togglePopup()">Get Listed +</div>
+    
+    <div id="listingPopup" class="listing-popup">
+        <div class="flex justify-between items-center mb-4 border-b border-zinc-800 pb-2">
+            <span class="text-yellow-400 text-[10px] font-black uppercase tracking-widest">Listing Request</span>
+            <button onclick="togglePopup()" class="text-zinc-500 hover:text-white transition">X</button>
+        </div>
+        <p class="text-[11px] text-zinc-400 mb-8 font-medium leading-relaxed">
+            To secure your rank on the Concrete Radar terminal, please contact an ambassador via X or Telegram for verification.
+        </p>
+        <div class="flex gap-8 justify-center">
+            <a href="https://x.com/rakel8990" target="_blank" class="text-yellow-400 hover:scale-110 transition"><i class="fa-brands fa-x-twitter text-2xl"></i></a>
+            <a href="#" class="text-yellow-400 hover:scale-110 transition"><i class="fa-brands fa-telegram text-2xl"></i></a>
+        </div>
+    </div>
+
+    <script>
+        function togglePopup() {
+            const popup = document.getElementById('listingPopup');
+            popup.style.display = popup.style.display === 'block' ? 'none' : 'block';
+        }
+    </script>
+</body>
+</html>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Space+Grotesk:wght@700;900&display=swap');
         
         body { background-color: #09090b; color: white; font-family: 'Inter', sans-serif; overflow-x: hidden; }
