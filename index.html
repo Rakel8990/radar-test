@@ -1,144 +1,199 @@
-<!-- GOLDEN TIER TOP 10 -->
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Concrete Golden Tier</title>
+
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<!-- Font -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Space+Grotesk:wght@700;900&display=swap" rel="stylesheet">
+
+<style>
+body {
+  background: #09090b;
+  color: white;
+  font-family: 'Inter', sans-serif;
+}
+
+/* 3D SYSTEM */
+.parent { perspective: 1000px; }
+
+.card {
+  padding-top: 50px;
+  border: 3px solid #141414;
+  transform-style: preserve-3d;
+  background: linear-gradient(135deg, #0000 18.75%, #F5D55F 0 31.25%, #0000 0),
+              repeating-linear-gradient(45deg, #27272a -6.25% 6.25%, #141414 0 18.75%);
+  background-size: 60px 60px;
+  background-color: #141414;
+  transition: 0.5s;
+}
+
+.card:hover {
+  background-position: -100px 100px, -100px 100px;
+  transform: rotate3d(0.5, 1, 0, 25deg);
+}
+
+.content-box {
+  background: #F5D55F;
+  padding: 35px 20px 20px;
+  transform-style: preserve-3d;
+}
+
+.card-title {
+  font-size: 18px;
+  font-weight: 900;
+  color: #141414;
+  transform: translate3d(0,0,50px);
+}
+
+.card-content {
+  font-size: 10px;
+  font-weight: 800;
+  color: #141414;
+  margin-top: 8px;
+  transform: translate3d(0,0,30px);
+  text-transform: uppercase;
+}
+
+.see-more {
+  display: inline-block;
+  margin-top: 1rem;
+  background: #141414;
+  color: #F5D55F;
+  padding: 6px 10px;
+  font-weight: 900;
+  transform: translate3d(0,0,40px);
+}
+
+.date-box {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  background: #141414;
+  border: 1px solid #F5D55F;
+  transform: translate3d(0,0,80px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.month {
+  font-size: 8px;
+  color: #F5D55F;
+  font-weight: 900;
+}
+
+.date {
+  font-size: 18px;
+  color: #F5D55F;
+  font-weight: 900;
+}
+</style>
+</head>
+
+<body>
+
+<div class="max-w-7xl mx-auto px-6 py-16">
+
+<h1 class="text-5xl font-black text-[#F5D55F] mb-12">GOLDEN TIER</h1>
+
 <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8">
 
-<!-- CARD 01 -->
-<div class="parent">
-  <div class="card relative">
-    <div class="date-box"><span class="month">Rank</span><span class="date">01</span></div>
-    <div class="content-box">
-      <span class="card-title">KIAN</span>
-      <p class="card-content">Narrative Lead<br><span class="opacity-40 font-normal">(Setting the vibe)</span></p>
-      <a href="https://x.com/rakel8990" target="_blank" class="see-more">
-        <i class="fa-brands fa-x-twitter"></i>
-      </a>
-    </div>
-  </div>
-</div>
+<!-- CARD TEMPLATE START -->
 
-<!-- CARD 02 -->
-<div class="parent">
-  <div class="card relative">
-    <div class="date-box"><span class="month">Rank</span><span class="date">02</span></div>
-    <div class="content-box">
-      <span class="card-title">OSITA</span>
-      <p class="card-content">Meme Commander<br><span class="opacity-40 font-normal">(Viral energy)</span></p>
-      <a href="https://x.com/Osita__1" target="_blank" class="see-more">
-        <i class="fa-brands fa-x-twitter"></i>
-      </a>
-    </div>
-  </div>
-</div>
+<div class="parent"><div class="card relative">
+<div class="date-box"><span class="month">Rank</span><span class="date">01</span></div>
+<div class="content-box">
+<span class="card-title">KIAN</span>
+<p class="card-content">Narrative Lead<br><span class="opacity-40">(Setting the vibe)</span></p>
+<a href="https://x.com/rakel8990" target="_blank" class="see-more">X</a>
+</div></div></div>
 
-<!-- CARD 03 -->
-<div class="parent">
-  <div class="card relative">
-    <div class="date-box"><span class="month">Rank</span><span class="date">03</span></div>
-    <div class="content-box">
-      <span class="card-title">PA-MI</span>
-      <p class="card-content">Thread Architect<br><span class="opacity-40 font-normal">(Educational)</span></p>
-      <a href="https://x.com/urochimaru90" target="_blank" class="see-more">
-        <i class="fa-brands fa-x-twitter"></i>
-      </a>
-    </div>
-  </div>
-</div>
+<div class="parent"><div class="card relative">
+<div class="date-box"><span class="month">Rank</span><span class="date">02</span></div>
+<div class="content-box">
+<span class="card-title">OSITA</span>
+<p class="card-content">Meme Commander<br><span class="opacity-40">(Viral energy)</span></p>
+<a href="https://x.com/Osita__1" target="_blank" class="see-more">X</a>
+</div></div></div>
 
-<!-- CARD 04 -->
-<div class="parent">
-  <div class="card relative">
-    <div class="date-box"><span class="month">Rank</span><span class="date">04</span></div>
-    <div class="content-box">
-      <span class="card-title">CREATOR_04</span>
-      <p class="card-content">Signal Booster<br><span class="opacity-40 font-normal">(Amplifying news)</span></p>
-      <a href="#" class="see-more">
-        <i class="fa-brands fa-x-twitter"></i>
-      </a>
-    </div>
-  </div>
-</div>
+<div class="parent"><div class="card relative">
+<div class="date-box"><span class="month">Rank</span><span class="date">03</span></div>
+<div class="content-box">
+<span class="card-title">PA-MI</span>
+<p class="card-content">Thread Architect<br><span class="opacity-40">(Educational)</span></p>
+<a href="https://x.com/urochimaru90" target="_blank" class="see-more">X</a>
+</div></div></div>
 
-<!-- CARD 05 -->
-<div class="parent">
-  <div class="card relative">
-    <div class="date-box"><span class="month">Rank</span><span class="date">05</span></div>
-    <div class="content-box">
-      <span class="card-title">CREATOR_05</span>
-      <p class="card-content">Community Catalyst<br><span class="opacity-40 font-normal">(Engagement)</span></p>
-      <a href="#" class="see-more">
-        <i class="fa-brands fa-x-twitter"></i>
-      </a>
-    </div>
-  </div>
-</div>
+<div class="parent"><div class="card relative">
+<div class="date-box"><span class="month">Rank</span><span class="date">04</span></div>
+<div class="content-box">
+<span class="card-title">CREATOR_04</span>
+<p class="card-content">Signal Booster<br><span class="opacity-40">(Amplifying news)</span></p>
+<a href="#" class="see-more">X</a>
+</div></div></div>
 
-<!-- CARD 06 -->
-<div class="parent">
-  <div class="card relative">
-    <div class="date-box"><span class="month">Rank</span><span class="date">06</span></div>
-    <div class="content-box">
-      <span class="card-title">CREATOR_06</span>
-      <p class="card-content">Hype Strategist<br><span class="opacity-40 font-normal">(Anticipation)</span></p>
-      <a href="#" class="see-more">
-        <i class="fa-brands fa-x-twitter"></i>
-      </a>
-    </div>
-  </div>
-</div>
+<div class="parent"><div class="card relative">
+<div class="date-box"><span class="month">Rank</span><span class="date">05</span></div>
+<div class="content-box">
+<span class="card-title">CREATOR_05</span>
+<p class="card-content">Community Catalyst<br><span class="opacity-40">(Engagement)</span></p>
+<a href="#" class="see-more">X</a>
+</div></div></div>
 
-<!-- CARD 07 -->
-<div class="parent">
-  <div class="card relative">
-    <div class="date-box"><span class="month">Rank</span><span class="date">07</span></div>
-    <div class="content-box">
-      <span class="card-title">CREATOR_07</span>
-      <p class="card-content">Alpha Scout<br><span class="opacity-40 font-normal">(Finding early info)</span></p>
-      <a href="#" class="see-more">
-        <i class="fa-brands fa-x-twitter"></i>
-      </a>
-    </div>
-  </div>
-</div>
+<div class="parent"><div class="card relative">
+<div class="date-box"><span class="month">Rank</span><span class="date">06</span></div>
+<div class="content-box">
+<span class="card-title">CREATOR_06</span>
+<p class="card-content">Hype Strategist<br><span class="opacity-40">(Anticipation)</span></p>
+<a href="#" class="see-more">X</a>
+</div></div></div>
 
-<!-- CARD 08 -->
-<div class="parent">
-  <div class="card relative">
-    <div class="date-box"><span class="month">Rank</span><span class="date">08</span></div>
-    <div class="content-box">
-      <span class="card-title">CREATOR_08</span>
-      <p class="card-content">Visual Storyteller<br><span class="opacity-40 font-normal">(Graphics)</span></p>
-      <a href="#" class="see-more">
-        <i class="fa-brands fa-x-twitter"></i>
-      </a>
-    </div>
-  </div>
-</div>
+<div class="parent"><div class="card relative">
+<div class="date-box"><span class="month">Rank</span><span class="date">07</span></div>
+<div class="content-box">
+<span class="card-title">CREATOR_07</span>
+<p class="card-content">Alpha Scout<br><span class="opacity-40">(Finding early info)</span></p>
+<a href="#" class="see-more">X</a>
+</div></div></div>
 
-<!-- CARD 09 -->
-<div class="parent">
-  <div class="card relative">
-    <div class="date-box"><span class="month">Rank</span><span class="date">09</span></div>
-    <div class="content-box">
-      <span class="card-title">CREATOR_09</span>
-      <p class="card-content">Culture Maker<br><span class="opacity-40 font-normal">(Maxi energy)</span></p>
-      <a href="#" class="see-more">
-        <i class="fa-brands fa-x-twitter"></i>
-      </a>
-    </div>
-  </div>
-</div>
+<div class="parent"><div class="card relative">
+<div class="date-box"><span class="month">Rank</span><span class="date">08</span></div>
+<div class="content-box">
+<span class="card-title">CREATOR_08</span>
+<p class="card-content">Visual Storyteller<br><span class="opacity-40">(Graphics)</span></p>
+<a href="#" class="see-more">X</a>
+</div></div></div>
 
-<!-- CARD 10 -->
-<div class="parent">
-  <div class="card relative">
-    <div class="date-box"><span class="month">Rank</span><span class="date">10</span></div>
-    <div class="content-box">
-      <span class="card-title">CREATOR_10</span>
-      <p class="card-content">Sentiment Driver<br><span class="opacity-40 font-normal">(Market mood)</span></p>
-      <a href="#" class="see-more">
-        <i class="fa-brands fa-x-twitter"></i>
-      </a>
-    </div>
-  </div>
-</div>
+<div class="parent"><div class="card relative">
+<div class="date-box"><span class="month">Rank</span><span class="date">09</span></div>
+<div class="content-box">
+<span class="card-title">CREATOR_09</span>
+<p class="card-content">Culture Maker<br><span class="opacity-40">(Maxi energy)</span></p>
+<a href="#" class="see-more">X</a>
+</div></div></div>
+
+<div class="parent"><div class="card relative">
+<div class="date-box"><span class="month">Rank</span><span class="date">10</span></div>
+<div class="content-box">
+<span class="card-title">CREATOR_10</span>
+<p class="card-content">Sentiment Driver<br><span class="opacity-40">(Market mood)</span></p>
+<a href="#" class="see-more">X</a>
+</div></div></div>
+
+<!-- CARD TEMPLATE END -->
 
 </div>
+</div>
+
+</body>
+</html>
+```
