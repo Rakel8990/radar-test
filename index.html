@@ -103,8 +103,8 @@
         .text-xl { font-size: 1.1rem; }
     }
 
-    /* === PREMIUM EXPENSIVE EFFECTS ADDED BELOW === */
-    /* Subtle animated tech grid background (very high-end DeFi aesthetic) */
+    /* === ENHANCED PREMIUM EFFECTS ANIMATION v2.0 === */
+    /* Ultra-luxury animated tech grid + secondary depth layer */
     body::before {
         content: '';
         position: fixed;
@@ -113,60 +113,129 @@
         width: 100%;
         height: 100%;
         background-image: 
-            radial-gradient(circle at 25% 25%, rgba(245, 213, 95, 0.12) 1px, transparent 0),
-            radial-gradient(circle at 75% 75%, rgba(245, 213, 95, 0.12) 1px, transparent 0);
-        background-size: 110px 110px;
-        animation: gridMove 80s linear infinite;
+            radial-gradient(circle at 25% 25%, rgba(245, 213, 95, 0.15) 1px, transparent 0),
+            radial-gradient(circle at 75% 75%, rgba(245, 213, 95, 0.15) 1px, transparent 0),
+            linear-gradient(90deg, transparent 49%, rgba(245,213,95,0.04) 50%, transparent 51%),
+            linear-gradient(0deg, transparent 49%, rgba(245,213,95,0.04) 50%, transparent 51%);
+        background-size: 120px 120px, 120px 120px, 80px 80px, 80px 80px;
+        animation: gridMove 60s linear infinite;
         z-index: -1;
-        opacity: 0.07;
+        opacity: 0.09;
         pointer-events: none;
         mix-blend-mode: screen;
     }
 
-    @keyframes gridMove {
-        0% { background-position: 0 0; }
-        100% { background-position: 110px 110px; }
+    body::after {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle at 50% 30%, rgba(245, 213, 95, 0.08) 0%, transparent 60%);
+        animation: radialPulse 25s ease-in-out infinite alternate;
+        z-index: -2;
+        pointer-events: none;
+        mix-blend-mode: overlay;
+        opacity: 0.6;
     }
 
-    /* Deep luxurious title glow with breathing pulse */
+    @keyframes gridMove {
+        0% { background-position: 0 0, 40px 40px, 0 0, 0 0; }
+        100% { background-position: 120px 120px, 160px 160px, 80px 80px, 80px 80px; }
+    }
+
+    @keyframes radialPulse {
+        0% { opacity: 0.4; transform: scale(0.95); }
+        100% { opacity: 0.85; transform: scale(1.08); }
+    }
+
+    /* Deep luxurious title glow + metallic liquid shine sweep */
     .glow-yellow {
         text-shadow: 
             0 0 20px rgb(245 213 95),
             0 0 40px rgb(245 213 95),
-            0 0 70px rgb(245 213 95 / 0.7),
-            0 0 100px rgb(245 213 95 / 0.3);
-        animation: pulseGlow 3s ease-in-out infinite alternate;
+            0 0 70px rgb(245 213 95 / 0.8),
+            0 0 110px rgb(245 213 95 / 0.4),
+            0 0 150px rgb(245 213 95 / 0.2);
+        animation: pulseGlow 2.8s ease-in-out infinite alternate;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .glow-yellow::after {
+        content: '';
+        position: absolute;
+        top: -30%;
+        left: -180%;
+        width: 50%;
+        height: 280%;
+        background: linear-gradient(
+            110deg,
+            transparent 30%,
+            rgba(255,255,255,0.75) 50%,
+            transparent 70%
+        );
+        animation: titleLiquidShine 5.5s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+        transform: skewX(-18deg);
+        z-index: 2;
+        pointer-events: none;
     }
 
     @keyframes pulseGlow {
         0% { text-shadow: 
             0 0 20px rgb(245 213 95),
-            0 0 40px rgb(245 213 95),
-            0 0 70px rgb(245 213 95 / 0.5); }
+            0 0 45px rgb(245 213 95),
+            0 0 75px rgb(245 213 95 / 0.6); }
         100% { text-shadow: 
-            0 0 30px rgb(245 213 95),
-            0 0 60px rgb(245 213 95),
-            0 0 90px rgb(245 213 95 / 0.9),
-            0 0 120px rgb(245 213 95 / 0.4); }
+            0 0 35px rgb(245 213 95),
+            0 0 70px rgb(245 213 95),
+            0 0 110px rgb(245 213 95 / 0.95),
+            0 0 160px rgb(245 213 95 / 0.45); }
     }
 
-    /* Premium card entrance + enhanced hover (scale + deeper gold glow) */
+    @keyframes titleLiquidShine {
+        0% { left: -180%; }
+        100% { left: 220%; }
+    }
+
+    /* Premium card entrance + ultra-premium hover (scale + multi-layer gold rim + inner glow) */
     .card {
-        animation: fadeInUp 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+        animation: fadeInUp 1s cubic-bezier(0.23, 1, 0.32, 1) forwards;
         opacity: 0;
+        position: relative;
+    }
+
+    .card::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border: 1px solid transparent;
+        border-radius: 16px;
+        background: linear-gradient(#F5D55F, #F5D55F) padding-box,
+                    linear-gradient(90deg, transparent, rgba(245,213,95,0.4), transparent) border-box;
+        opacity: 0;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: -1;
+    }
+
+    .card:hover::before {
+        opacity: 1;
+        transform: scale(1.03);
     }
 
     .card:hover {
-        transform: translateY(-10px) scale(1.035);
+        transform: translateY(-12px) scale(1.04);
         box-shadow: 
-            0 25px 50px -12px rgb(245 213 95 / 0.5),
-            0 0 0 1px rgba(245, 213, 95, 0.3) inset;
+            0 30px 60px -15px rgb(245 213 95 / 0.6),
+            0 0 0 2px rgba(245, 213, 95, 0.35) inset,
+            0 0 40px 15px rgb(245 213 95 / 0.25);
     }
 
     @keyframes fadeInUp {
         from {
             opacity: 0;
-            transform: translateY(40px);
+            transform: translateY(50px);
         }
         to {
             opacity: 1;
@@ -174,47 +243,80 @@
         }
     }
 
-    /* Ultra-premium floating button with constant float + expanding ring pulse */
+    /* Ultra-premium floating button with multi-ring orbit pulse + text shimmer */
     .floating-btn {
-        animation: float 2.8s ease-in-out infinite;
+        animation: floatPremium 2.4s cubic-bezier(0.45, 0, 0.55, 1) infinite;
         box-shadow: 
-            0 10px 30px -5px rgb(245 213 95 / 0.5),
-            0 0 0 4px rgba(245, 213, 95, 0.15);
+            0 15px 35px -8px rgb(245 213 95 / 0.6),
+            0 0 0 6px rgba(245, 213, 95, 0.25),
+            0 0 0 12px rgba(245, 213, 95, 0.1);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .floating-btn::before {
+        content: '';
+        position: absolute;
+        inset: -20px;
+        border: 3px solid #F5D55F;
+        border-radius: 9999px;
+        animation: outerRing 1.8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        z-index: -1;
+        opacity: 0.6;
     }
 
     .floating-btn::after {
         content: '';
         position: absolute;
-        inset: -12px;
-        border: 3px solid #F5D55F;
+        inset: -8px;
+        border: 2px solid #F5D55F;
         border-radius: 9999px;
-        animation: ringPulse 1.6s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        animation: innerRing 1.3s cubic-bezier(0.4, 0, 0.6, 1) infinite reverse;
         z-index: -1;
-        opacity: 0;
+        opacity: 0.4;
     }
 
-    @keyframes float {
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-12px); }
+    .floating-btn span {
+        animation: textShimmer 3s linear infinite;
     }
 
-    @keyframes ringPulse {
-        0% { transform: scale(0.85); opacity: 0.7; }
-        100% { transform: scale(2.4); opacity: 0; }
+    @keyframes floatPremium {
+        0%, 100% { transform: translateY(0) rotate(0deg); }
+        50% { transform: translateY(-16px) rotate(3deg); }
     }
 
-    /* Premium popup entrance with bouncy overshoot */
+    @keyframes outerRing {
+        0% { transform: scale(0.7); opacity: 0.8; }
+        100% { transform: scale(2.8); opacity: 0; }
+    }
+
+    @keyframes innerRing {
+        0% { transform: scale(0.9); opacity: 0.5; }
+        100% { transform: scale(2.2); opacity: 0; }
+    }
+
+    @keyframes textShimmer {
+        0% { text-shadow: 0 0 8px rgb(0 0 0); }
+        50% { text-shadow: 0 0 20px rgb(245 213 95); }
+        100% { text-shadow: 0 0 8px rgb(0 0 0); }
+    }
+
+    /* Premium popup with glassmorphic bounce + inner glow */
     #popup {
-        animation: popupPop 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        animation: popupPopPremium 0.55s cubic-bezier(0.175, 0.885, 0.32, 1.4);
+        box-shadow: 
+            0 25px 50px -12px rgba(0,0,0,0.9),
+            0 0 30px 8px rgb(245 213 95 / 0.4),
+            inset 0 0 25px rgba(245,213,95,0.2);
     }
 
-    @keyframes popupPop {
+    @keyframes popupPopPremium {
         0% {
             opacity: 0;
-            transform: scale(0.75) translateY(30px);
+            transform: scale(0.65) translateY(40px);
         }
-        70% {
-            transform: scale(1.05) translateY(-5px);
+        60% {
+            transform: scale(1.08) translateY(-8px);
         }
         100% {
             opacity: 1;
@@ -222,42 +324,70 @@
         }
     }
 
-    /* Enhanced marquee with soft neon edge glow */
+    /* Enhanced marquee with neon trail + soft pulse */
     .animate-marquee {
-        filter: drop-shadow(0 4px 12px rgb(245 213 95 / 0.4));
+        filter: drop-shadow(0 6px 18px rgb(245 213 95 / 0.5));
+        animation: marquee 35s linear infinite;
     }
 
-    /* Tier labels with sliding light sweep (luxury metal finish) */
+    .animate-marquee span {
+        transition: all 0.3s ease;
+    }
+
+    .animate-marquee span:hover {
+        text-shadow: 0 0 25px rgb(245 213 95);
+        transform: scale(1.1);
+        animation-play-state: paused;
+    }
+
+    /* Tier labels with enhanced metallic shine + border pulse */
     .tier-label {
         position: relative;
         overflow: hidden;
+        box-shadow: 0 0 0 1px rgba(245,213,95,0.3) inset;
     }
 
     .tier-label::after {
         content: '';
         position: absolute;
-        top: -50%;
-        left: -150%;
-        width: 60%;
-        height: 300%;
+        top: -60%;
+        left: -200%;
+        width: 70%;
+        height: 320%;
         background: linear-gradient(
-            110deg,
+            100deg,
             transparent,
-            rgba(255,255,255,0.45),
+            rgba(255,255,255,0.65),
             transparent
         );
-        animation: shine 4s linear infinite;
-        transform: skewX(-25deg);
+        animation: shinePremium 3.8s linear infinite;
+        transform: skewX(-22deg);
         z-index: 1;
-        opacity: 0.6;
+        opacity: 0.75;
     }
 
-    @keyframes shine {
-        0% { left: -150%; }
-        100% { left: 300%; }
+    .tier-label::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border: 1px solid #F5D55F;
+        border-radius: 9999px;
+        animation: tierPulse 2.2s ease-in-out infinite;
+        opacity: 0.3;
+        z-index: -1;
     }
 
-    /* Subtle depth boost to accordion headers */
+    @keyframes shinePremium {
+        0% { left: -200%; }
+        100% { left: 280%; }
+    }
+
+    @keyframes tierPulse {
+        0%, 100% { transform: scale(1); opacity: 0.3; }
+        50% { transform: scale(1.12); opacity: 0.6; }
+    }
+
+    /* Accordion header depth + active state glow */
     .accordion-header {
         position: relative;
     }
@@ -266,14 +396,33 @@
         content: '';
         position: absolute;
         inset: 0;
-        background: linear-gradient(90deg, transparent, rgba(245,213,95,0.08), transparent);
+        background: linear-gradient(90deg, transparent, rgba(245,213,95,0.12), transparent);
         opacity: 0;
-        transition: opacity 0.4s ease;
+        transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         pointer-events: none;
     }
 
     .accordion:hover .accordion-header::before {
         opacity: 1;
+    }
+
+    .accordion.active {
+        box-shadow: 0 0 35px 10px rgb(245 213 95 / 0.25);
+        border-color: rgb(245 213 95 / 0.4) !important;
+    }
+
+    /* Countdown premium digital pulse */
+    #countdown {
+        text-shadow: 
+            0 0 15px rgb(245 213 95),
+            0 0 30px rgb(245 213 95 / 0.7);
+        animation: countdownPulse 1.8s ease-in-out infinite alternate;
+        letter-spacing: -2px;
+    }
+
+    @keyframes countdownPulse {
+        0% { text-shadow: 0 0 15px rgb(245 213 95); }
+        100% { text-shadow: 0 0 35px rgb(245 213 95), 0 0 55px rgb(245 213 95 / 0.8); }
     }
 </style>
 </head>
@@ -590,7 +739,7 @@
 </div>
 
 <a href="javascript:void(0)" onclick="openPopup()" class="floating-btn">
-    <i class="fa-solid fa-plus"></i> Get Listed
+    <i class="fa-solid fa-plus"></i> <span>Get Listed</span>
 </a>
 
 <div id="popup">
