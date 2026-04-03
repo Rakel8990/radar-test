@@ -6,6 +6,8 @@
 <title>Concrete Radar</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+<!-- GSAP CDN - High-performance animation library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600&display=swap');
 
@@ -103,8 +105,8 @@
         .text-xl { font-size: 1.1rem; }
     }
 
-    /* === ENHANCED PREMIUM EFFECTS ANIMATION v2.0 === */
-    /* Ultra-luxury animated tech grid + secondary depth layer */
+    /* === ENHANCED PREMIUM EFFECTS + GSAP + PARTICLES v3.0 === */
+    /* Ultra-luxury animated tech grid + depth layers (performance optimized) */
     body::before {
         content: '';
         position: fixed;
@@ -119,10 +121,11 @@
             linear-gradient(0deg, transparent 49%, rgba(245,213,95,0.04) 50%, transparent 51%);
         background-size: 120px 120px, 120px 120px, 80px 80px, 80px 80px;
         animation: gridMove 60s linear infinite;
-        z-index: -1;
+        z-index: -3;
         opacity: 0.09;
         pointer-events: none;
         mix-blend-mode: screen;
+        will-change: background-position;
     }
 
     body::after {
@@ -134,10 +137,11 @@
         height: 100%;
         background: radial-gradient(circle at 50% 30%, rgba(245, 213, 95, 0.08) 0%, transparent 60%);
         animation: radialPulse 25s ease-in-out infinite alternate;
-        z-index: -2;
+        z-index: -4;
         pointer-events: none;
         mix-blend-mode: overlay;
         opacity: 0.6;
+        will-change: transform, opacity;
     }
 
     @keyframes gridMove {
@@ -161,6 +165,7 @@
         animation: pulseGlow 2.8s ease-in-out infinite alternate;
         position: relative;
         overflow: hidden;
+        will-change: text-shadow;
     }
 
     .glow-yellow::after {
@@ -199,29 +204,10 @@
         100% { left: 220%; }
     }
 
-    /* Premium card entrance + ultra-premium hover (scale + multi-layer gold rim + inner glow) */
+    /* Premium card with GSAP-ready entrance */
     .card {
-        animation: fadeInUp 1s cubic-bezier(0.23, 1, 0.32, 1) forwards;
-        opacity: 0;
         position: relative;
-    }
-
-    .card::before {
-        content: '';
-        position: absolute;
-        inset: 0;
-        border: 1px solid transparent;
-        border-radius: 16px;
-        background: linear-gradient(#F5D55F, #F5D55F) padding-box,
-                    linear-gradient(90deg, transparent, rgba(245,213,95,0.4), transparent) border-box;
-        opacity: 0;
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        z-index: -1;
-    }
-
-    .card:hover::before {
-        opacity: 1;
-        transform: scale(1.03);
+        will-change: transform, opacity;
     }
 
     .card:hover {
@@ -232,119 +218,17 @@
             0 0 40px 15px rgb(245 213 95 / 0.25);
     }
 
-    @keyframes fadeInUp {
-        from {
-            opacity: 0;
-            transform: translateY(50px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    /* Ultra-premium floating button with multi-ring orbit pulse + text shimmer */
+    /* Ultra-premium floating button - GSAP controlled + CSS fallback */
     .floating-btn {
-        animation: floatPremium 2.4s cubic-bezier(0.45, 0, 0.55, 1) infinite;
-        box-shadow: 
-            0 15px 35px -8px rgb(245 213 95 / 0.6),
-            0 0 0 6px rgba(245, 213, 95, 0.25),
-            0 0 0 12px rgba(245, 213, 95, 0.1);
-        position: relative;
-        overflow: hidden;
+        will-change: transform;
     }
 
-    .floating-btn::before {
-        content: '';
-        position: absolute;
-        inset: -20px;
-        border: 3px solid #F5D55F;
-        border-radius: 9999px;
-        animation: outerRing 1.8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-        z-index: -1;
-        opacity: 0.6;
-    }
-
-    .floating-btn::after {
-        content: '';
-        position: absolute;
-        inset: -8px;
-        border: 2px solid #F5D55F;
-        border-radius: 9999px;
-        animation: innerRing 1.3s cubic-bezier(0.4, 0, 0.6, 1) infinite reverse;
-        z-index: -1;
-        opacity: 0.4;
-    }
-
-    .floating-btn span {
-        animation: textShimmer 3s linear infinite;
-    }
-
-    @keyframes floatPremium {
-        0%, 100% { transform: translateY(0) rotate(0deg); }
-        50% { transform: translateY(-16px) rotate(3deg); }
-    }
-
-    @keyframes outerRing {
-        0% { transform: scale(0.7); opacity: 0.8; }
-        100% { transform: scale(2.8); opacity: 0; }
-    }
-
-    @keyframes innerRing {
-        0% { transform: scale(0.9); opacity: 0.5; }
-        100% { transform: scale(2.2); opacity: 0; }
-    }
-
-    @keyframes textShimmer {
-        0% { text-shadow: 0 0 8px rgb(0 0 0); }
-        50% { text-shadow: 0 0 20px rgb(245 213 95); }
-        100% { text-shadow: 0 0 8px rgb(0 0 0); }
-    }
-
-    /* Premium popup with glassmorphic bounce + inner glow */
-    #popup {
-        animation: popupPopPremium 0.55s cubic-bezier(0.175, 0.885, 0.32, 1.4);
-        box-shadow: 
-            0 25px 50px -12px rgba(0,0,0,0.9),
-            0 0 30px 8px rgb(245 213 95 / 0.4),
-            inset 0 0 25px rgba(245,213,95,0.2);
-    }
-
-    @keyframes popupPopPremium {
-        0% {
-            opacity: 0;
-            transform: scale(0.65) translateY(40px);
-        }
-        60% {
-            transform: scale(1.08) translateY(-8px);
-        }
-        100% {
-            opacity: 1;
-            transform: scale(1) translateY(0);
-        }
-    }
-
-    /* Enhanced marquee with neon trail + soft pulse */
-    .animate-marquee {
-        filter: drop-shadow(0 6px 18px rgb(245 213 95 / 0.5));
-        animation: marquee 35s linear infinite;
-    }
-
-    .animate-marquee span {
-        transition: all 0.3s ease;
-    }
-
-    .animate-marquee span:hover {
-        text-shadow: 0 0 25px rgb(245 213 95);
-        transform: scale(1.1);
-        animation-play-state: paused;
-    }
-
-    /* Tier labels with enhanced metallic shine + border pulse */
+    /* Tier labels with metallic shine + pulse */
     .tier-label {
         position: relative;
         overflow: hidden;
         box-shadow: 0 0 0 1px rgba(245,213,95,0.3) inset;
+        will-change: transform;
     }
 
     .tier-label::after {
@@ -387,46 +271,45 @@
         50% { transform: scale(1.12); opacity: 0.6; }
     }
 
-    /* Accordion header depth + active state glow */
-    .accordion-header {
-        position: relative;
-    }
-
-    .accordion-header::before {
-        content: '';
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(90deg, transparent, rgba(245,213,95,0.12), transparent);
-        opacity: 0;
-        transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        pointer-events: none;
-    }
-
-    .accordion:hover .accordion-header::before {
-        opacity: 1;
-    }
-
+    /* Accordion active state glow */
     .accordion.active {
         box-shadow: 0 0 35px 10px rgb(245 213 95 / 0.25);
         border-color: rgb(245 213 95 / 0.4) !important;
     }
 
-    /* Countdown premium digital pulse */
+    /* Countdown digital pulse */
     #countdown {
         text-shadow: 
             0 0 15px rgb(245 213 95),
             0 0 30px rgb(245 213 95 / 0.7);
         animation: countdownPulse 1.8s ease-in-out infinite alternate;
         letter-spacing: -2px;
+        will-change: text-shadow;
     }
 
     @keyframes countdownPulse {
         0% { text-shadow: 0 0 15px rgb(245 213 95); }
         100% { text-shadow: 0 0 35px rgb(245 213 95), 0 0 55px rgb(245 213 95 / 0.8); }
     }
+
+    /* PARTICLE CANVAS STYLES - optimized for 60fps */
+    #particle-canvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -5;
+        pointer-events: none;
+        mix-blend-mode: screen;
+        opacity: 0.75;
+    }
 </style>
 </head>
 <body class="bg-zinc-950 text-white min-h-screen">
+
+<!-- PARTICLE CANVAS - Full-screen subtle gold dust / radar particles -->
+<canvas id="particle-canvas"></canvas>
 
 <div class="bg-yellow-400/10 border-b border-yellow-400/20 py-2 overflow-hidden w-full sticky top-0 z-30 backdrop-blur-md">
     <div class="animate-marquee whitespace-nowrap">
@@ -792,8 +675,190 @@
         document.getElementById('countdown').innerHTML = 
             `${d.toString().padStart(2, '0')}d : ${h.toString().padStart(2, '0')}h : ${m.toString().padStart(2, '0')}m : ${s.toString().padStart(2, '0')}s`;
     }
-    setInterval(updateCountdown, 1000);
-    updateCountdown();
+
+    // === PARTICLE SYSTEM - Gold dust / radar particles (performance optimized) ===
+    function initParticleSystem() {
+        const canvas = document.getElementById('particle-canvas');
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d', { alpha: true });
+        
+        let width = window.innerWidth;
+        let height = window.innerHeight;
+        let particles = [];
+        const PARTICLE_COUNT = 110; // Balanced for 60fps on most devices
+
+        class Particle {
+            constructor() {
+                this.reset();
+            }
+            reset() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height * 1.2;
+                this.vx = (Math.random() - 0.5) * 0.8;
+                this.vy = - (Math.random() * 1.6 + 0.4); // gentle upward drift
+                this.size = Math.random() * 2.8 + 0.6;
+                this.alpha = Math.random() * 0.75 + 0.25;
+                this.life = Math.random() * 180 + 90;
+            }
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                this.vy -= 0.006; // light upward acceleration
+                this.alpha -= 0.0035;
+                this.life--;
+                if (this.alpha <= 0 || this.life <= 0 || this.y < -20) {
+                    this.reset();
+                }
+                // Gentle horizontal bounce
+                if (this.x < 0 || this.x > width) this.vx *= -0.92;
+            }
+            draw() {
+                ctx.save();
+                ctx.globalAlpha = this.alpha;
+                // Gold glow
+                ctx.shadowBlur = 12;
+                ctx.shadowColor = '#F5D55F';
+                ctx.fillStyle = '#F5D55F';
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+                // Tiny inner highlight for premium sparkle
+                ctx.shadowBlur = 3;
+                ctx.fillStyle = 'rgba(255,255,255,0.9)';
+                ctx.fillRect(this.x - 0.6, this.y - 0.6, 1.2, 1.2);
+                ctx.restore();
+            }
+        }
+
+        function resizeCanvas() {
+            width = window.innerWidth;
+            height = window.innerHeight;
+            canvas.width = width;
+            canvas.height = height;
+        }
+
+        function createParticles() {
+            particles = [];
+            for (let i = 0; i < PARTICLE_COUNT; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, width, height);
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                particles[i].draw();
+            }
+            requestAnimationFrame(animateParticles);
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+        createParticles();
+        animateParticles();
+        
+        console.log('%c✅ Concrete Radar Particle System Active (GSAP + 110 particles)', 'color:#F5D55F; font-family:monospace; font-size:10px');
+    }
+
+    // === GSAP PREMIUM ANIMATIONS (Explored & Optimized) ===
+    function initGSAPAnimations() {
+        if (typeof gsap === 'undefined') return;
+
+        // 1. Title entrance - premium liquid feel
+        gsap.fromTo('.glow-yellow', {
+            y: -40,
+            opacity: 0,
+            scale: 0.92
+        }, {
+            y: 0,
+            opacity: 1,
+            scale: 1,
+            duration: 1.6,
+            ease: "power4.out",
+            stagger: 0.25
+        });
+
+        // 2. Staggered card reveal (CORE TEAM + MOAI + CONTENT CREATORS)
+        gsap.from('.card', {
+            opacity: 0,
+            y: 70,
+            rotationX: -12,
+            duration: 0.85,
+            ease: "power3.out",
+            stagger: {
+                amount: 0.9,
+                from: "random"
+            },
+            delay: 0.4
+        });
+
+        // 3. Floating button orbit + shimmer (GSAP timeline)
+        const btn = document.querySelector('.floating-btn');
+        if (btn) {
+            gsap.to(btn, {
+                y: -14,
+                rotation: 4,
+                duration: 2.4,
+                ease: "sine.inOut",
+                repeat: -1,
+                yoyo: true
+            });
+            
+            // Inner ring pulse via GSAP (more performant than pure CSS)
+            gsap.to(btn, {
+                scale: 1.08,
+                duration: 1.4,
+                ease: "sine.inOut",
+                repeat: -1,
+                yoyo: true
+            });
+        }
+
+        // 4. Tier labels metallic entrance
+        gsap.from('.tier-label', {
+            scale: 0.6,
+            opacity: 0,
+            duration: 1,
+            ease: "back.out(1.4)",
+            stagger: 0.15,
+            delay: 0.6
+        });
+
+        // 5. Accordion headers get a subtle hover boost via GSAP
+        document.querySelectorAll('.accordion').forEach(acc => {
+            acc.addEventListener('mouseenter', () => {
+                gsap.to(acc.querySelector('.accordion-header'), {
+                    x: 8,
+                    duration: 0.3,
+                    ease: "power2.out"
+                });
+            });
+            acc.addEventListener('mouseleave', () => {
+                gsap.to(acc.querySelector('.accordion-header'), {
+                    x: 0,
+                    duration: 0.4,
+                    ease: "power2.out"
+                });
+            });
+        });
+
+        console.log('%c✅ GSAP Premium Animations Initialized (optimized for 60fps)', 'color:#F5D55F; font-family:monospace; font-size:10px');
+    }
+
+    // Main initialization - everything fires after DOM is ready
+    window.onload = function() {
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+        
+        // Particle system (lightweight canvas)
+        initParticleSystem();
+        
+        // GSAP explorations & performance-optimized animations
+        initGSAPAnimations();
+        
+        console.log('%c🚀 Concrete Radar v3.0 — Particles + GSAP + Performance Optimized', 'background:#F5D55F; color:#1A1A1A; padding:2px 6px; border-radius:2px; font-weight:700');
+    };
 </script>
 
 </body>
