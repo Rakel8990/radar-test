@@ -12,186 +12,248 @@
     body {
         font-family: 'Inter', system-ui, sans-serif;
         overflow-x: hidden;
-        background: radial-gradient(circle at center, #1A1A1A 0%, #111111 100%);
     }
     .title-font {
         font-family: 'Space Grotesk', sans-serif;
     }
 
-    /* === ULTRA-PREMIUM QUIET LUXURY UX/UI v4.0 === */
-    /* Subtle depth background – refined, no particles, no distraction */
-    body::before {
-        content: '';
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: 
-            radial-gradient(circle at 30% 20%, rgba(245, 213, 95, 0.07) 0%, transparent 50%),
-            radial-gradient(circle at 70% 80%, rgba(245, 213, 95, 0.07) 0%, transparent 50%);
-        background-size: 200% 200%;
-        animation: subtleBreath 25s ease infinite;
-        z-index: -1;
-        pointer-events: none;
-        opacity: 0.6;
-        mix-blend-mode: screen;
-    }
-
-    @keyframes subtleBreath {
-        0%, 100% { background-position: 0% 0%; }
-        50% { background-position: 100% 100%; }
-    }
-
-    /* Refined title – elegant metallic depth, no over-shine */
-    .glow-yellow {
-        text-shadow: 
-            0 0 20px rgb(245 213 95 / 0.6),
-            0 0 40px rgb(245 213 95 / 0.4),
-            0 4px 12px rgb(0 0 0 / 0.3);
-        position: relative;
-    }
-
-    .glow-yellow::after {
-        content: '';
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
-        animation: titleSweep 6s linear infinite;
-        opacity: 0.15;
-        pointer-events: none;
-        z-index: 1;
-    }
-
-    @keyframes titleSweep {
-        0% { transform: translateX(-150%); }
-        100% { transform: translateX(300%); }
-    }
-
-    /* Premium card system – quiet luxury hover with refined lift + gold rim */
     .card {
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        position: relative;
-        overflow: hidden;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
-
-    .card::before {
-        content: '';
-        position: absolute;
-        inset: 0;
-        border: 1px solid transparent;
-        background: linear-gradient(#F5D55F, #F5D55F) padding-box,
-                    linear-gradient(135deg, transparent, rgba(245,213,95,0.25), transparent) border-box;
-        opacity: 0;
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        border-radius: inherit;
-    }
-
     .card:hover {
-        transform: translateY(-8px);
-        box-shadow: 
-            0 25px 50px -12px rgb(245 213 95 / 0.35),
-            0 0 0 1px rgba(245, 213, 95, 0.3) inset;
+        transform: translateY(-6px);
+        box-shadow: 0 0 30px -5px rgb(245 213 95 / 0.5);
     }
 
-    .card:hover::before {
-        opacity: 1;
+    .accordion-header {
+        transition: all 0.3s ease;
+    }
+    .accordion-content {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .accordion.active .accordion-content {
+        max-height: 1200px;
+    }
+    .chevron {
+        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .accordion.active .chevron {
+        transform: rotate(180deg);
     }
 
-    /* Elegant floating button – refined pulse, no overkill rings */
+    .glow-yellow {
+        text-shadow: 0 0 25px rgb(245 213 95);
+    }
+
+    /* TICKER ANIMATION */
+    @keyframes marquee {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+    }
+    .animate-marquee { display: flex; animation: marquee 35s linear infinite; }
+
+    /* FLOATING BUTTON */
     .floating-btn {
         position: fixed;
         bottom: 25px;
         right: 25px;
         background: #F5D55F;
         color: black;
-        padding: 14px 22px;
-        border-radius: 9999px;
+        padding: 12px 18px;
+        border-radius: 30px;
+        text-decoration: none;
         font-weight: 600;
         font-size: 14px;
-        box-shadow: 
-            0 12px 25px -6px rgb(245 213 95 / 0.5),
-            0 0 0 4px rgba(245, 213, 95, 0.15);
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 10px 20px -5px rgb(245 213 95 / 0.4);
+        transition: all 0.2s ease;
         display: flex;
         align-items: center;
-        gap: 8px;
+        gap: 6px;
         z-index: 60;
-        animation: floatGentle 3s ease-in-out infinite;
     }
 
-    .floating-btn:hover {
-        transform: scale(1.05) translateY(-3px);
-        box-shadow: 
-            0 20px 35px -10px rgb(245 213 95 / 0.6),
-            0 0 0 6px rgba(245, 213, 95, 0.25);
+    /* BOTTOM-RIGHT POPUP */
+    #popup {
+        display: none;
+        position: fixed;
+        bottom: 85px; 
+        right: 25px;
+        width: 320px;
+        max-width: calc(100vw - 50px);
+        background: #1A1A1A;
+        border-radius: 20px;
+        border: 1px solid #F5D55F;
+        padding: 24px;
+        z-index: 100;
+        box-shadow: 0 20px 40px -10px rgba(0,0,0,0.8), 0 0 20px -5px rgb(245 213 95 / 0.3);
     }
 
-    @keyframes floatGentle {
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-6px); }
+    .yellow-icon {
+        filter: invert(85%) sepia(26%) saturate(1000%) hue-rotate(345deg) brightness(102%) contrast(101%);
     }
 
-    /* Tier labels – clean metallic finish with tasteful shine */
     .tier-label {
-        position: relative;
-        overflow: hidden;
-    }
-
-    .tier-label::after {
-        content: '';
-        position: absolute;
-        top: -50%;
-        left: -150%;
-        width: 50%;
-        height: 300%;
-        background: linear-gradient(
-            90deg,
-            transparent,
-            rgba(255,255,255,0.4),
-            transparent
-        );
-        animation: labelShine 4s linear infinite;
-        transform: skewX(-20deg);
-    }
-
-    @keyframes labelShine {
-        0% { left: -150%; }
-        100% { left: 250%; }
-    }
-
-    /* Accordion – refined depth and active state */
-    .accordion {
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .accordion.active {
-        border-color: rgba(245, 213, 95, 0.35) !important;
-        box-shadow: 0 0 30px -10px rgb(245 213 95 / 0.3);
-    }
-
-    /* Marquee – smoother, premium neon edge */
-    .animate-marquee {
-        filter: drop-shadow(0 3px 10px rgb(245 213 95 / 0.3));
-    }
-
-    /* Countdown – clean digital elegance */
-    #countdown {
-        font-variant-numeric: tabular-nums;
-        text-shadow: 0 0 20px rgb(245 213 95 / 0.6);
-    }
-
-    /* General micro-interactions for premium UX feel */
-    .card,
-    .tier-label,
-    .floating-btn,
-    .accordion-header {
-        transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        @apply text-[10px] font-bold tracking-[0.2em] uppercase mb-4 inline-block px-3 py-1 rounded-full;
     }
 
     @media (max-width: 640px) {
         .title-font.text-7xl { font-size: 3.5rem; }
         .text-xl { font-size: 1.1rem; }
+    }
+
+    /* === EXPERT UX/UI PREMIUM EFFECTS – REFINED & EXPENSIVE (v5.0) === */
+    /* Sophisticated background depth – quiet luxury with premium movement */
+    body::before {
+        content: '';
+        position: fixed;
+        inset: 0;
+        background: radial-gradient(circle at 40% 30%, rgba(245,213,95,0.09) 0%, transparent 60%),
+                    radial-gradient(circle at 70% 80%, rgba(245,213,95,0.08) 0%, transparent 55%);
+        background-size: 180% 180%;
+        animation: backgroundBreath 28s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+        z-index: -1;
+        pointer-events: none;
+        mix-blend-mode: screen;
+        opacity: 0.65;
+    }
+
+    @keyframes backgroundBreath {
+        0%, 100% { background-position: 0% 0%; }
+        50% { background-position: 100% 100%; }
+    }
+
+    /* Refined title glow – expensive metallic elegance with slow liquid sweep */
+    .glow-yellow {
+        text-shadow: 
+            0 0 18px rgb(245 213 95),
+            0 0 36px rgb(245 213 95),
+            0 0 65px rgb(245 213 95 / 0.7),
+            0 6px 18px rgb(0 0 0 / 0.4);
+        animation: titleBreath 4s ease-in-out infinite alternate;
+        position: relative;
+    }
+
+    .glow-yellow::after {
+        content: '';
+        position: absolute;
+        top: -40%;
+        left: -120%;
+        width: 40%;
+        height: 280%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent);
+        animation: titleSweep 7s linear infinite;
+        transform: skewX(-25deg);
+        pointer-events: none;
+        z-index: 1;
+        opacity: 0.25;
+    }
+
+    @keyframes titleBreath {
+        from { text-shadow: 0 0 18px rgb(245 213 95), 0 0 36px rgb(245 213 95), 0 0 65px rgb(245 213 95 / 0.6); }
+        to   { text-shadow: 0 0 28px rgb(245 213 95), 0 0 55px rgb(245 213 95), 0 0 90px rgb(245 213 95 / 0.85), 0 8px 22px rgb(0 0 0 / 0.35); }
+    }
+
+    @keyframes titleSweep {
+        0%   { left: -120%; }
+        100% { left: 220%; }
+    }
+
+    /* Premium card hover – refined lift, gold inner rim, subtle scale */
+    .card {
+        transition: all 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+    }
+
+    .card::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: 16px;
+        background: linear-gradient(135deg, transparent, rgba(245,213,95,0.18), transparent);
+        opacity: 0;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: -1;
+        border: 1px solid transparent;
+    }
+
+    .card:hover {
+        transform: translateY(-9px) scale(1.025);
+        box-shadow: 
+            0 28px 55px -15px rgb(245 213 95 / 0.45),
+            0 0 0 1.5px rgba(245,213,95,0.35) inset;
+    }
+
+    .card:hover::before {
+        opacity: 1;
+    }
+
+    /* Floating button – elegant, expensive float with soft inner glow */
+    .floating-btn {
+        animation: floatLux 3.2s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+        box-shadow: 
+            0 14px 28px -8px rgb(245 213 95 / 0.5),
+            0 0 0 5px rgba(245,213,95,0.2);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .floating-btn:hover {
+        transform: scale(1.06);
+        box-shadow: 
+            0 18px 35px -10px rgb(245 213 95 / 0.65),
+            0 0 0 7px rgba(245,213,95,0.3);
+    }
+
+    @keyframes floatLux {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-8px); }
+    }
+
+    /* Tier labels – clean metallic with premium shine sweep */
+    .tier-label {
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 0 0 1px rgba(245,213,95,0.25) inset;
+    }
+
+    .tier-label::after {
+        content: '';
+        position: absolute;
+        top: -60%;
+        left: -180%;
+        width: 60%;
+        height: 300%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.55), transparent);
+        animation: shineLux 4.2s linear infinite;
+        transform: skewX(-22deg);
+        opacity: 0.7;
+    }
+
+    @keyframes shineLux {
+        0%   { left: -180%; }
+        100% { left: 280%; }
+    }
+
+    /* Accordion – refined active state with gold depth */
+    .accordion {
+        transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .accordion.active {
+        border-color: rgba(245,213,95,0.4) !important;
+        box-shadow: 0 0 35px -12px rgb(245 213 95);
+    }
+
+    /* Marquee – premium soft neon edge */
+    .animate-marquee {
+        filter: drop-shadow(0 4px 12px rgb(245 213 95 / 0.35));
+    }
+
+    /* Countdown – elegant digital glow */
+    #countdown {
+        text-shadow: 0 0 18px rgb(245 213 95);
+        letter-spacing: -1px;
     }
 </style>
 </head>
@@ -382,6 +444,7 @@
         <div>
             <span class="tier-label bg-amber-900/10 text-amber-700 border border-zinc-900">Standard Tier • 40 Slots</span>
             <div class="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 gap-2">
+                <div class="h-8 border border-zinc-900 rounded-md bg-zinc-950/20 flex items-center justify-center text-[8px] text-zinc-800">EMPTY</div>
                 <div class="h-8 border border-zinc-900 rounded-md bg-zinc-950/20 flex items-center justify-center text-[8px] text-zinc-800">EMPTY</div>
                 <div class="h-8 border border-zinc-900 rounded-md bg-zinc-950/20 flex items-center justify-center text-[8px] text-zinc-800">EMPTY</div>
                 <div class="h-8 border border-zinc-900 rounded-md bg-zinc-950/20 flex items-center justify-center text-[8px] text-zinc-800">EMPTY</div>
