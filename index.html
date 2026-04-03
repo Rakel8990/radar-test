@@ -6,107 +6,20 @@
 <title>Concrete Radar</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-<!-- GSAP CDN - High-performance animation library -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600&display=swap');
 
     body {
         font-family: 'Inter', system-ui, sans-serif;
         overflow-x: hidden;
+        background: radial-gradient(circle at center, #1A1A1A 0%, #111111 100%);
     }
     .title-font {
         font-family: 'Space Grotesk', sans-serif;
     }
 
-    .card {
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    .card:hover {
-        transform: translateY(-6px);
-        box-shadow: 0 0 30px -5px rgb(245 213 95 / 0.5);
-    }
-
-    .accordion-header {
-        transition: all 0.3s ease;
-    }
-    .accordion-content {
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    .accordion.active .accordion-content {
-        max-height: 1200px;
-    }
-    .chevron {
-        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    .accordion.active .chevron {
-        transform: rotate(180deg);
-    }
-
-    .glow-yellow {
-        text-shadow: 0 0 25px rgb(245 213 95);
-    }
-
-    /* TICKER ANIMATION */
-    @keyframes marquee {
-        0% { transform: translateX(0); }
-        100% { transform: translateX(-50%); }
-    }
-    .animate-marquee { display: flex; animation: marquee 35s linear infinite; }
-
-    /* FLOATING BUTTON */
-    .floating-btn {
-        position: fixed;
-        bottom: 25px;
-        right: 25px;
-        background: #F5D55F;
-        color: black;
-        padding: 12px 18px;
-        border-radius: 30px;
-        text-decoration: none;
-        font-weight: 600;
-        font-size: 14px;
-        box-shadow: 0 10px 20px -5px rgb(245 213 95 / 0.4);
-        transition: all 0.2s ease;
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        z-index: 60;
-    }
-
-    /* BOTTOM-RIGHT POPUP */
-    #popup {
-        display: none;
-        position: fixed;
-        bottom: 85px; 
-        right: 25px;
-        width: 320px;
-        max-width: calc(100vw - 50px);
-        background: #1A1A1A;
-        border-radius: 20px;
-        border: 1px solid #F5D55F;
-        padding: 24px;
-        z-index: 100;
-        box-shadow: 0 20px 40px -10px rgba(0,0,0,0.8), 0 0 20px -5px rgb(245 213 95 / 0.3);
-    }
-
-    .yellow-icon {
-        filter: invert(85%) sepia(26%) saturate(1000%) hue-rotate(345deg) brightness(102%) contrast(101%);
-    }
-
-    .tier-label {
-        @apply text-[10px] font-bold tracking-[0.2em] uppercase mb-4 inline-block px-3 py-1 rounded-full;
-    }
-
-    @media (max-width: 640px) {
-        .title-font.text-7xl { font-size: 3.5rem; }
-        .text-xl { font-size: 1.1rem; }
-    }
-
-    /* === ENHANCED PREMIUM EFFECTS + GSAP + PARTICLES v3.0 === */
-    /* Ultra-luxury animated tech grid + depth layers (performance optimized) */
+    /* === ULTRA-PREMIUM QUIET LUXURY UX/UI v4.0 === */
+    /* Subtle depth background – refined, no particles, no distraction */
     body::before {
         content: '';
         position: fixed;
@@ -114,202 +27,175 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background-image: 
-            radial-gradient(circle at 25% 25%, rgba(245, 213, 95, 0.15) 1px, transparent 0),
-            radial-gradient(circle at 75% 75%, rgba(245, 213, 95, 0.15) 1px, transparent 0),
-            linear-gradient(90deg, transparent 49%, rgba(245,213,95,0.04) 50%, transparent 51%),
-            linear-gradient(0deg, transparent 49%, rgba(245,213,95,0.04) 50%, transparent 51%);
-        background-size: 120px 120px, 120px 120px, 80px 80px, 80px 80px;
-        animation: gridMove 60s linear infinite;
-        z-index: -3;
-        opacity: 0.09;
+        background: 
+            radial-gradient(circle at 30% 20%, rgba(245, 213, 95, 0.07) 0%, transparent 50%),
+            radial-gradient(circle at 70% 80%, rgba(245, 213, 95, 0.07) 0%, transparent 50%);
+        background-size: 200% 200%;
+        animation: subtleBreath 25s ease infinite;
+        z-index: -1;
         pointer-events: none;
-        mix-blend-mode: screen;
-        will-change: background-position;
-    }
-
-    body::after {
-        content: '';
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: radial-gradient(circle at 50% 30%, rgba(245, 213, 95, 0.08) 0%, transparent 60%);
-        animation: radialPulse 25s ease-in-out infinite alternate;
-        z-index: -4;
-        pointer-events: none;
-        mix-blend-mode: overlay;
         opacity: 0.6;
-        will-change: transform, opacity;
+        mix-blend-mode: screen;
     }
 
-    @keyframes gridMove {
-        0% { background-position: 0 0, 40px 40px, 0 0, 0 0; }
-        100% { background-position: 120px 120px, 160px 160px, 80px 80px, 80px 80px; }
+    @keyframes subtleBreath {
+        0%, 100% { background-position: 0% 0%; }
+        50% { background-position: 100% 100%; }
     }
 
-    @keyframes radialPulse {
-        0% { opacity: 0.4; transform: scale(0.95); }
-        100% { opacity: 0.85; transform: scale(1.08); }
-    }
-
-    /* Deep luxurious title glow + metallic liquid shine sweep */
+    /* Refined title – elegant metallic depth, no over-shine */
     .glow-yellow {
         text-shadow: 
-            0 0 20px rgb(245 213 95),
-            0 0 40px rgb(245 213 95),
-            0 0 70px rgb(245 213 95 / 0.8),
-            0 0 110px rgb(245 213 95 / 0.4),
-            0 0 150px rgb(245 213 95 / 0.2);
-        animation: pulseGlow 2.8s ease-in-out infinite alternate;
+            0 0 20px rgb(245 213 95 / 0.6),
+            0 0 40px rgb(245 213 95 / 0.4),
+            0 4px 12px rgb(0 0 0 / 0.3);
         position: relative;
-        overflow: hidden;
-        will-change: text-shadow;
     }
 
     .glow-yellow::after {
         content: '';
         position: absolute;
-        top: -30%;
-        left: -180%;
-        width: 50%;
-        height: 280%;
-        background: linear-gradient(
-            110deg,
-            transparent 30%,
-            rgba(255,255,255,0.75) 50%,
-            transparent 70%
-        );
-        animation: titleLiquidShine 5.5s cubic-bezier(0.45, 0, 0.55, 1) infinite;
-        transform: skewX(-18deg);
-        z-index: 2;
+        inset: 0;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+        animation: titleSweep 6s linear infinite;
+        opacity: 0.15;
         pointer-events: none;
+        z-index: 1;
     }
 
-    @keyframes pulseGlow {
-        0% { text-shadow: 
-            0 0 20px rgb(245 213 95),
-            0 0 45px rgb(245 213 95),
-            0 0 75px rgb(245 213 95 / 0.6); }
-        100% { text-shadow: 
-            0 0 35px rgb(245 213 95),
-            0 0 70px rgb(245 213 95),
-            0 0 110px rgb(245 213 95 / 0.95),
-            0 0 160px rgb(245 213 95 / 0.45); }
+    @keyframes titleSweep {
+        0% { transform: translateX(-150%); }
+        100% { transform: translateX(300%); }
     }
 
-    @keyframes titleLiquidShine {
-        0% { left: -180%; }
-        100% { left: 220%; }
-    }
-
-    /* Premium card with GSAP-ready entrance */
+    /* Premium card system – quiet luxury hover with refined lift + gold rim */
     .card {
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         position: relative;
-        will-change: transform, opacity;
+        overflow: hidden;
+    }
+
+    .card::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border: 1px solid transparent;
+        background: linear-gradient(#F5D55F, #F5D55F) padding-box,
+                    linear-gradient(135deg, transparent, rgba(245,213,95,0.25), transparent) border-box;
+        opacity: 0;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        border-radius: inherit;
     }
 
     .card:hover {
-        transform: translateY(-12px) scale(1.04);
+        transform: translateY(-8px);
         box-shadow: 
-            0 30px 60px -15px rgb(245 213 95 / 0.6),
-            0 0 0 2px rgba(245, 213, 95, 0.35) inset,
-            0 0 40px 15px rgb(245 213 95 / 0.25);
+            0 25px 50px -12px rgb(245 213 95 / 0.35),
+            0 0 0 1px rgba(245, 213, 95, 0.3) inset;
     }
 
-    /* Ultra-premium floating button - GSAP controlled + CSS fallback */
+    .card:hover::before {
+        opacity: 1;
+    }
+
+    /* Elegant floating button – refined pulse, no overkill rings */
     .floating-btn {
-        will-change: transform;
+        position: fixed;
+        bottom: 25px;
+        right: 25px;
+        background: #F5D55F;
+        color: black;
+        padding: 14px 22px;
+        border-radius: 9999px;
+        font-weight: 600;
+        font-size: 14px;
+        box-shadow: 
+            0 12px 25px -6px rgb(245 213 95 / 0.5),
+            0 0 0 4px rgba(245, 213, 95, 0.15);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        z-index: 60;
+        animation: floatGentle 3s ease-in-out infinite;
     }
 
-    /* Tier labels with metallic shine + pulse */
+    .floating-btn:hover {
+        transform: scale(1.05) translateY(-3px);
+        box-shadow: 
+            0 20px 35px -10px rgb(245 213 95 / 0.6),
+            0 0 0 6px rgba(245, 213, 95, 0.25);
+    }
+
+    @keyframes floatGentle {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-6px); }
+    }
+
+    /* Tier labels – clean metallic finish with tasteful shine */
     .tier-label {
         position: relative;
         overflow: hidden;
-        box-shadow: 0 0 0 1px rgba(245,213,95,0.3) inset;
-        will-change: transform;
     }
 
     .tier-label::after {
         content: '';
         position: absolute;
-        top: -60%;
-        left: -200%;
-        width: 70%;
-        height: 320%;
+        top: -50%;
+        left: -150%;
+        width: 50%;
+        height: 300%;
         background: linear-gradient(
-            100deg,
+            90deg,
             transparent,
-            rgba(255,255,255,0.65),
+            rgba(255,255,255,0.4),
             transparent
         );
-        animation: shinePremium 3.8s linear infinite;
-        transform: skewX(-22deg);
-        z-index: 1;
-        opacity: 0.75;
+        animation: labelShine 4s linear infinite;
+        transform: skewX(-20deg);
     }
 
-    .tier-label::before {
-        content: '';
-        position: absolute;
-        inset: 0;
-        border: 1px solid #F5D55F;
-        border-radius: 9999px;
-        animation: tierPulse 2.2s ease-in-out infinite;
-        opacity: 0.3;
-        z-index: -1;
+    @keyframes labelShine {
+        0% { left: -150%; }
+        100% { left: 250%; }
     }
 
-    @keyframes shinePremium {
-        0% { left: -200%; }
-        100% { left: 280%; }
+    /* Accordion – refined depth and active state */
+    .accordion {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    @keyframes tierPulse {
-        0%, 100% { transform: scale(1); opacity: 0.3; }
-        50% { transform: scale(1.12); opacity: 0.6; }
-    }
-
-    /* Accordion active state glow */
     .accordion.active {
-        box-shadow: 0 0 35px 10px rgb(245 213 95 / 0.25);
-        border-color: rgb(245 213 95 / 0.4) !important;
+        border-color: rgba(245, 213, 95, 0.35) !important;
+        box-shadow: 0 0 30px -10px rgb(245 213 95 / 0.3);
     }
 
-    /* Countdown digital pulse */
+    /* Marquee – smoother, premium neon edge */
+    .animate-marquee {
+        filter: drop-shadow(0 3px 10px rgb(245 213 95 / 0.3));
+    }
+
+    /* Countdown – clean digital elegance */
     #countdown {
-        text-shadow: 
-            0 0 15px rgb(245 213 95),
-            0 0 30px rgb(245 213 95 / 0.7);
-        animation: countdownPulse 1.8s ease-in-out infinite alternate;
-        letter-spacing: -2px;
-        will-change: text-shadow;
+        font-variant-numeric: tabular-nums;
+        text-shadow: 0 0 20px rgb(245 213 95 / 0.6);
     }
 
-    @keyframes countdownPulse {
-        0% { text-shadow: 0 0 15px rgb(245 213 95); }
-        100% { text-shadow: 0 0 35px rgb(245 213 95), 0 0 55px rgb(245 213 95 / 0.8); }
+    /* General micro-interactions for premium UX feel */
+    .card,
+    .tier-label,
+    .floating-btn,
+    .accordion-header {
+        transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    /* PARTICLE CANVAS STYLES - optimized for 60fps */
-    #particle-canvas {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -5;
-        pointer-events: none;
-        mix-blend-mode: screen;
-        opacity: 0.75;
+    @media (max-width: 640px) {
+        .title-font.text-7xl { font-size: 3.5rem; }
+        .text-xl { font-size: 1.1rem; }
     }
 </style>
 </head>
 <body class="bg-zinc-950 text-white min-h-screen">
-
-<!-- PARTICLE CANVAS - Full-screen subtle gold dust / radar particles -->
-<canvas id="particle-canvas"></canvas>
 
 <div class="bg-yellow-400/10 border-b border-yellow-400/20 py-2 overflow-hidden w-full sticky top-0 z-30 backdrop-blur-md">
     <div class="animate-marquee whitespace-nowrap">
@@ -622,7 +508,7 @@
 </div>
 
 <a href="javascript:void(0)" onclick="openPopup()" class="floating-btn">
-    <i class="fa-solid fa-plus"></i> <span>Get Listed</span>
+    <i class="fa-solid fa-plus"></i> Get Listed
 </a>
 
 <div id="popup">
@@ -675,190 +561,8 @@
         document.getElementById('countdown').innerHTML = 
             `${d.toString().padStart(2, '0')}d : ${h.toString().padStart(2, '0')}h : ${m.toString().padStart(2, '0')}m : ${s.toString().padStart(2, '0')}s`;
     }
-
-    // === PARTICLE SYSTEM - Gold dust / radar particles (performance optimized) ===
-    function initParticleSystem() {
-        const canvas = document.getElementById('particle-canvas');
-        if (!canvas) return;
-        const ctx = canvas.getContext('2d', { alpha: true });
-        
-        let width = window.innerWidth;
-        let height = window.innerHeight;
-        let particles = [];
-        const PARTICLE_COUNT = 110; // Balanced for 60fps on most devices
-
-        class Particle {
-            constructor() {
-                this.reset();
-            }
-            reset() {
-                this.x = Math.random() * width;
-                this.y = Math.random() * height * 1.2;
-                this.vx = (Math.random() - 0.5) * 0.8;
-                this.vy = - (Math.random() * 1.6 + 0.4); // gentle upward drift
-                this.size = Math.random() * 2.8 + 0.6;
-                this.alpha = Math.random() * 0.75 + 0.25;
-                this.life = Math.random() * 180 + 90;
-            }
-            update() {
-                this.x += this.vx;
-                this.y += this.vy;
-                this.vy -= 0.006; // light upward acceleration
-                this.alpha -= 0.0035;
-                this.life--;
-                if (this.alpha <= 0 || this.life <= 0 || this.y < -20) {
-                    this.reset();
-                }
-                // Gentle horizontal bounce
-                if (this.x < 0 || this.x > width) this.vx *= -0.92;
-            }
-            draw() {
-                ctx.save();
-                ctx.globalAlpha = this.alpha;
-                // Gold glow
-                ctx.shadowBlur = 12;
-                ctx.shadowColor = '#F5D55F';
-                ctx.fillStyle = '#F5D55F';
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fill();
-                // Tiny inner highlight for premium sparkle
-                ctx.shadowBlur = 3;
-                ctx.fillStyle = 'rgba(255,255,255,0.9)';
-                ctx.fillRect(this.x - 0.6, this.y - 0.6, 1.2, 1.2);
-                ctx.restore();
-            }
-        }
-
-        function resizeCanvas() {
-            width = window.innerWidth;
-            height = window.innerHeight;
-            canvas.width = width;
-            canvas.height = height;
-        }
-
-        function createParticles() {
-            particles = [];
-            for (let i = 0; i < PARTICLE_COUNT; i++) {
-                particles.push(new Particle());
-            }
-        }
-
-        function animateParticles() {
-            ctx.clearRect(0, 0, width, height);
-            for (let i = 0; i < particles.length; i++) {
-                particles[i].update();
-                particles[i].draw();
-            }
-            requestAnimationFrame(animateParticles);
-        }
-
-        window.addEventListener('resize', resizeCanvas);
-        resizeCanvas();
-        createParticles();
-        animateParticles();
-        
-        console.log('%c✅ Concrete Radar Particle System Active (GSAP + 110 particles)', 'color:#F5D55F; font-family:monospace; font-size:10px');
-    }
-
-    // === GSAP PREMIUM ANIMATIONS (Explored & Optimized) ===
-    function initGSAPAnimations() {
-        if (typeof gsap === 'undefined') return;
-
-        // 1. Title entrance - premium liquid feel
-        gsap.fromTo('.glow-yellow', {
-            y: -40,
-            opacity: 0,
-            scale: 0.92
-        }, {
-            y: 0,
-            opacity: 1,
-            scale: 1,
-            duration: 1.6,
-            ease: "power4.out",
-            stagger: 0.25
-        });
-
-        // 2. Staggered card reveal (CORE TEAM + MOAI + CONTENT CREATORS)
-        gsap.from('.card', {
-            opacity: 0,
-            y: 70,
-            rotationX: -12,
-            duration: 0.85,
-            ease: "power3.out",
-            stagger: {
-                amount: 0.9,
-                from: "random"
-            },
-            delay: 0.4
-        });
-
-        // 3. Floating button orbit + shimmer (GSAP timeline)
-        const btn = document.querySelector('.floating-btn');
-        if (btn) {
-            gsap.to(btn, {
-                y: -14,
-                rotation: 4,
-                duration: 2.4,
-                ease: "sine.inOut",
-                repeat: -1,
-                yoyo: true
-            });
-            
-            // Inner ring pulse via GSAP (more performant than pure CSS)
-            gsap.to(btn, {
-                scale: 1.08,
-                duration: 1.4,
-                ease: "sine.inOut",
-                repeat: -1,
-                yoyo: true
-            });
-        }
-
-        // 4. Tier labels metallic entrance
-        gsap.from('.tier-label', {
-            scale: 0.6,
-            opacity: 0,
-            duration: 1,
-            ease: "back.out(1.4)",
-            stagger: 0.15,
-            delay: 0.6
-        });
-
-        // 5. Accordion headers get a subtle hover boost via GSAP
-        document.querySelectorAll('.accordion').forEach(acc => {
-            acc.addEventListener('mouseenter', () => {
-                gsap.to(acc.querySelector('.accordion-header'), {
-                    x: 8,
-                    duration: 0.3,
-                    ease: "power2.out"
-                });
-            });
-            acc.addEventListener('mouseleave', () => {
-                gsap.to(acc.querySelector('.accordion-header'), {
-                    x: 0,
-                    duration: 0.4,
-                    ease: "power2.out"
-                });
-            });
-        });
-
-        console.log('%c✅ GSAP Premium Animations Initialized (optimized for 60fps)', 'color:#F5D55F; font-family:monospace; font-size:10px');
-    }
-
-    // Main initialization - everything fires after DOM is ready
-    window.onload = function() {
-        updateCountdown();
-        setInterval(updateCountdown, 1000);
-        
-        // Particle system (lightweight canvas)
-        initParticleSystem();
-        
-        // GSAP explorations & performance-optimized animations
-        initGSAPAnimations();
-        
-        console.log('%c🚀 Concrete Radar v3.0 — Particles + GSAP + Performance Optimized', 'background:#F5D55F; color:#1A1A1A; padding:2px 6px; border-radius:2px; font-weight:700');
-    };
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
 </script>
 
 </body>
