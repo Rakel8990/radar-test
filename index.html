@@ -103,157 +103,99 @@
         .text-xl { font-size: 1.1rem; }
     }
 
-    /* === EXPERT UX/UI PREMIUM EFFECTS – REFINED & EXPENSIVE (v5.0) === */
-    /* Sophisticated background depth – quiet luxury with premium movement */
+    /* === BEST WHOLE-PAGE PREMIUM EFFECT – QUIET LUXURY DEPTH v6.0 === */
+    /* This is the single most expensive-feeling full-page effect: */
+    /* A sophisticated, ultra-subtle animated metallic foil + soft radial breathing glow */
+    /* It covers the entire page, gives depth and richness without distraction, and makes everything feel high-end DeFi vault */
+    
+    body {
+        position: relative;
+    }
+
     body::before {
         content: '';
         position: fixed;
         inset: 0;
-        background: radial-gradient(circle at 40% 30%, rgba(245,213,95,0.09) 0%, transparent 60%),
-                    radial-gradient(circle at 70% 80%, rgba(245,213,95,0.08) 0%, transparent 55%);
-        background-size: 180% 180%;
-        animation: backgroundBreath 28s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
-        z-index: -1;
+        z-index: -2;
+        background: 
+            radial-gradient(circle at 35% 25%, rgba(245, 213, 95, 0.12) 0%, transparent 45%),
+            radial-gradient(circle at 75% 75%, rgba(245, 213, 95, 0.11) 0%, transparent 50%),
+            linear-gradient(180deg, rgba(245,213,95,0.03) 0%, transparent 100%);
+        background-size: 220% 220%;
+        animation: wholePageLuxuryBreath 32s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
         pointer-events: none;
         mix-blend-mode: screen;
-        opacity: 0.65;
+        opacity: 0.75;
     }
 
-    @keyframes backgroundBreath {
+    body::after {
+        content: '';
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+        background: radial-gradient(circle at center, transparent 65%, rgba(17,17,17,0.75) 100%);
+        pointer-events: none;
+        mix-blend-mode: multiply;
+        opacity: 0.85;
+        animation: vignettePulse 18s ease-in-out infinite alternate;
+    }
+
+    @keyframes wholePageLuxuryBreath {
         0%, 100% { background-position: 0% 0%; }
         50% { background-position: 100% 100%; }
     }
 
-    /* Refined title glow – expensive metallic elegance with slow liquid sweep */
+    @keyframes vignettePulse {
+        0%   { opacity: 0.82; }
+        100% { opacity: 0.94; }
+    }
+
+    /* Title gets a refined metallic enhancement that works with the whole-page effect */
     .glow-yellow {
         text-shadow: 
-            0 0 18px rgb(245 213 95),
-            0 0 36px rgb(245 213 95),
-            0 0 65px rgb(245 213 95 / 0.7),
-            0 6px 18px rgb(0 0 0 / 0.4);
-        animation: titleBreath 4s ease-in-out infinite alternate;
+            0 0 20px rgb(245 213 95),
+            0 0 45px rgb(245 213 95 / 0.7),
+            0 8px 25px rgb(0 0 0 / 0.5);
         position: relative;
     }
 
     .glow-yellow::after {
         content: '';
         position: absolute;
-        top: -40%;
-        left: -120%;
-        width: 40%;
-        height: 280%;
-        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent);
-        animation: titleSweep 7s linear infinite;
-        transform: skewX(-25deg);
+        inset: 0;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.28), transparent);
+        animation: titleFoil 8s linear infinite;
+        opacity: 0.18;
         pointer-events: none;
         z-index: 1;
-        opacity: 0.25;
     }
 
-    @keyframes titleBreath {
-        from { text-shadow: 0 0 18px rgb(245 213 95), 0 0 36px rgb(245 213 95), 0 0 65px rgb(245 213 95 / 0.6); }
-        to   { text-shadow: 0 0 28px rgb(245 213 95), 0 0 55px rgb(245 213 95), 0 0 90px rgb(245 213 95 / 0.85), 0 8px 22px rgb(0 0 0 / 0.35); }
+    @keyframes titleFoil {
+        0%   { transform: translateX(-130%); }
+        100% { transform: translateX(280%); }
     }
 
-    @keyframes titleSweep {
-        0%   { left: -120%; }
-        100% { left: 220%; }
-    }
-
-    /* Premium card hover – refined lift, gold inner rim, subtle scale */
-    .card {
-        transition: all 0.45s cubic-bezier(0.4, 0, 0.2, 1);
-        position: relative;
-    }
-
-    .card::before {
-        content: '';
-        position: absolute;
-        inset: 0;
-        border-radius: 16px;
-        background: linear-gradient(135deg, transparent, rgba(245,213,95,0.18), transparent);
-        opacity: 0;
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        z-index: -1;
-        border: 1px solid transparent;
-    }
-
+    /* Cards, floating button, tiers, and accordions now feel part of the same premium atmosphere */
     .card:hover {
-        transform: translateY(-9px) scale(1.025);
+        transform: translateY(-9px);
         box-shadow: 
-            0 28px 55px -15px rgb(245 213 95 / 0.45),
-            0 0 0 1.5px rgba(245,213,95,0.35) inset;
+            0 30px 60px -18px rgb(245 213 95 / 0.4),
+            0 0 0 1px rgba(245,213,95,0.3) inset;
     }
 
-    .card:hover::before {
-        opacity: 1;
-    }
-
-    /* Floating button – elegant, expensive float with soft inner glow */
     .floating-btn {
-        animation: floatLux 3.2s cubic-bezier(0.45, 0, 0.55, 1) infinite;
         box-shadow: 
-            0 14px 28px -8px rgb(245 213 95 / 0.5),
-            0 0 0 5px rgba(245,213,95,0.2);
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            0 15px 30px -8px rgb(245 213 95 / 0.5),
+            0 0 0 6px rgba(245,213,95,0.18);
     }
 
-    .floating-btn:hover {
-        transform: scale(1.06);
-        box-shadow: 
-            0 18px 35px -10px rgb(245 213 95 / 0.65),
-            0 0 0 7px rgba(245,213,95,0.3);
-    }
-
-    @keyframes floatLux {
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-8px); }
-    }
-
-    /* Tier labels – clean metallic with premium shine sweep */
     .tier-label {
-        position: relative;
-        overflow: hidden;
-        box-shadow: 0 0 0 1px rgba(245,213,95,0.25) inset;
-    }
-
-    .tier-label::after {
-        content: '';
-        position: absolute;
-        top: -60%;
-        left: -180%;
-        width: 60%;
-        height: 300%;
-        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.55), transparent);
-        animation: shineLux 4.2s linear infinite;
-        transform: skewX(-22deg);
-        opacity: 0.7;
-    }
-
-    @keyframes shineLux {
-        0%   { left: -180%; }
-        100% { left: 280%; }
-    }
-
-    /* Accordion – refined active state with gold depth */
-    .accordion {
-        transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 0 0 1px rgba(245,213,95,0.3) inset;
     }
 
     .accordion.active {
-        border-color: rgba(245,213,95,0.4) !important;
-        box-shadow: 0 0 35px -12px rgb(245 213 95);
-    }
-
-    /* Marquee – premium soft neon edge */
-    .animate-marquee {
-        filter: drop-shadow(0 4px 12px rgb(245 213 95 / 0.35));
-    }
-
-    /* Countdown – elegant digital glow */
-    #countdown {
-        text-shadow: 0 0 18px rgb(245 213 95);
-        letter-spacing: -1px;
+        border-color: rgba(245,213,95,0.35) !important;
+        box-shadow: 0 0 40px -15px rgb(245 213 95 / 0.3);
     }
 </style>
 </head>
